@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         /* Base styles */
         body {
@@ -54,15 +53,6 @@
         .chart-container {
             page-break-inside: avoid;
         }
-        
-        /* Modal styles */
-        .modal-content ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-        .modal-content li {
-            margin-bottom: 0.5rem;
-        }
 
         /* Print-specific styles */
         @media print {
@@ -96,42 +86,13 @@
         <!-- Header -->
         <header class="border-b pb-4 mb-6">
             <h1 class="text-3xl font-bold text-gray-900">Incense Heater Comprehensive Report</h1>
-            <p class="text-gray-500 mt-1">Test Results, AI Tools, Compatibility & Troubleshooting</p>
+            <p class="text-gray-500 mt-1">Test Results, Compatibility Guide & Troubleshooting</p>
         </header>
 
         <!-- Main Content -->
         <main class="prose max-w-none">
             
-            <!-- Section: AI-Powered Tools -->
-            <section class="no-print">
-                <h2>✨ AI-Powered Incense Tools</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose">
-                    <!-- Incense Blend Generator -->
-                    <div class="border rounded-lg p-4 bg-white shadow">
-                        <h3 class="font-bold text-lg text-gray-800">Incense Blend Generator</h3>
-                        <p class="text-sm text-gray-600 mt-1">Describe a mood or main ingredient to create a unique incense blend.</p>
-                        <div class="mt-4">
-                            <input type="text" id="blend-input" class="w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="e.g., 'calming' or 'frankincense and myrrh'">
-                            <button id="generate-blend-btn" class="w-full mt-2 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition">
-                                ✨ Generate Blend
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Troubleshooting Assistant -->
-                    <div class="border rounded-lg p-4 bg-white shadow">
-                        <h3 class="font-bold text-lg text-gray-800">Troubleshooting Assistant</h3>
-                        <p class="text-sm text-gray-600 mt-1">Describe your issue, and the AI will provide tailored advice.</p>
-                         <div class="mt-4">
-                            <input type="text" id="trouble-input" class="w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="e.g., 'heater gets too hot' or 'no smell'">
-                            <button id="troubleshoot-btn" class="w-full mt-2 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition">
-                                ✨ Get Advice
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Section: Incense & Heater Compatibility -->
+             <!-- New Section: Incense & Heater Compatibility -->
             <section id="compatibility-section">
                 <h2>Incense & Heater Compatibility</h2>
                 <p>The following guide shows the recommended temperature range for various incense types and which of the tested heaters meet those requirements. A heater is considered compatible if its maximum temperature exceeds the upper end of the recommended range.</p>
@@ -168,6 +129,7 @@
                 <h2>Heater Test Data</h2>
                 <div class="overflow-x-auto">
                     <table id="resultsTable" class="min-w-full bg-white text-sm">
+                        <!-- Table content remains the same -->
                         <thead class="bg-gray-200">
                             <tr>
                                 <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Heater Name</th>
@@ -179,154 +141,91 @@
                             </tr>
                         </thead>
                         <tbody class="text-gray-700">
-                            <tr class="border-b hover:bg-gray-50"><td class="py-4 px-4 font-medium">Golden Lotus</td><td class="py-4 px-4">450</td><td class="py-4 px-4">33</td><td class="py-4 px-4">119.2</td><td class="py-4 px-4">0.2</td><td class="py-4 px-4"><a href="https://www.mermadearts.com/i/golden-lotus-electric-incense-heater" target="_blank" class="table-link">mermadearts.com</a></td></tr>
-                            <tr class="border-b hover:bg-gray-50"><td class="py-4 px-4 font-medium">Lotus Circle</td><td class="py-4 px-4">290</td><td class="py-4 px-4">23</td><td class="py-4 px-4">119.4</td><td class="py-4 px-4">0.15</td><td class="py-4 px-4"><a href="https://www.mermadearts.com/p/electric-heaters-and-censers/mermade-electric-incense-heaters" target="_blank" class="table-link">mermadearts.com</a></td></tr>
-                            <tr class="border-b hover:bg-gray-50"><td class="py-4 px-4 font-medium">Fire Flower</td><td class="py-4 px-4">210</td><td class="py-4 px-4">11</td><td class="py-4 px-4">119.3</td><td class="py-4 px-4">0.0</td><td class="py-4 px-4"><a href="https://www.alibaba.com/x/Azoseh?ck=pdp" target="_blank" class="table-link">alibaba.com</a></td></tr>
-                            <tr class="border-b hover:bg-gray-50"><td class="py-4 px-4 font-medium">PmHaurient B/G</td><td class="py-4 px-4">300</td><td class="py-4 px-4">27</td><td class="py-4 px-4">119.2</td><td class="py-4 px-4">0.3</td><td class="py-4 px-4"><a href="https://www.amazon.com/dp/B0DJQCHB5Z" target="_blank" class="table-link">amazon.com</a></td></tr>
-                            <tr class="hover:bg-gray-50"><td class="py-4 px-4 font-medium">YXY White</td><td class="py-4 px-4">423</td><td class="py-4 px-4">36</td><td class="py-4 px-4">119.3</td><td class="py-4 px-4">0.2</td><td class="py-4 px-4"><a href="https://a.aliexpress.com/_mPPiH2f" target="_blank" class="table-link">aliexpress.com</a></td></tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">Golden Lotus</td><td class="py-4 px-4">450</td><td class="py-4 px-4">33</td><td class="py-4 px-4">119.2</td><td class="py-4 px-4">0.2</td>
+                                <td class="py-4 px-4"><a href="https://www.mermadearts.com/i/golden-lotus-electric-incense-heater" target="_blank" class="table-link">mermadearts.com</a></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">Lotus Circle</td><td class="py-4 px-4">290</td><td class="py-4 px-4">23</td><td class="py-4 px-4">119.4</td><td class="py-4 px-4">0.15</td>
+                                <td class="py-4 px-4"><a href="https://www.mermadearts.com/p/electric-heaters-and-censers/mermade-electric-incense-heaters" target="_blank" class="table-link">mermadearts.com</a></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">Fire Flower</td><td class="py-4 px-4">210</td><td class="py-4 px-4">11</td><td class="py-4 px-4">119.3</td><td class="py-4 px-4">0.0</td>
+                                <td class="py-4 px-4"><a href="https://www.alibaba.com/x/Azoseh?ck=pdp" target="_blank" class="table-link">alibaba.com</a></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">PmHaurient B/G</td><td class="py-4 px-4">300</td><td class="py-4 px-4">27</td><td class="py-4 px-4">119.2</td><td class="py-4 px-4">0.3</td>
+                                <td class="py-4 px-4"><a href="https://www.amazon.com/dp/B0DJQCHB5Z" target="_blank" class="table-link">amazon.com</a></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">YXY White</td><td class="py-4 px-4">423</td><td class="py-4 px-4">36</td><td class="py-4 px-4">119.3</td><td class="py-4 px-4">0.2</td>
+                                <td class="py-4 px-4"><a href="https://a.aliexpress.com/_mPPiH2f" target="_blank" class="table-link">aliexpress.com</a></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section><h2>Troubleshooting Summary</h2><p><strong>Problem:</strong> Multiple electric incense warmers from different vendors failed to power on when plugged into standard household outlets.</p><p><strong>Conclusion:</strong> Testing revealed the issue was not with the heaters, but with the quality of the household electrical current. These heaters require a <strong>clean, stable, pure sine wave AC power</strong> source to function correctly.</p></section>
-            <section><h2>The Solution: Pure Sine Wave Power</h2><p>The problem was reliably solved by using a portable power station that outputs a pure sine wave current. The <a href="https://a.co/d/2YlAA32" target="_blank"><strong>BLUETTI AC2A Portable Power Station</strong></a> was used successfully, confirming that clean power is the solution.</p></section>
-            <section><h2>Key Takeaways & Recommendations</h2><ul><li><strong>Test in a Different Location:</strong> Try another circuit or building before assuming a heater is defective.</li><li><strong>Avoid Modified Sine Wave:</strong> Standard UPS units are often insufficient.</li><li><strong>Use a Pure Sine Wave Source:</strong> This is the most reliable solution for consistent operation.</li></ul></section>
+            <!-- Section: Troubleshooting Summary -->
+            <section>
+                <h2>Troubleshooting Summary</h2>
+                <p><strong>Problem:</strong> Multiple electric incense warmers from different vendors failed to power on when plugged into standard household outlets.</p>
+                <p><strong>Conclusion:</strong> Testing revealed the issue was not with the heaters, but with the quality of the household electrical current. These heaters require a <strong>clean, stable, pure sine wave AC power</strong> source to function correctly.</p>
+            </section>
+
+            <!-- Section: The Solution -->
+            <section>
+                <h2>The Solution: Pure Sine Wave Power</h2>
+                 <p>The problem was reliably solved by using a portable power station that outputs a pure sine wave current. The <a href="https://a.co/d/2YlAA32" target="_blank"><strong>BLUETTI AC2A Portable Power Station</strong></a> was used successfully, confirming that clean power is the solution.</p>
+            </section>
+
+            <!-- Section: Key Takeaways -->
+            <section>
+                <h2>Key Takeaways & Recommendations</h2>
+                <ul>
+                    <li><strong>Test in a Different Location:</strong> Try another circuit or building before assuming a heater is defective.</li>
+                    <li><strong>Avoid Modified Sine Wave:</strong> Standard UPS units are often insufficient.</li>
+                    <li><strong>Use a Pure Sine Wave Source:</strong> This is the most reliable solution for consistent operation.</li>
+                </ul>
+            </section>
         </main>
         
-        <footer class="text-center text-sm text-gray-500 mt-8 pt-4 border-t"><p>Report prepared by Darrell Wright. Generated on <span id="date"></span>.</p></footer>
-    </div>
-    
-    <!-- Modal for AI Response -->
-    <div id="ai-modal" class="no-print fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-        <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
-            <div class="mt-3 text-center">
-                 <h3 id="modal-title" class="text-lg leading-6 font-medium text-gray-900">AI Generated Response</h3>
-                <div id="modal-content" class="modal-content mt-2 px-7 py-3 text-left prose max-w-none">
-                    <!-- AI response will be inserted here -->
-                </div>
-                 <div id="modal-loading" class="hidden my-4">
-                    <div class="flex justify-center items-center">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-                        <span class="ml-3 text-gray-700">Generating...</span>
-                    </div>
-                </div>
-                <div class="items-center px-4 py-3">
-                    <button id="close-modal-btn" class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
+        <!-- Footer -->
+        <footer class="text-center text-sm text-gray-500 mt-8 pt-4 border-t">
+            <p>Report prepared by Darrell Wright. Generated on <span id="date"></span>.</p>
+        </footer>
     </div>
 
     <script>
         // Data for Heaters and Incense
-        const heaters = [{ name: "Golden Lotus", maxTemp: 450 },{ name: "Lotus Circle", maxTemp: 290 },{ name: "Fire Flower", maxTemp: 210 },{ name: "PmHaurient B/G", maxTemp: 300 },{ name: "YXY White", maxTemp: 423 }];
-        const incenseTypes = [{ name: "Palo Santo", minTempF: 140, maxTempF: 257 },{ name: "Dammar", minTempF: 176, maxTempF: 257 },{ name: "Benzoin", minTempF: 176, maxTempF: 212 },{ name: "Frankincense", minTempF: 212, maxTempF: 302 },{ name: "Myrrh", minTempF: 257, maxTempF: 347 },{ name: "Copal", minTempF: 257, maxTempF: 347 },{ name: "Sandalwood", minTempF: 302, maxTempF: 392 },{ name: "Agarwood (Oud)", minTempF: 356, maxTempF: 446 }];
+        const heaters = [
+            { name: "Golden Lotus", maxTemp: 450 },
+            { name: "Lotus Circle", maxTemp: 290 },
+            { name: "Fire Flower", maxTemp: 210 },
+            { name: "PmHaurient B/G", maxTemp: 300 },
+            { name: "YXY White", maxTemp: 423 }
+        ];
 
-        // --- Gemini API Function ---
-        async function callGemini(prompt, buttonElement) {
-            const modal = document.getElementById('ai-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalContent = document.getElementById('modal-content');
-            const modalLoading = document.getElementById('modal-loading');
-            const originalButtonText = buttonElement.innerHTML;
-            
-            modal.classList.remove('hidden');
-            modalContent.innerHTML = '';
-            modalLoading.classList.remove('hidden');
-            buttonElement.disabled = true;
-            buttonElement.innerHTML = '✨ Generating...';
-            
-            const apiKey = ""; // API key is handled by the environment
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-            
-            const payload = {
-                contents: [{ role: "user", parts: [{ text: prompt }] }]
-            };
+        const incenseTypes = [
+            { name: "Palo Santo", minTempF: 140, maxTempF: 257 },
+            { name: "Dammar", minTempF: 176, maxTempF: 257 },
+            { name: "Benzoin", minTempF: 176, maxTempF: 212 },
+            { name: "Frankincense", minTempF: 212, maxTempF: 302 },
+            { name: "Myrrh", minTempF: 257, maxTempF: 347 },
+            { name: "Copal", minTempF: 257, maxTempF: 347 },
+            { name: "Sandalwood", minTempF: 302, maxTempF: 392 },
+            { name: "Agarwood (Oud)", minTempF: 356, maxTempF: 446 }
+        ];
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.statusText}`);
-                }
-                
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    modalContent.innerHTML = marked.parse(text); // Use marked to parse Markdown
-                } else {
-                   modalContent.textContent = 'Sorry, the AI could not generate a response. Please try again.';
-                }
-            } catch (error) {
-                console.error("Gemini API call failed:", error);
-                modalContent.textContent = `An error occurred. Please check the console for details.`;
-            } finally {
-                modalLoading.classList.add('hidden');
-                buttonElement.disabled = false;
-                buttonElement.innerHTML = originalButtonText;
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Modal Event Listeners ---
-            const modal = document.getElementById('ai-modal');
-            const closeModalBtn = document.getElementById('close-modal-btn');
-            closeModalBtn.onclick = () => modal.classList.add('hidden');
-            window.onclick = (event) => {
-                if (event.target == modal) {
-                    modal.classList.add('hidden');
-                }
-            };
-            
-            // --- AI Tool Event Listeners ---
-            const generateBlendBtn = document.getElementById('generate-blend-btn');
-            const troubleshootBtn = document.getElementById('troubleshoot-btn');
-
-            generateBlendBtn.addEventListener('click', () => {
-                const input = document.getElementById('blend-input').value;
-                if (!input) { alert("Please enter a mood or ingredient."); return; }
-                document.getElementById('modal-title').innerText = 'Generated Incense Blend';
-                const prompt = `You are an expert incense crafter. Create a unique incense blend based on the following theme: "${input}". 
-                Provide a creative name for the blend. 
-                List the ingredients as a bulleted list with suggested proportions (e.g., 2 parts, 1 part). 
-                Finally, recommend the ideal heating temperature range in Fahrenheit. Format your response in Markdown.`;
-                callGemini(prompt, generateBlendBtn);
-            });
-            
-            troubleshootBtn.addEventListener('click', () => {
-                const input = document.getElementById('trouble-input').value;
-                if (!input) { alert("Please describe your issue."); return; }
-                document.getElementById('modal-title').innerText = 'Troubleshooting Advice';
-                const heaterDataString = JSON.stringify(heaters);
-                const prompt = `You are an expert on electric incense heaters. A user has the following problem: "${input}". 
-                Given this list of tested heaters: ${heaterDataString}.
-                Provide clear, step-by-step troubleshooting advice as a bulleted list. 
-                Consider the heater specifications and common issues. Format your response in Markdown.`;
-                callGemini(prompt, troubleshootBtn);
-            });
-        
-            // --- Existing Page Logic ---
-            generateCompatibilityGuide();
-            setupCharts();
-            document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        });
-        
+        // Function to generate compatibility guide
         function generateCompatibilityGuide() {
             const guideContainer = document.getElementById('compatibility-guide');
             incenseTypes.forEach(incense => {
                 const compatibleHeaters = heaters.filter(heater => heater.maxTemp >= incense.maxTempF);
+                
                 const card = document.createElement('div');
                 card.className = 'compatibility-card border rounded-lg p-4 bg-white shadow';
+                
                 let heaterListHtml = '<ul class="mt-2 text-sm space-y-1">';
                 if (compatibleHeaters.length > 0) {
                     compatibleHeaters.forEach(heater => {
@@ -336,15 +235,40 @@
                     heaterListHtml += '<li>No suitable heaters in this test.</li>';
                 }
                 heaterListHtml += '</ul>';
-                card.innerHTML = `<h4 class="font-bold text-lg text-gray-800">${incense.name}</h4><p class="text-sm text-gray-600">Recommended: ${incense.minTempF}°F - ${incense.maxTempF}°F</p><div class="mt-2 pt-2 border-t"><h5 class="text-sm font-semibold text-gray-700 mb-1">Compatible Heaters:</h5>${heaterListHtml}</div>`;
+
+                card.innerHTML = `
+                    <h4 class="font-bold text-lg text-gray-800">${incense.name}</h4>
+                    <p class="text-sm text-gray-600">Recommended: ${incense.minTempF}°F - ${incense.maxTempF}°F</p>
+                    <div class="mt-2 pt-2 border-t">
+                        <h5 class="text-sm font-semibold text-gray-700 mb-1">Compatible Heaters:</h5>
+                        ${heaterListHtml}
+                    </div>
+                `;
                 guideContainer.appendChild(card);
             });
         }
-        
-        function setupCharts() {
+
+
+        // Set the current date in the footer
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Chart.js data and configuration
+        document.addEventListener('DOMContentLoaded', () => {
+            // Generate compatibility guide first
+            generateCompatibilityGuide();
+            
+            // Then generate charts
             const table = document.getElementById('resultsTable');
             const rows = table.querySelectorAll('tbody tr');
-            const labels = [], tempData = [], powerData = [], voltageData = [], currentData = [];
+            
+            const labels = [];
+            const tempData = [];
+            const powerData = [];
+            const voltageData = [];
+            const currentData = [];
+
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
                 labels.push(cells[0].innerText);
@@ -353,14 +277,42 @@
                 voltageData.push(parseFloat(cells[3].innerText));
                 currentData.push(parseFloat(cells[4].innerText));
             });
-            const bgColors = ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(153, 102, 255, 0.6)'];
-            const borderColors = ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)', 'rgba(153, 102, 255, 1)'];
-            const createChart = (ctx, label, data) => new Chart(ctx, { type: 'bar', data: { labels: labels, datasets: [{ label: label, data: data, backgroundColor: bgColors, borderColor: borderColors, borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } } });
+
+            const backgroundColors = [
+                'rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)',
+                'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)',
+                'rgba(153, 102, 255, 0.6)'
+            ];
+            const borderColors = [
+                'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)',
+                'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)',
+                'rgba(153, 102, 255, 1)'
+            ];
+
+            const createChart = (ctx, label, data) => {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: label, data: data,
+                            backgroundColor: backgroundColors,
+                            borderColor: borderColors, borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: { y: { beginAtZero: true } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            };
+
             createChart(document.getElementById('tempChart').getContext('2d'), 'Max Temp (°F)', tempData);
             createChart(document.getElementById('powerChart').getContext('2d'), 'Power (W)', powerData);
             createChart(document.getElementById('voltageChart').getContext('2d'), 'Voltage (V)', voltageData);
             createChart(document.getElementById('currentChart').getContext('2d'), 'Current (A)', currentData);
-        }
+        });
     </script>
+
 </body>
 </html>
