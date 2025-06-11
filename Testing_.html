@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incense Heater Test Results & Troubleshooting Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Styles for prose sections */
+        .prose h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .prose p, .prose ul {
+            margin-bottom: 1rem;
+        }
+
+        .prose ul {
+            list-style-position: inside;
+            list-style-type: disc;
+            padding-left: 1rem;
+        }
+        
+        .prose li {
+            margin-bottom: 0.5rem;
+        }
+
+        .prose strong {
+            font-weight: 600;
+        }
+        
+        .prose a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .prose a:hover {
+            text-decoration: none;
+        }
+
+        .chart-container {
+            page-break-inside: avoid;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            .no-print { display: none !important; }
+            body, .container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                background-color: #ffffff;
+            }
+            .prose a::after, .table-link::after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                color: #555;
+            }
+            a { text-decoration: none; color: #000; }
+            @page { size: A4; margin: 0.75in; }
+            tr, h2, h1, .chart-container, .compatibility-card {
+                page-break-inside: avoid !important;
+                page-break-after: auto;
+            }
+            section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto max-w-4xl p-4 sm:p-6 md:p-8 bg-white shadow-lg rounded-lg my-8">
+
+        <!-- Header -->
+        <header class="border-b pb-4 mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">Incense Heater Comprehensive Report</h1>
+            <p class="text-gray-500 mt-1">Test Results, Compatibility Guide & Troubleshooting</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="prose max-w-none">
+            
+             <!-- New Section: Incense & Heater Compatibility -->
+            <section id="compatibility-section">
+                <h2>Incense & Heater Compatibility</h2>
+                <p>The following guide shows the recommended temperature range for various incense types and which of the tested heaters meet those requirements. A heater is considered compatible if its maximum temperature exceeds the upper end of the recommended range.</p>
+                <div id="compatibility-guide" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 not-prose">
+                    <!-- Compatibility cards will be inserted here by JavaScript -->
+                </div>
+            </section>
+
+             <!-- Section: Visual Comparison Charts -->
+            <section>
+                <h2>Visual Comparison of Heaters</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 not-prose">
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-center mb-2">Max Temperature (°F)</h3>
+                        <canvas id="tempChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-center mb-2">Power (Watts)</h3>
+                        <canvas id="powerChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-center mb-2">Voltage (V)</h3>
+                        <canvas id="voltageChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg">
+                         <h3 class="text-lg font-semibold text-center mb-2">Current (A)</h3>
+                        <canvas id="currentChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section: Test Results Table -->
+            <section>
+                <h2>Heater Test Data</h2>
+                <div class="overflow-x-auto">
+                    <table id="resultsTable" class="min-w-full bg-white text-sm">
+                        <!-- Table content remains the same -->
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Heater Name</th>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Max Temp (°F)</th>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Power (W)</th>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Voltage (V)</th>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Current (A)</th>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Website</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">Golden Lotus</td><td class="py-4 px-4">450</td><td class="py-4 px-4">33</td><td class="py-4 px-4">119.2</td><td class="py-4 px-4">0.2</td>
+                                <td class="py-4 px-4"><a href="https://www.mermadearts.com/i/golden-lotus-electric-incense-heater" target="_blank" class="table-link">mermadearts.com</a></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">Lotus Circle</td><td class="py-4 px-4">290</td><td class="py-4 px-4">23</td><td class="py-4 px-4">119.4</td><td class="py-4 px-4">0.15</td>
+                                <td class="py-4 px-4"><a href="https://www.mermadearts.com/p/electric-heaters-and-censers/mermade-electric-incense-heaters" target="_blank" class="table-link">mermadearts.com</a></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">Fire Flower</td><td class="py-4 px-4">210</td><td class="py-4 px-4">11</td><td class="py-4 px-4">119.3</td><td class="py-4 px-4">0.0</td>
+                                <td class="py-4 px-4"><a href="https://www.alibaba.com/x/Azoseh?ck=pdp" target="_blank" class="table-link">alibaba.com</a></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">PmHaurient B/G</td><td class="py-4 px-4">300</td><td class="py-4 px-4">27</td><td class="py-4 px-4">119.2</td><td class="py-4 px-4">0.3</td>
+                                <td class="py-4 px-4"><a href="https://www.amazon.com/dp/B0DJQCHB5Z" target="_blank" class="table-link">amazon.com</a></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">YXY White</td><td class="py-4 px-4">423</td><td class="py-4 px-4">36</td><td class="py-4 px-4">119.3</td><td class="py-4 px-4">0.2</td>
+                                <td class="py-4 px-4"><a href="https://a.aliexpress.com/_mPPiH2f" target="_blank" class="table-link">aliexpress.com</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section: Troubleshooting Summary -->
+            <section>
+                <h2>Troubleshooting Summary</h2>
+                <p><strong>Problem:</strong> Multiple electric incense warmers from different vendors failed to power on when plugged into standard household outlets.</p>
+                <p><strong>Conclusion:</strong> Testing revealed the issue was not with the heaters, but with the quality of the household electrical current. These heaters require a <strong>clean, stable, pure sine wave AC power</strong> source to function correctly.</p>
+            </section>
+
+            <!-- Section: The Solution -->
+            <section>
+                <h2>The Solution: Pure Sine Wave Power</h2>
+                 <p>The problem was reliably solved by using a portable power station that outputs a pure sine wave current. The <a href="https://a.co/d/2YlAA32" target="_blank"><strong>BLUETTI AC2A Portable Power Station</strong></a> was used successfully, confirming that clean power is the solution.</p>
+            </section>
+
+            <!-- Section: Key Takeaways -->
+            <section>
+                <h2>Key Takeaways & Recommendations</h2>
+                <ul>
+                    <li><strong>Test in a Different Location:</strong> Try another circuit or building before assuming a heater is defective.</li>
+                    <li><strong>Avoid Modified Sine Wave:</strong> Standard UPS units are often insufficient.</li>
+                    <li><strong>Use a Pure Sine Wave Source:</strong> This is the most reliable solution for consistent operation.</li>
+                </ul>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="text-center text-sm text-gray-500 mt-8 pt-4 border-t">
+            <p>Report prepared by Darrell Wright. Generated on <span id="date"></span>.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data for Heaters and Incense
+        const heaters = [
+            { name: "Golden Lotus", maxTemp: 450 },
+            { name: "Lotus Circle", maxTemp: 290 },
+            { name: "Fire Flower", maxTemp: 210 },
+            { name: "PmHaurient B/G", maxTemp: 300 },
+            { name: "YXY White", maxTemp: 423 }
+        ];
+
+        const incenseTypes = [
+            { name: "Palo Santo", minTempF: 140, maxTempF: 257 },
+            { name: "Dammar", minTempF: 176, maxTempF: 257 },
+            { name: "Benzoin", minTempF: 176, maxTempF: 212 },
+            { name: "Frankincense", minTempF: 212, maxTempF: 302 },
+            { name: "Myrrh", minTempF: 257, maxTempF: 347 },
+            { name: "Copal", minTempF: 257, maxTempF: 347 },
+            { name: "Sandalwood", minTempF: 302, maxTempF: 392 },
+            { name: "Agarwood (Oud)", minTempF: 356, maxTempF: 446 }
+        ];
+
+        // Function to generate compatibility guide
+        function generateCompatibilityGuide() {
+            const guideContainer = document.getElementById('compatibility-guide');
+            incenseTypes.forEach(incense => {
+                const compatibleHeaters = heaters.filter(heater => heater.maxTemp >= incense.maxTempF);
+                
+                const card = document.createElement('div');
+                card.className = 'compatibility-card border rounded-lg p-4 bg-white shadow';
+                
+                let heaterListHtml = '<ul class="mt-2 text-sm space-y-1">';
+                if (compatibleHeaters.length > 0) {
+                    compatibleHeaters.forEach(heater => {
+                        heaterListHtml += `<li class="flex justify-between"><span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>${heater.name}</span> <span class="text-gray-500">${heater.maxTemp}°F</span></li>`;
+                    });
+                } else {
+                    heaterListHtml += '<li>No suitable heaters in this test.</li>';
+                }
+                heaterListHtml += '</ul>';
+
+                card.innerHTML = `
+                    <h4 class="font-bold text-lg text-gray-800">${incense.name}</h4>
+                    <p class="text-sm text-gray-600">Recommended: ${incense.minTempF}°F - ${incense.maxTempF}°F</p>
+                    <div class="mt-2 pt-2 border-t">
+                        <h5 class="text-sm font-semibold text-gray-700 mb-1">Compatible Heaters:</h5>
+                        ${heaterListHtml}
+                    </div>
+                `;
+                guideContainer.appendChild(card);
+            });
+        }
+
+        // Set the current date in the footer
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Chart.js data and configuration
+        document.addEventListener('DOMContentLoaded', () => {
+            // Generate compatibility guide first
+            generateCompatibilityGuide();
+            
+            // Then generate charts
+            const table = document.getElementById('resultsTable');
+            const rows = table.querySelectorAll('tbody tr');
+            
+            const labels = [];
+            const tempData = [];
+            const powerData = [];
+            const voltageData = [];
+            const currentData = [];
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                labels.push(cells[0].innerText);
+                tempData.push(parseFloat(cells[1].innerText));
+                powerData.push(parseFloat(cells[2].innerText));
+                voltageData.push(parseFloat(cells[3].innerText));
+                currentData.push(parseFloat(cells[4].innerText));
+            });
+
+            const backgroundColors = [
+                'rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)',
+                'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)',
+                'rgba(153, 102, 255, 0.6)'
+            ];
+            const borderColors = [
+                'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)',
+                'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)',
+                'rgba(153, 102, 255, 1)'
+            ];
+
+            const createChart = (ctx, label, data) => {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: label, data: data,
+                            backgroundColor: backgroundColors,
+                            borderColor: borderColors, borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: { y: { beginAtZero: true } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            };
+
+            createChart(document.getElementById('tempChart').getContext('2d'), 'Max Temp (°F)', tempData);
+            createChart(document.getElementById('powerChart').getContext('2d'), 'Power (W)', powerData);
+            createChart(document.getElementById('voltageChart').getContext('2d'), 'Voltage (V)', voltageData);
+            createChart(document.getElementById('currentChart').getContext('2d'), 'Current (A)', currentData);
+        });
+    </script>
+
+</body>
+</html>
