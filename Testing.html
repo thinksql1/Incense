@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,7 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
 
         /* Styles for prose sections */
         .prose h2 {
@@ -30,9 +31,11 @@
              margin-bottom: 0.5rem;
         }
 
+
         .prose p, .prose ul {
             margin-bottom: 1rem;
         }
+
 
         .prose ul {
             list-style-position: inside;
@@ -44,6 +47,7 @@
             margin-bottom: 0.5rem;
         }
 
+
         .prose strong {
             font-weight: 600;
         }
@@ -53,13 +57,16 @@
             text-decoration: underline;
         }
 
+
         .prose a:hover {
             text-decoration: none;
         }
 
+
         .chart-container {
             page-break-inside: avoid;
         }
+
 
         /* Print-specific styles */
         @media print {
@@ -88,13 +95,16 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
+
     <div class="container mx-auto max-w-4xl p-4 sm:p-6 md:p-8 bg-white shadow-lg rounded-lg my-8">
+
 
         <!-- Header -->
         <header class="border-b pb-4 mb-6">
             <h1 class="text-3xl font-bold text-gray-900">Incense Heater Comprehensive Report</h1>
             <p class="text-gray-500 mt-1">Test Results, Compatibility Guide & Troubleshooting</p>
         </header>
+
 
         <!-- Main Content -->
         <main class="prose max-w-none">
@@ -107,6 +117,7 @@
                     <!-- Compatibility cards will be inserted here by JavaScript -->
                 </div>
             </section>
+
 
              <!-- Section: Visual Comparison Charts -->
             <section>
@@ -173,10 +184,29 @@
                 </div>
             </section>
 
+
             <!-- START: Performance Chart Sections -->
             <section id="performance-analysis-section">
                 <h2>Heater Performance Analysis</h2>
-                <p>The following charts show the performance of individual heaters and a combined comparison, illustrating how their actual measured temperatures correspond to the dial settings.</p>
+                <p>The following charts show the performance of individual heaters and combined comparisons, illustrating how their actual measured temperatures correspond to the dial settings and ideal incense temperature ranges.</p>
+                
+                <!-- NEW Interactive Goal Range Chart -->
+                <div id="goal-range-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">Interactive: Heater Performance vs. Incense Goal Ranges</h3>
+                     <p class="text-sm">Select an incense from the dropdown menu to see its ideal temperature range (the shaded ribbon) overlaid on the heater performance chart. This helps identify which dial settings on which heaters are suitable for that specific incense.</p>
+                     <div class="not-prose my-4">
+                        <label for="incenseSelector" class="block text-sm font-medium text-gray-700 mb-1">Select Incense:</label>
+                        <select id="incenseSelector" class="no-print mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <!-- Options will be added by JavaScript -->
+                        </select>
+                     </div>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose">
+                        <div style="height: 500px; position: relative;">
+                             <canvas id="goalRangeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Combined Chart -->
                 <div id="combined-analysis" class="mt-8">
@@ -188,6 +218,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <!-- Golden Lotus Chart -->
                 <div id="golden-lotus-analysis" class="mt-8">
@@ -209,6 +240,7 @@
                     </div>
                 </div>
 
+
                 <!-- Fire Flower Chart -->
                  <div id="fire-flower-analysis" class="mt-8">
                     <h3 class="text-xl font-semibold">Fire Flower: Individual Performance</h3>
@@ -219,6 +251,7 @@
                     </div>
                 </div>
 
+
                 <!-- YXY White Chart -->
                  <div id="yxy-white-analysis" class="mt-8">
                     <h3 class="text-xl font-semibold">YXY White: Individual Performance</h3>
@@ -228,6 +261,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <!-- PmHaurient B/G Chart -->
                 <div id="pmhaurient-analysis" class="mt-8">
@@ -241,6 +275,7 @@
             </section>
             <!-- END: Performance Chart Sections -->
 
+
             <!-- Section: Troubleshooting Summary -->
             <section>
                 <h2>Troubleshooting Summary</h2>
@@ -248,11 +283,13 @@
                 <p><strong>Conclusion:</strong> Testing revealed the issue was not with the heaters, but with the quality of the household electrical current. These heaters require a <strong>clean, stable, pure sine wave AC power</strong> source to function correctly.</p>
             </section>
 
+
             <!-- Section: The Solution -->
             <section>
                 <h2>The Solution: Pure Sine Wave Power</h2>
                  <p>The problem was reliably solved by using a portable power station that outputs a pure sine wave current. The <a href="https://a.co/d/2YlAA32" target="_blank"><strong>BLUETTI AC2A Portable Power Station</strong></a> was used successfully, confirming that clean power is the solution.</p>
             </section>
+
 
             <!-- Section: Key Takeaways -->
             <section>
@@ -271,6 +308,7 @@
         </footer>
     </div>
 
+
     <script>
         // Data for Heaters and Incense
         const heaters = [
@@ -280,6 +318,7 @@
             { name: "PmHaurient B/G", maxTemp: 300 },
             { name: "YXY White", maxTemp: 423 }
         ];
+
 
         const incenseTypes = [
             { name: "Palo Santo", minTempF: 140, maxTempF: 257 },
@@ -291,6 +330,7 @@
             { name: "Sandalwood", minTempF: 302, maxTempF: 392 },
             { name: "Agarwood (Oud)", minTempF: 356, maxTempF: 446 }
         ];
+
 
         // Function to generate compatibility guide
         function generateCompatibilityGuide() {
@@ -313,6 +353,7 @@
                 }
                 heaterListHtml += '</ul>';
 
+
                 card.innerHTML = `
                     <h4 class="font-bold text-lg text-gray-800">${incense.name}</h4>
                     <p class="text-sm text-gray-600">Recommended: ${incense.minTempF}°F - ${incense.maxTempF}°F</p>
@@ -325,6 +366,7 @@
             });
         }
 
+
         // Set the current date in the footer
         const dateElement = document.getElementById('date');
         if (dateElement) {
@@ -333,22 +375,28 @@
             });
         }
 
+
         // Chart.js data and configuration
         document.addEventListener('DOMContentLoaded', () => {
             // Generate compatibility guide first
             generateCompatibilityGuide();
             
-            // Then generate summary charts
+            // --- All Heater Data ---
+            const dialSettings = [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300];
+            const heaterPerformanceData = {
+                "Golden Lotus": { dialSettings, tempsAfterInterval: [219, 228, 254, 263, 276, 294, 326, 334, 378, 361, 350], topTemps: [223, 228, 255, 268, 286, 299, 326, 353, 379, 374, 365] },
+                "Lotus Circle": { dialSettings, tempsAfterInterval: [208, 224, 220, 228, 230, 238, 239, 260, 273, 272, 246], topTemps: [208, 225, 226, 230, 233, 242, 248, 261, 273, 277, 257] },
+                "Fire Flower": { dialSettings, tempsAfterInterval: [122, 137, 156, 164, 158, 161, 167, 175, 177, 174, 194], topTemps: [122, 138, 156, 164, 163, 165, 168, 175, 182, 182, 185] },
+                "YXY White": { dialSettings, tempsAfterInterval: [150, 198, 192, 211, 232, 269, 291, 315, 311, 306, 320], topTemps: [154, 198, 195, 221, 236, 269, 296, 315, 329, 315, 322] },
+                "PmHaurient B/G": { dialSettings, tempsAfterInterval: [165, 200, 210, 219, 226, 247, 254, 271, 285, 293, 293], topTemps: [172, 208, 217, 221, 233, 251, 256, 273, 286, 294, 293] }
+            };
+
+
+            // Then generate summary bar charts
             const table = document.getElementById('resultsTable');
             if (table) {
                 const rows = table.querySelectorAll('tbody tr');
-                
-                const labels = [];
-                const tempData = [];
-                const powerData = [];
-                const voltageData = [];
-                const currentData = [];
-
+                const labels = [], tempData = [], powerData = [], voltageData = [], currentData = [];
                 rows.forEach(row => {
                     const cells = row.querySelectorAll('td');
                     labels.push(cells[0].innerText);
@@ -357,194 +405,132 @@
                     voltageData.push(parseFloat(cells[3].innerText));
                     currentData.push(parseFloat(cells[4].innerText));
                 });
-
-                const backgroundColors = [
-                    'rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)',
-                    'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)',
-                    'rgba(153, 102, 255, 0.6)'
-                ];
-                const borderColors = [
-                    'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)',
-                    'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)',
-                    'rgba(153, 102, 255, 1)'
-                ];
-
                 const createBarChart = (canvasId, label, data) => {
                     const ctx = document.getElementById(canvasId)?.getContext('2d');
-                    if (ctx) {
-                        new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: label, data: data,
-                                    backgroundColor: backgroundColors,
-                                    borderColor: borderColors, borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: { y: { beginAtZero: true } },
-                                plugins: { legend: { display: false } }
-                            }
-                        });
-                    }
+                    if (ctx) new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ label, data, backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(153, 102, 255, 0.6)'], borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)', 'rgba(153, 102, 255, 1)'], borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } } });
                 };
-
                 createBarChart('tempChart', 'Max Temp (°F)', tempData);
                 createBarChart('powerChart', 'Power (W)', powerData);
                 createBarChart('voltageChart', 'Voltage (V)', voltageData);
                 createBarChart('currentChart', 'Current (A)', currentData);
             }
 
+
             // --- Reusable Function for Individual Performance Line Charts ---
             const createIndividualPerformanceChart = (canvasId, chartData) => {
                  const ctx = document.getElementById(canvasId)?.getContext('2d');
                  if (!ctx) return;
-                 new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: chartData.dialSettings,
-                        datasets: [{
-                            label: 'Temp after 11.5 min (°F)',
-                            data: chartData.tempsAfterInterval,
-                            borderColor: 'rgb(59, 130, 246)',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            tension: 0.2,
-                            fill: true,
-                        }, {
-                            label: 'Peak Temp During Warm-up (°F)',
-                            data: chartData.topTemps,
-                            borderColor: 'rgb(34, 197, 94)',
-                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                            tension: 0.2,
-                            fill: true,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'top' },
-                            title: { display: false },
-                            tooltip: { mode: 'index', intersect: false }
-                        },
-                        scales: {
-                            x: {
-                                title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } }
-                            },
-                            y: {
-                                beginAtZero: false,
-                                min: Math.floor(Math.min(...chartData.tempsAfterInterval, ...chartData.topTemps) / 10) * 10 - 20,
-                                title: { display: true, text: 'Measured Temperature (°F)', font: { weight: 'bold' } }
-                            }
-                        }
-                    }
-                });
+                 new Chart(ctx, { type: 'line', data: { labels: chartData.dialSettings, datasets: [{ label: 'Temp after 11.5 min (°F)', data: chartData.tempsAfterInterval, borderColor: 'rgb(59, 130, 246)', backgroundColor: 'rgba(59, 130, 246, 0.1)', tension: 0.2, fill: true, }, { label: 'Peak Temp During Warm-up (°F)', data: chartData.topTemps, borderColor: 'rgb(34, 197, 94)', backgroundColor: 'rgba(34, 197, 94, 0.1)', tension: 0.2, fill: true, }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, title: { display: false }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } } }, y: { beginAtZero: false, min: Math.floor(Math.min(...chartData.tempsAfterInterval, ...chartData.topTemps) / 10) * 10 - 20, title: { display: true, text: 'Measured Temperature (°F)', font: { weight: 'bold' } } } } } });
             };
 
-            // --- Data for Each Heater ---
-            const goldenLotusData = {
-                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
-                tempsAfterInterval: [219, 228, 254, 263, 276, 294, 326, 334, 378, 361, 350],
-                topTemps: [223, 228, 255, 268, 286, 299, 326, 353, 379, 374, 365]
-            };
-            const lotusCircleData = {
-                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
-                tempsAfterInterval: [208, 224, 220, 228, 230, 238, 239, 260, 273, 272, 246],
-                topTemps: [208, 225, 226, 230, 233, 242, 248, 261, 273, 277, 257]
-            };
-            const fireFlowerData = {
-                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
-                tempsAfterInterval: [122, 137, 156, 164, 158, 161, 167, 175, 177, 174, 194],
-                topTemps: [122, 138, 156, 164, 163, 165, 168, 175, 182, 182, 185]
-            };
-            const yxyWhiteData = {
-                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
-                tempsAfterInterval: [150, 198, 192, 211, 232, 269, 291, 315, 311, 306, 320],
-                topTemps: [154, 198, 195, 221, 236, 269, 296, 315, 329, 315, 322]
-            };
-            const pmHaurientData = {
-                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
-                tempsAfterInterval: [165, 200, 210, 219, 226, 247, 254, 271, 285, 293, 293],
-                topTemps: [172, 208, 217, 221, 233, 251, 256, 273, 286, 294, 293]
-            };
 
             // --- Create Individual Charts ---
-            createIndividualPerformanceChart('goldenLotusPerformanceChart', goldenLotusData);
-            createIndividualPerformanceChart('lotusCirclePerformanceChart', lotusCircleData);
-            createIndividualPerformanceChart('fireFlowerPerformanceChart', fireFlowerData);
-            createIndividualPerformanceChart('yxyWhitePerformanceChart', yxyWhiteData);
-            createIndividualPerformanceChart('pmHaurientPerformanceChart', pmHaurientData);
+            createIndividualPerformanceChart('goldenLotusPerformanceChart', heaterPerformanceData["Golden Lotus"]);
+            createIndividualPerformanceChart('lotusCirclePerformanceChart', heaterPerformanceData["Lotus Circle"]);
+            createIndividualPerformanceChart('fireFlowerPerformanceChart', heaterPerformanceData["Fire Flower"]);
+            createIndividualPerformanceChart('yxyWhitePerformanceChart', heaterPerformanceData["YXY White"]);
+            createIndividualPerformanceChart('pmHaurientPerformanceChart', heaterPerformanceData["PmHaurient B/G"]);
+
 
             // --- Create Combined Chart ---
             const createCombinedChart = () => {
                 const ctx = document.getElementById('combinedPerformanceChart')?.getContext('2d');
                 if (!ctx) return;
-                new Chart(ctx, {
+                new Chart(ctx, { type: 'line', data: { labels: dialSettings, datasets: [ { label: 'Golden Lotus', data: heaterPerformanceData['Golden Lotus'].tempsAfterInterval, borderColor: 'rgb(192, 132, 252)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'Lotus Circle', data: heaterPerformanceData['Lotus Circle'].tempsAfterInterval, borderColor: 'rgb(255, 99, 132)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'Fire Flower', data: heaterPerformanceData['Fire Flower'].tempsAfterInterval, borderColor: 'rgb(234, 179, 8)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'YXY White', data: heaterPerformanceData['YXY White'].tempsAfterInterval, borderColor: 'rgb(54, 162, 235)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'PmHaurient B/G', data: heaterPerformanceData['PmHaurient B/G'].tempsAfterInterval, borderColor: 'rgb(34, 197, 94)', borderWidth: 2, tension: 0.1, fill: false } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, title: { display: false }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } } }, y: { beginAtZero: false, title: { display: true, text: 'Temp after 11.5 min (°F)', font: { weight: 'bold' } } } } } });
+            };
+            createCombinedChart();
+
+
+            // --- INTERACTIVE GOAL RANGE CHART LOGIC ---
+            const selector = document.getElementById('incenseSelector');
+            const goalRangeCtx = document.getElementById('goalRangeChart')?.getContext('2d');
+            let goalRangeChart = null;
+            const heaterDatasets = [
+                    { label: 'Golden Lotus', data: heaterPerformanceData['Golden Lotus'].tempsAfterInterval, borderColor: 'rgb(192, 132, 252)', borderWidth: 2.5, tension: 0.1, fill: false },
+                    { label: 'Lotus Circle', data: heaterPerformanceData['Lotus Circle'].tempsAfterInterval, borderColor: 'rgb(255, 99, 132)', borderWidth: 2.5, tension: 0.1, fill: false },
+                    { label: 'Fire Flower', data: heaterPerformanceData['Fire Flower'].tempsAfterInterval, borderColor: 'rgb(234, 179, 8)', borderWidth: 2.5, tension: 0.1, fill: false },
+                    { label: 'YXY White', data: heaterPerformanceData['YXY White'].tempsAfterInterval, borderColor: 'rgb(54, 162, 235)', borderWidth: 2.5, tension: 0.1, fill: false },
+                    { label: 'PmHaurient B/G', data: heaterPerformanceData['PmHaurient B/G'].tempsAfterInterval, borderColor: 'rgb(34, 197, 94)', borderWidth: 2.5, tension: 0.1, fill: false }
+                ];
+            
+            // Populate Dropdown
+            if(selector) {
+                selector.innerHTML = '<option value="">-- Select an Incense to see its Goal Range --</option>';
+                incenseTypes.forEach(incense => {
+                    const option = document.createElement('option');
+                    option.value = incense.name;
+                    option.textContent = `${incense.name} (${incense.minTempF}°F - ${incense.maxTempF}°F)`;
+                    selector.appendChild(option);
+                });
+            }
+
+
+            // Initial Chart Drawing
+            if (goalRangeCtx) {
+                goalRangeChart = new Chart(goalRangeCtx, {
                     type: 'line',
                     data: {
-                        labels: goldenLotusData.dialSettings, // Common X-axis
-                        datasets: [
-                            {
-                                label: 'Golden Lotus',
-                                data: goldenLotusData.tempsAfterInterval,
-                                borderColor: 'rgb(217, 70, 239)', // Fuchsia
-                                tension: 0.1,
-                                fill: false
-                            },
-                             {
-                                label: 'Lotus Circle',
-                                data: lotusCircleData.tempsAfterInterval,
-                                borderColor: 'rgb(255, 99, 132)', // Red
-                                tension: 0.1,
-                                fill: false
-                            },
-                             {
-                                label: 'Fire Flower',
-                                data: fireFlowerData.tempsAfterInterval,
-                                borderColor: 'rgb(234, 179, 8)', // Yellow
-                                tension: 0.1,
-                                fill: false
-                            },
-                            {
-                                label: 'YXY White',
-                                data: yxyWhiteData.tempsAfterInterval,
-                                borderColor: 'rgb(54, 162, 235)', // Blue
-                                tension: 0.1,
-                                fill: false
-                            },
-                            {
-                                label: 'PmHaurient B/G',
-                                data: pmHaurientData.tempsAfterInterval,
-                                borderColor: 'rgb(34, 197, 94)', // Green
-                                tension: 0.1,
-                                fill: false
-                            }
-                        ]
+                        labels: dialSettings,
+                        datasets: [...heaterDatasets] // Start with only heater lines
                     },
                     options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
+                        responsive: true, maintainAspectRatio: false,
                         plugins: {
                             legend: { position: 'top' },
                             title: { display: false },
-                            tooltip: { mode: 'index', intersect: false }
+                            tooltip: { mode: 'index', intersect: false, position: 'nearest' }
                         },
-                         scales: {
-                            x: {
-                                title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } }
-                            },
-                            y: {
-                                beginAtZero: false,
-                                title: { display: true, text: 'Temp after 11.5 min (°F)', font: { weight: 'bold' } }
-                            }
+                        scales: {
+                            x: { title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } } },
+                            y: { title: { display: true, text: 'Measured Temperature (°F)', font: { weight: 'bold' } } }
                         }
                     }
                 });
-            };
-            createCombinedChart();
+            }
+
+
+            // Add event listener to dropdown
+            selector?.addEventListener('change', (event) => {
+                if (!goalRangeChart) return;
+                
+                const selectedIncenseName = event.target.value;
+                
+                // Keep only the heater datasets, remove any previous ribbon datasets
+                goalRangeChart.data.datasets = goalRangeChart.data.datasets.filter(ds => !ds.label.includes('Range'));
+
+
+                if (selectedIncenseName) {
+                    const selectedIncense = incenseTypes.find(i => i.name === selectedIncenseName);
+                    if(selectedIncense) {
+                        // Create the ribbon datasets
+                        const ribbonDatasets = [
+                            { // Min line (invisible, for filling)
+                                label: 'Min Temp Range',
+                                data: Array(dialSettings.length).fill(selectedIncense.minTempF),
+                                borderColor: 'transparent',
+                                pointRadius: 0,
+                                legend: { display: false }
+                            },
+                            { // Max line (visible label, fills down to min line)
+                                label: `Range for ${selectedIncense.name}`,
+                                data: Array(dialSettings.length).fill(selectedIncense.maxTempF),
+                                borderColor: 'transparent',
+                                pointRadius: 0,
+                                backgroundColor: 'rgba(153, 102, 255, 0.2)', // Purple ribbon
+                                fill: '-1' // Fills to the previous dataset
+                            }
+                        ];
+                        // Add ribbon datasets to the beginning so they are drawn behind the heater lines
+                        goalRangeChart.data.datasets.unshift(...ribbonDatasets);
+                    }
+                }
+                
+                // Update the chart to show changes
+                goalRangeChart.update();
+            });
         });
     </script>
+
 
 </body>
 </html>
