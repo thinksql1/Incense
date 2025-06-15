@@ -22,6 +22,13 @@
             padding-bottom: 0.5rem;
             border-bottom: 1px solid #e5e7eb;
         }
+        
+        .prose h3.text-xl {
+             font-size: 1.25rem;
+             font-weight: 600;
+             margin-top: 2rem;
+             margin-bottom: 0.5rem;
+        }
 
         .prose p, .prose ul {
             margin-bottom: 1rem;
@@ -166,6 +173,74 @@
                 </div>
             </section>
 
+            <!-- START: Performance Chart Sections -->
+            <section id="performance-analysis-section">
+                <h2>Heater Performance Analysis</h2>
+                <p>The following charts show the performance of individual heaters and a combined comparison, illustrating how their actual measured temperatures correspond to the dial settings.</p>
+
+                <!-- Combined Chart -->
+                <div id="combined-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">Combined Heater Performance Comparison</h3>
+                     <p class="text-sm">This chart compares the temperature of each heater after 11.5 minutes at various dial settings.</p>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose my-4">
+                        <div style="height: 400px; position: relative;">
+                             <canvas id="combinedPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Golden Lotus Chart -->
+                <div id="golden-lotus-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">Golden Lotus: Individual Performance</h3>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose my-4">
+                        <div style="height: 400px; position: relative;">
+                             <canvas id="goldenLotusPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Lotus Circle Chart -->
+                <div id="lotus-circle-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">Lotus Circle: Individual Performance</h3>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose my-4">
+                        <div style="height: 400px; position: relative;">
+                             <canvas id="lotusCirclePerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fire Flower Chart -->
+                 <div id="fire-flower-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">Fire Flower: Individual Performance</h3>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose my-4">
+                        <div style="height: 400px; position: relative;">
+                             <canvas id="fireFlowerPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YXY White Chart -->
+                 <div id="yxy-white-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">YXY White: Individual Performance</h3>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose my-4">
+                        <div style="height: 400px; position: relative;">
+                             <canvas id="yxyWhitePerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PmHaurient B/G Chart -->
+                <div id="pmhaurient-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">PmHaurient B/G: Individual Performance</h3>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose my-4">
+                        <div style="height: 400px; position: relative;">
+                             <canvas id="pmHaurientPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END: Performance Chart Sections -->
+
             <!-- Section: Troubleshooting Summary -->
             <section>
                 <h2>Troubleshooting Summary</h2>
@@ -220,6 +295,8 @@
         // Function to generate compatibility guide
         function generateCompatibilityGuide() {
             const guideContainer = document.getElementById('compatibility-guide');
+            if (!guideContainer) return;
+            guideContainer.innerHTML = ''; // Clear existing content to prevent duplicates
             incenseTypes.forEach(incense => {
                 const compatibleHeaters = heaters.filter(heater => heater.maxTemp >= incense.maxTempF);
                 
@@ -249,67 +326,223 @@
         }
 
         // Set the current date in the footer
-        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric', month: 'long', day: 'numeric'
-        });
+        const dateElement = document.getElementById('date');
+        if (dateElement) {
+            dateElement.textContent = new Date().toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
 
         // Chart.js data and configuration
         document.addEventListener('DOMContentLoaded', () => {
             // Generate compatibility guide first
             generateCompatibilityGuide();
             
-            // Then generate charts
+            // Then generate summary charts
             const table = document.getElementById('resultsTable');
-            const rows = table.querySelectorAll('tbody tr');
-            
-            const labels = [];
-            const tempData = [];
-            const powerData = [];
-            const voltageData = [];
-            const currentData = [];
+            if (table) {
+                const rows = table.querySelectorAll('tbody tr');
+                
+                const labels = [];
+                const tempData = [];
+                const powerData = [];
+                const voltageData = [];
+                const currentData = [];
 
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-                labels.push(cells[0].innerText);
-                tempData.push(parseFloat(cells[1].innerText));
-                powerData.push(parseFloat(cells[2].innerText));
-                voltageData.push(parseFloat(cells[3].innerText));
-                currentData.push(parseFloat(cells[4].innerText));
-            });
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    labels.push(cells[0].innerText);
+                    tempData.push(parseFloat(cells[1].innerText));
+                    powerData.push(parseFloat(cells[2].innerText));
+                    voltageData.push(parseFloat(cells[3].innerText));
+                    currentData.push(parseFloat(cells[4].innerText));
+                });
 
-            const backgroundColors = [
-                'rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)',
-                'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)',
-                'rgba(153, 102, 255, 0.6)'
-            ];
-            const borderColors = [
-                'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)',
-                'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)',
-                'rgba(153, 102, 255, 1)'
-            ];
+                const backgroundColors = [
+                    'rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)',
+                    'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)',
+                    'rgba(153, 102, 255, 0.6)'
+                ];
+                const borderColors = [
+                    'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ];
 
-            const createChart = (ctx, label, data) => {
-                new Chart(ctx, {
-                    type: 'bar',
+                const createBarChart = (canvasId, label, data) => {
+                    const ctx = document.getElementById(canvasId)?.getContext('2d');
+                    if (ctx) {
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: label, data: data,
+                                    backgroundColor: backgroundColors,
+                                    borderColor: borderColors, borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: { y: { beginAtZero: true } },
+                                plugins: { legend: { display: false } }
+                            }
+                        });
+                    }
+                };
+
+                createBarChart('tempChart', 'Max Temp (°F)', tempData);
+                createBarChart('powerChart', 'Power (W)', powerData);
+                createBarChart('voltageChart', 'Voltage (V)', voltageData);
+                createBarChart('currentChart', 'Current (A)', currentData);
+            }
+
+            // --- Reusable Function for Individual Performance Line Charts ---
+            const createIndividualPerformanceChart = (canvasId, chartData) => {
+                 const ctx = document.getElementById(canvasId)?.getContext('2d');
+                 if (!ctx) return;
+                 new Chart(ctx, {
+                    type: 'line',
                     data: {
-                        labels: labels,
+                        labels: chartData.dialSettings,
                         datasets: [{
-                            label: label, data: data,
-                            backgroundColor: backgroundColors,
-                            borderColor: borderColors, borderWidth: 1
+                            label: 'Temp after 11.5 min (°F)',
+                            data: chartData.tempsAfterInterval,
+                            borderColor: 'rgb(59, 130, 246)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.2,
+                            fill: true,
+                        }, {
+                            label: 'Peak Temp During Warm-up (°F)',
+                            data: chartData.topTemps,
+                            borderColor: 'rgb(34, 197, 94)',
+                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                            tension: 0.2,
+                            fill: true,
                         }]
                     },
                     options: {
-                        scales: { y: { beginAtZero: true } },
-                        plugins: { legend: { display: false } }
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'top' },
+                            title: { display: false },
+                            tooltip: { mode: 'index', intersect: false }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } }
+                            },
+                            y: {
+                                beginAtZero: false,
+                                min: Math.floor(Math.min(...chartData.tempsAfterInterval, ...chartData.topTemps) / 10) * 10 - 20,
+                                title: { display: true, text: 'Measured Temperature (°F)', font: { weight: 'bold' } }
+                            }
+                        }
                     }
                 });
             };
 
-            createChart(document.getElementById('tempChart').getContext('2d'), 'Max Temp (°F)', tempData);
-            createChart(document.getElementById('powerChart').getContext('2d'), 'Power (W)', powerData);
-            createChart(document.getElementById('voltageChart').getContext('2d'), 'Voltage (V)', voltageData);
-            createChart(document.getElementById('currentChart').getContext('2d'), 'Current (A)', currentData);
+            // --- Data for Each Heater ---
+            const goldenLotusData = {
+                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
+                tempsAfterInterval: [219, 228, 254, 263, 276, 294, 326, 334, 378, 361, 350],
+                topTemps: [223, 228, 255, 268, 286, 299, 326, 353, 379, 374, 365]
+            };
+            const lotusCircleData = {
+                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
+                tempsAfterInterval: [208, 224, 220, 228, 230, 238, 239, 260, 273, 272, 246],
+                topTemps: [208, 225, 226, 230, 233, 242, 248, 261, 273, 277, 257]
+            };
+            const fireFlowerData = {
+                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
+                tempsAfterInterval: [122, 137, 156, 164, 158, 161, 167, 175, 177, 174, 194],
+                topTemps: [122, 138, 156, 164, 163, 165, 168, 175, 182, 182, 185]
+            };
+            const yxyWhiteData = {
+                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
+                tempsAfterInterval: [150, 198, 192, 211, 232, 269, 291, 315, 311, 306, 320],
+                topTemps: [154, 198, 195, 221, 236, 269, 296, 315, 329, 315, 322]
+            };
+            const pmHaurientData = {
+                dialSettings: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
+                tempsAfterInterval: [165, 200, 210, 219, 226, 247, 254, 271, 285, 293, 293],
+                topTemps: [172, 208, 217, 221, 233, 251, 256, 273, 286, 294, 293]
+            };
+
+            // --- Create Individual Charts ---
+            createIndividualPerformanceChart('goldenLotusPerformanceChart', goldenLotusData);
+            createIndividualPerformanceChart('lotusCirclePerformanceChart', lotusCircleData);
+            createIndividualPerformanceChart('fireFlowerPerformanceChart', fireFlowerData);
+            createIndividualPerformanceChart('yxyWhitePerformanceChart', yxyWhiteData);
+            createIndividualPerformanceChart('pmHaurientPerformanceChart', pmHaurientData);
+
+            // --- Create Combined Chart ---
+            const createCombinedChart = () => {
+                const ctx = document.getElementById('combinedPerformanceChart')?.getContext('2d');
+                if (!ctx) return;
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: goldenLotusData.dialSettings, // Common X-axis
+                        datasets: [
+                            {
+                                label: 'Golden Lotus',
+                                data: goldenLotusData.tempsAfterInterval,
+                                borderColor: 'rgb(217, 70, 239)', // Fuchsia
+                                tension: 0.1,
+                                fill: false
+                            },
+                             {
+                                label: 'Lotus Circle',
+                                data: lotusCircleData.tempsAfterInterval,
+                                borderColor: 'rgb(255, 99, 132)', // Red
+                                tension: 0.1,
+                                fill: false
+                            },
+                             {
+                                label: 'Fire Flower',
+                                data: fireFlowerData.tempsAfterInterval,
+                                borderColor: 'rgb(234, 179, 8)', // Yellow
+                                tension: 0.1,
+                                fill: false
+                            },
+                            {
+                                label: 'YXY White',
+                                data: yxyWhiteData.tempsAfterInterval,
+                                borderColor: 'rgb(54, 162, 235)', // Blue
+                                tension: 0.1,
+                                fill: false
+                            },
+                            {
+                                label: 'PmHaurient B/G',
+                                data: pmHaurientData.tempsAfterInterval,
+                                borderColor: 'rgb(34, 197, 94)', // Green
+                                tension: 0.1,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'top' },
+                            title: { display: false },
+                            tooltip: { mode: 'index', intersect: false }
+                        },
+                         scales: {
+                            x: {
+                                title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } }
+                            },
+                            y: {
+                                beginAtZero: false,
+                                title: { display: true, text: 'Temp after 11.5 min (°F)', font: { weight: 'bold' } }
+                            }
+                        }
+                    }
+                });
+            };
+            createCombinedChart();
         });
     </script>
 
