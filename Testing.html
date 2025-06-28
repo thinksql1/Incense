@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,6 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-
 
         /* Styles for prose sections */
         .prose h2 {
@@ -31,11 +30,9 @@
              margin-bottom: 0.5rem;
         }
 
-
         .prose p, .prose ul {
             margin-bottom: 1rem;
         }
-
 
         .prose ul {
             list-style-position: inside;
@@ -47,7 +44,6 @@
             margin-bottom: 0.5rem;
         }
 
-
         .prose strong {
             font-weight: 600;
         }
@@ -57,16 +53,13 @@
             text-decoration: underline;
         }
 
-
         .prose a:hover {
             text-decoration: none;
         }
 
-
         .chart-container {
             page-break-inside: avoid;
         }
-
 
         /* Print-specific styles */
         @media print {
@@ -95,16 +88,13 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-
     <div class="container mx-auto max-w-4xl p-4 sm:p-6 md:p-8 bg-white shadow-lg rounded-lg my-8">
-
 
         <!-- Header -->
         <header class="border-b pb-4 mb-6">
             <h1 class="text-3xl font-bold text-gray-900">Incense Heater Comprehensive Report</h1>
             <p class="text-gray-500 mt-1">Test Results, Compatibility Guide & Troubleshooting</p>
         </header>
-
 
         <!-- Main Content -->
         <main class="prose max-w-none">
@@ -113,11 +103,10 @@
             <section id="compatibility-section">
                 <h2>Incense & Heater Compatibility</h2>
                 <p>The following guide shows the recommended temperature range for various incense types and which of the tested heaters meet those requirements. A heater is considered compatible if its maximum temperature exceeds the upper end of the recommended range.</p>
-                <div id="compatibility-guide" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 not-prose">
+                <div id="compatibility-guide" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 not-prose">
                     <!-- Compatibility cards will be inserted here by JavaScript -->
                 </div>
             </section>
-
 
              <!-- Section: Visual Comparison Charts -->
             <section>
@@ -147,7 +136,7 @@
                 <h2>Heater Test Data</h2>
                 <div class="overflow-x-auto">
                     <table id="resultsTable" class="min-w-full bg-white text-sm">
-                        <!-- Table content remains the same -->
+                        <!-- Table content updated to include the new heater -->
                         <thead class="bg-gray-200">
                             <tr>
                                 <th class="py-3 px-4 text-left font-semibold text-gray-700 uppercase tracking-wider">Heater Name</th>
@@ -175,15 +164,18 @@
                                 <td class="py-4 px-4 font-medium">PmHaurient B/G</td><td class="py-4 px-4">300</td><td class="py-4 px-4">27</td><td class="py-4 px-4">119.2</td><td class="py-4 px-4">0.3</td>
                                 <td class="py-4 px-4"><a href="https://www.amazon.com/dp/B0DJQCHB5Z" target="_blank" class="table-link">amazon.com</a></td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                             <tr class="border-b hover:bg-gray-50">
                                 <td class="py-4 px-4 font-medium">YXY White</td><td class="py-4 px-4">423</td><td class="py-4 px-4">36</td><td class="py-4 px-4">119.3</td><td class="py-4 px-4">0.2</td>
                                 <td class="py-4 px-4"><a href="https://a.aliexpress.com/_mPPiH2f" target="_blank" class="table-link">aliexpress.com</a></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 font-medium">YXY Ceramic Elegant Black</td><td class="py-4 px-4">356</td><td class="py-4 px-4">28</td><td class="py-4 px-4">122.1</td><td class="py-4 px-4">0.2</td>
+                                <td class="py-4 px-4"><a href="https://a.aliexpress.com/_ms575kB" target="_blank" class="table-link">aliexpress.com</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
-
 
             <!-- START: Performance Chart Sections -->
             <section id="performance-analysis-section">
@@ -207,7 +199,6 @@
                     </div>
                 </div>
 
-
                 <!-- Combined Chart -->
                 <div id="combined-analysis" class="mt-8">
                     <h3 class="text-xl font-semibold">Combined Heater Performance Comparison</h3>
@@ -218,7 +209,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <!-- Golden Lotus Chart -->
                 <div id="golden-lotus-analysis" class="mt-8">
@@ -240,7 +230,6 @@
                     </div>
                 </div>
 
-
                 <!-- Fire Flower Chart -->
                  <div id="fire-flower-analysis" class="mt-8">
                     <h3 class="text-xl font-semibold">Fire Flower: Individual Performance</h3>
@@ -251,7 +240,6 @@
                     </div>
                 </div>
 
-
                 <!-- YXY White Chart -->
                  <div id="yxy-white-analysis" class="mt-8">
                     <h3 class="text-xl font-semibold">YXY White: Individual Performance</h3>
@@ -261,7 +249,16 @@
                         </div>
                     </div>
                 </div>
-
+                
+                <!-- YXY Ceramic Elegant Black Chart -->
+                 <div id="yxy-ceramic-analysis" class="mt-8">
+                    <h3 class="text-xl font-semibold">YXY Ceramic Elegant Black: Individual Performance</h3>
+                    <div class="chart-container bg-gray-50 p-4 rounded-lg not-prose my-4">
+                        <div style="height: 400px; position: relative;">
+                             <canvas id="yxyCeramicPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- PmHaurient B/G Chart -->
                 <div id="pmhaurient-analysis" class="mt-8">
@@ -275,7 +272,6 @@
             </section>
             <!-- END: Performance Chart Sections -->
 
-
             <!-- Section: Troubleshooting Summary -->
             <section>
                 <h2>Troubleshooting Summary</h2>
@@ -283,13 +279,11 @@
                 <p><strong>Conclusion:</strong> Testing revealed the issue was not with the heaters, but with the quality of the household electrical current. These heaters require a <strong>clean, stable, pure sine wave AC power</strong> source to function correctly.</p>
             </section>
 
-
             <!-- Section: The Solution -->
             <section>
                 <h2>The Solution: Pure Sine Wave Power</h2>
                  <p>The problem was reliably solved by using a portable power station that outputs a pure sine wave current. The <a href="https://a.co/d/2YlAA32" target="_blank"><strong>BLUETTI AC2A Portable Power Station</strong></a> was used successfully, confirming that clean power is the solution.</p>
             </section>
-
 
             <!-- Section: Key Takeaways -->
             <section>
@@ -308,7 +302,6 @@
         </footer>
     </div>
 
-
     <script>
         // Data for Heaters and Incense
         const heaters = [
@@ -316,9 +309,9 @@
             { name: "Lotus Circle", maxTemp: 290 },
             { name: "Fire Flower", maxTemp: 210 },
             { name: "PmHaurient B/G", maxTemp: 300 },
-            { name: "YXY White", maxTemp: 423 }
+            { name: "YXY White", maxTemp: 423 },
+            { name: "YXY Ceramic Elegant Black", maxTemp: 356 }
         ];
-
 
         const incenseTypes = [
             { name: "Palo Santo", minTempF: 140, maxTempF: 257 },
@@ -330,7 +323,6 @@
             { name: "Sandalwood", minTempF: 302, maxTempF: 392 },
             { name: "Agarwood (Oud)", minTempF: 356, maxTempF: 446 }
         ];
-
 
         // Function to generate compatibility guide
         function generateCompatibilityGuide() {
@@ -353,7 +345,6 @@
                 }
                 heaterListHtml += '</ul>';
 
-
                 card.innerHTML = `
                     <h4 class="font-bold text-lg text-gray-800">${incense.name}</h4>
                     <p class="text-sm text-gray-600">Recommended: ${incense.minTempF}°F - ${incense.maxTempF}°F</p>
@@ -366,7 +357,6 @@
             });
         }
 
-
         // Set the current date in the footer
         const dateElement = document.getElementById('date');
         if (dateElement) {
@@ -374,7 +364,6 @@
                 year: 'numeric', month: 'long', day: 'numeric'
             });
         }
-
 
         // Chart.js data and configuration
         document.addEventListener('DOMContentLoaded', () => {
@@ -388,9 +377,9 @@
                 "Lotus Circle": { dialSettings, tempsAfterInterval: [208, 224, 220, 228, 230, 238, 239, 260, 273, 272, 246], topTemps: [208, 225, 226, 230, 233, 242, 248, 261, 273, 277, 257] },
                 "Fire Flower": { dialSettings, tempsAfterInterval: [122, 137, 156, 164, 158, 161, 167, 175, 177, 174, 194], topTemps: [122, 138, 156, 164, 163, 165, 168, 175, 182, 182, 185] },
                 "YXY White": { dialSettings, tempsAfterInterval: [150, 198, 192, 211, 232, 269, 291, 315, 311, 306, 320], topTemps: [154, 198, 195, 221, 236, 269, 296, 315, 329, 315, 322] },
-                "PmHaurient B/G": { dialSettings, tempsAfterInterval: [165, 200, 210, 219, 226, 247, 254, 271, 285, 293, 293], topTemps: [172, 208, 217, 221, 233, 251, 256, 273, 286, 294, 293] }
+                "PmHaurient B/G": { dialSettings, tempsAfterInterval: [165, 200, 210, 219, 226, 247, 254, 271, 285, 293, 293], topTemps: [172, 208, 217, 221, 233, 251, 256, 273, 286, 294, 293] },
+                "YXY Ceramic Elegant Black": { dialSettings, tempsAfterInterval: [209, 241, 264, 279, 293, 290, 309, 333, 328, 326, 349], topTemps: [209, 242, 264, 283, 294, 301, 315, 333, 333, 346, 356] }
             };
-
 
             // Then generate summary bar charts
             const table = document.getElementById('resultsTable');
@@ -407,14 +396,13 @@
                 });
                 const createBarChart = (canvasId, label, data) => {
                     const ctx = document.getElementById(canvasId)?.getContext('2d');
-                    if (ctx) new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ label, data, backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(153, 102, 255, 0.6)'], borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)', 'rgba(153, 102, 255, 1)'], borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } } });
+                    if (ctx) new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ label, data, backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)'], borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'], borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } } });
                 };
                 createBarChart('tempChart', 'Max Temp (°F)', tempData);
                 createBarChart('powerChart', 'Power (W)', powerData);
                 createBarChart('voltageChart', 'Voltage (V)', voltageData);
                 createBarChart('currentChart', 'Current (A)', currentData);
             }
-
 
             // --- Reusable Function for Individual Performance Line Charts ---
             const createIndividualPerformanceChart = (canvasId, chartData) => {
@@ -423,23 +411,21 @@
                  new Chart(ctx, { type: 'line', data: { labels: chartData.dialSettings, datasets: [{ label: 'Temp after 11.5 min (°F)', data: chartData.tempsAfterInterval, borderColor: 'rgb(59, 130, 246)', backgroundColor: 'rgba(59, 130, 246, 0.1)', tension: 0.2, fill: true, }, { label: 'Peak Temp During Warm-up (°F)', data: chartData.topTemps, borderColor: 'rgb(34, 197, 94)', backgroundColor: 'rgba(34, 197, 94, 0.1)', tension: 0.2, fill: true, }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, title: { display: false }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } } }, y: { beginAtZero: false, min: Math.floor(Math.min(...chartData.tempsAfterInterval, ...chartData.topTemps) / 10) * 10 - 20, title: { display: true, text: 'Measured Temperature (°F)', font: { weight: 'bold' } } } } } });
             };
 
-
             // --- Create Individual Charts ---
             createIndividualPerformanceChart('goldenLotusPerformanceChart', heaterPerformanceData["Golden Lotus"]);
             createIndividualPerformanceChart('lotusCirclePerformanceChart', heaterPerformanceData["Lotus Circle"]);
             createIndividualPerformanceChart('fireFlowerPerformanceChart', heaterPerformanceData["Fire Flower"]);
             createIndividualPerformanceChart('yxyWhitePerformanceChart', heaterPerformanceData["YXY White"]);
+            createIndividualPerformanceChart('yxyCeramicPerformanceChart', heaterPerformanceData["YXY Ceramic Elegant Black"]);
             createIndividualPerformanceChart('pmHaurientPerformanceChart', heaterPerformanceData["PmHaurient B/G"]);
-
 
             // --- Create Combined Chart ---
             const createCombinedChart = () => {
                 const ctx = document.getElementById('combinedPerformanceChart')?.getContext('2d');
                 if (!ctx) return;
-                new Chart(ctx, { type: 'line', data: { labels: dialSettings, datasets: [ { label: 'Golden Lotus', data: heaterPerformanceData['Golden Lotus'].tempsAfterInterval, borderColor: 'rgb(192, 132, 252)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'Lotus Circle', data: heaterPerformanceData['Lotus Circle'].tempsAfterInterval, borderColor: 'rgb(255, 99, 132)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'Fire Flower', data: heaterPerformanceData['Fire Flower'].tempsAfterInterval, borderColor: 'rgb(234, 179, 8)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'YXY White', data: heaterPerformanceData['YXY White'].tempsAfterInterval, borderColor: 'rgb(54, 162, 235)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'PmHaurient B/G', data: heaterPerformanceData['PmHaurient B/G'].tempsAfterInterval, borderColor: 'rgb(34, 197, 94)', borderWidth: 2, tension: 0.1, fill: false } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, title: { display: false }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } } }, y: { beginAtZero: false, title: { display: true, text: 'Temp after 11.5 min (°F)', font: { weight: 'bold' } } } } } });
+                new Chart(ctx, { type: 'line', data: { labels: dialSettings, datasets: [ { label: 'Golden Lotus', data: heaterPerformanceData['Golden Lotus'].tempsAfterInterval, borderColor: 'rgb(192, 132, 252)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'Lotus Circle', data: heaterPerformanceData['Lotus Circle'].tempsAfterInterval, borderColor: 'rgb(255, 99, 132)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'Fire Flower', data: heaterPerformanceData['Fire Flower'].tempsAfterInterval, borderColor: 'rgb(234, 179, 8)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'YXY White', data: heaterPerformanceData['YXY White'].tempsAfterInterval, borderColor: 'rgb(54, 162, 235)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'PmHaurient B/G', data: heaterPerformanceData['PmHaurient B/G'].tempsAfterInterval, borderColor: 'rgb(34, 197, 94)', borderWidth: 2, tension: 0.1, fill: false }, { label: 'YXY Ceramic Elegant Black', data: heaterPerformanceData['YXY Ceramic Elegant Black'].tempsAfterInterval, borderColor: 'rgb(255, 159, 64)', borderWidth: 2, tension: 0.1, fill: false } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, title: { display: false }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { title: { display: true, text: 'Dial Setting (°F)', font: { weight: 'bold' } } }, y: { beginAtZero: false, title: { display: true, text: 'Temp after 11.5 min (°F)', font: { weight: 'bold' } } } } } });
             };
             createCombinedChart();
-
 
             // --- INTERACTIVE GOAL RANGE CHART LOGIC ---
             const selector = document.getElementById('incenseSelector');
@@ -450,7 +436,8 @@
                     { label: 'Lotus Circle', data: heaterPerformanceData['Lotus Circle'].tempsAfterInterval, borderColor: 'rgb(255, 99, 132)', borderWidth: 2.5, tension: 0.1, fill: false },
                     { label: 'Fire Flower', data: heaterPerformanceData['Fire Flower'].tempsAfterInterval, borderColor: 'rgb(234, 179, 8)', borderWidth: 2.5, tension: 0.1, fill: false },
                     { label: 'YXY White', data: heaterPerformanceData['YXY White'].tempsAfterInterval, borderColor: 'rgb(54, 162, 235)', borderWidth: 2.5, tension: 0.1, fill: false },
-                    { label: 'PmHaurient B/G', data: heaterPerformanceData['PmHaurient B/G'].tempsAfterInterval, borderColor: 'rgb(34, 197, 94)', borderWidth: 2.5, tension: 0.1, fill: false }
+                    { label: 'PmHaurient B/G', data: heaterPerformanceData['PmHaurient B/G'].tempsAfterInterval, borderColor: 'rgb(34, 197, 94)', borderWidth: 2.5, tension: 0.1, fill: false },
+                    { label: 'YXY Ceramic Elegant Black', data: heaterPerformanceData['YXY Ceramic Elegant Black'].tempsAfterInterval, borderColor: 'rgb(255, 159, 64)', borderWidth: 2.5, tension: 0.1, fill: false }
                 ];
             
             // Populate Dropdown
@@ -463,7 +450,6 @@
                     selector.appendChild(option);
                 });
             }
-
 
             // Initial Chart Drawing
             if (goalRangeCtx) {
@@ -488,7 +474,6 @@
                 });
             }
 
-
             // Add event listener to dropdown
             selector?.addEventListener('change', (event) => {
                 if (!goalRangeChart) return;
@@ -497,7 +482,6 @@
                 
                 // Keep only the heater datasets, remove any previous ribbon datasets
                 goalRangeChart.data.datasets = goalRangeChart.data.datasets.filter(ds => !ds.label.includes('Range'));
-
 
                 if (selectedIncenseName) {
                     const selectedIncense = incenseTypes.find(i => i.name === selectedIncenseName);
@@ -530,7 +514,6 @@
             });
         });
     </script>
-
 
 </body>
 </html>
