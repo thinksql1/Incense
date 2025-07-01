@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Incense Journey™ - The Proxy Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* A warm, paper-like off-white */
+            color: #37352F; /* A soft, dark charcoal */
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif JP', serif;
+        }
+        .journey-title {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .journey-subtitle {
+            font-weight: 400;
+            letter-spacing: 0.025em;
+        }
+        .journey-section-divider {
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(55, 53, 47, 0), rgba(55, 53, 47, 0.4), rgba(55, 53, 47, 0));
+            margin: 3rem 0;
+        }
+        .journey-card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE8E3;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .journey-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* --- Print-specific styles for Brochure Layout --- */
+        @media print {
+            body {
+                background-color: #FFFFFF !important;
+                font-size: 10pt;
+            }
+            .main-container {
+                max-width: 100% !important;
+                padding: 1.5cm !important; /* Add margins to the page */
+                box-shadow: none !important;
+            }
+            .print-brochure-wrapper {
+                column-count: 2; /* Create two columns */
+                column-gap: 2rem; /* Space between columns */
+            }
+            .journey-card {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                background-color: #FFFFFF !important;
+                page-break-inside: avoid; /* Avoid breaking cards across columns/pages */
+            }
+            .journey-section-divider {
+                display: none; /* Hide dividers in print */
+            }
+            section {
+                break-inside: avoid-column; /* Avoid breaking sections across columns */
+                margin-bottom: 2rem !important;
+            }
+            header, footer {
+                column-span: all; /* Make header and footer span both columns */
+            }
+            header {
+                 margin-bottom: 2rem !important;
+            }
+            footer {
+                padding-top: 2rem;
+            }
+            h1, h2, h3 {
+                color: #000000;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto p-6 sm:p-12 main-container">
+
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl journey-title text-gray-800">The Incense Journey™</h1>
+            <p class="text-lg md:text-xl journey-subtitle text-gray-600 mt-2">The Proxy Program: An Invitation</p>
+            <p class="mt-4 text-base text-gray-500 max-w-2xl mx-auto">You've just experienced the power of scent to unlock memory, emotion, and deep states of consciousness. Now, we invite you to help share it.</p>
+        </header>
+
+        <!-- Wrapper for brochure columns -->
+        <div class="print-brochure-wrapper">
+
+            <!-- What is the Proxy Program? Section -->
+            <section id="what-is-the-program" class="mb-12">
+                <div class="journey-card p-8">
+                    <h2 class="text-2xl md:text-3xl journey-title text-gray-800 mb-4">Become a Local Guide for a Global Journey</h2>
+                    <p class="text-base md:text-lg leading-relaxed text-gray-700 mb-4">
+                        The Proxy Program is a partnership for hypnotists and wellness practitioners like you. It’s an opportunity to bring The Incense Journey™, a live, virtual event led by John Launius, to your local community.
+                    </p>
+                    <p class="text-base md:text-lg leading-relaxed text-gray-700">
+                        As a Proxy, you are not the performer; you are the anchor. You hold the space, prepare the sacred scents, and facilitate a seamless, profound experience for your guests while they connect to the live-streamed event. You become the bridge between the ancient art of incense and modern hypnosis.
+                    </p>
+                    <div class="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                        <p class="font-semibold text-center text-amber-800 text-lg">You provide the space. John provides the guidance. The incense provides the transformation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Become a Proxy? Section -->
+            <section id="benefits" class="mb-12">
+                <h2 class="text-3xl md:text-4xl journey-title text-center text-gray-800 mb-8">Why You'll Love Being a Proxy</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <!-- Benefit 1: Expand Your Offerings -->
+                    <div class="journey-card p-8">
+                        <h3 class="text-2xl journey-title text-gray-800 mb-4">Expand Your Practice</h3>
+                        <p class="text-base leading-relaxed text-gray-700">
+                            Add a unique, powerful, and recurring event to your calendar (every 6-8 weeks). Offer your existing clients something new and attract a wider audience interested in deep, sensory experiences. This is your chance to showcase your own local offerings to an engaged group.
+                        </p>
+                    </div>
+                    <!-- Benefit 2: Deepen the Impact -->
+                    <div class="journey-card p-8">
+                        <h3 class="text-2xl journey-title text-gray-800 mb-4">Harness the Limbic System</h3>
+                        <p class="text-base leading-relaxed text-gray-700">
+                            As a hypnotist, you know the power of the subconscious. Scent offers a direct, non-verbal pathway to the limbic system, the seat of memory and emotion. By hosting, you facilitate profound, lasting change for your participants in a way that words alone cannot.
+                        </p>
+                    </div>
+                    <!-- Benefit 3: Join a Community -->
+                    <div class="journey-card p-8">
+                        <h3 class="text-2xl journey-title text-gray-800 mb-4">Join a Community</h3>
+                        <p class="text-base leading-relaxed text-gray-700">
+                            You won't be doing this alone. You'll become part of a passionate, international community of practitioners dedicated to exploring consciousness. Share insights, get support, and grow together with fellow Proxies and John.
+                        </p>
+                    </div>
+                    <!-- Benefit 4: Create a New Revenue Stream -->
+                    <div class="journey-card p-8">
+                        <h3 class="text-2xl journey-title text-gray-800 mb-4">Create a New Revenue Stream</h3>
+                        <p class="text-base leading-relaxed text-gray-700">
+                            This partnership includes a generous revenue-sharing model. It's a simple way to supplement your income by doing what you love: creating transformative experiences for others.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- What's Involved? Section -->
+            <section id="what-is-involved" class="mb-12">
+                <h2 class="text-3xl md:text-4xl journey-title text-center text-gray-800 mb-8">What's Involved? The Simple Logistics</h2>
+                <div class="journey-card p-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                        <div>
+                            <h3 class="text-xl journey-title text-gray-800 mb-2">Your Role</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>Secure a quiet, comfortable space for your group.</li>
+                                <li>Promote the event to your community.</li>
+                                <li>Handle local registrations and payments.</li>
+                                <li>Set up a simple viewing station (TV/monitor & speakers).</li>
+                                <li>Prepare the provided incense materials before the event.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl journey-title text-gray-800 mb-2">Our Commitment to You</h3>
+                             <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>A unique Zoom link for each event.</li>
+                                <li>All incense materials and descriptions sent to you.</li>
+                                <li>Promotional materials to help you market the event.</li>
+                                <li>Clear instructions and a pre-event check-in with John.</li>
+                                <li>A straightforward revenue-sharing agreement.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
+                        <p class="font-semibold text-blue-800">The goal is a turnkey experience. We provide the content and materials so you can focus on your community.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How to Get Started Section -->
+            <section id="get-started" class="text-center">
+                <h2 class="text-3xl md:text-4xl journey-title text-gray-800 mb-4">Ready to Begin Your Journey as a Proxy?</h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                    If you feel the call to share this powerful work, we would be honored to partner with you. The next step is a simple conversation to ensure this is the right fit for everyone.
+                </p>
+                <div class="journey-card p-8 max-w-md mx-auto">
+                    <h3 class="text-2xl journey-title text-gray-800 mb-3">Let's Connect</h3>
+                    <p class="text-gray-700 mb-4">To express your interest and receive the full program details, please contact John Launius directly at:</p>
+                    <a href="mailto:john@shihan-wellness.com" class="text-lg text-amber-700 hover:underline font-semibold">
+                        john@shihan-wellness.com
+                    </a>
+                    <p class="text-sm text-gray-500 mt-4">We look forward to welcoming you.</p>
+                </div>
+            </section>
+        </div> <!-- End of brochure wrapper -->
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-sm text-gray-500">
+            <p>&copy; John Launius - The Incense Journey™</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
