@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Guide to Aromatic Resins</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Leaflet.js for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles for the app */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfaf7;
+            color: #4a4a4a;
+        }
+        .leaflet-popup-content-wrapper {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .leaflet-popup-content {
+            margin: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .leaflet-popup-tip {
+             background: #fff;
+        }
+        .leaflet-popup-content h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #8B5A2B;
+        }
+         /* Custom toggle switch style */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #a5825e;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #a5825e;
+        }
+        .prose {
+            max-width: 65ch;
+            color: #4a4a4a;
+        }
+        .prose p {
+            margin-bottom: 1em;
+        }
+        .prose h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #6d4c41;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-8 max-w-7xl">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800" style="color: #6d4c41;">Aromatic Resin Explorer</h1>
+            <p class="mt-2 text-lg text-gray-600">An interactive guide to warming tree resins from around the world.</p>
+        </header>
+
+        <main class="space-y-12">
+            <!-- Interactive Map Section -->
+            <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-700 mb-4">Origins Map</h2>
+                <div id="map" class="h-96 md:h-[500px] w-full rounded-xl z-0"></div>
+            </section>
+
+            <!-- Temperature Chart Section -->
+            <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-200">
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-700 mb-2 sm:mb-0">Resin Temperature Guide</h2>
+                    <!-- Temp Toggle Switch -->
+                    <div class="flex items-center space-x-3 text-gray-600">
+                        <span id="f-label" class="font-semibold text-brown-600">°F</span>
+                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="temp-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 appearance-none cursor-pointer transition-transform duration-300" checked/>
+                            <label for="temp-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span id="c-label" class="text-gray-400 font-semibold">°C</span>
+                    </div>
+                </div>
+
+                <!-- Resin Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Resin</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Origin</th>
+                                <th scope="col" id="temp-header" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Temperature (°F)</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resin-table-body" class="bg-white divide-y divide-gray-200">
+                            <!-- Rows will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Color Coded Chart Section -->
+            <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-700 mb-4">Visual Temperature Range</h2>
+                <div class="flex flex-col md:flex-row md:items-center gap-4">
+                    <!-- Resin Selector Dropdown -->
+                    <div class="w-full md:w-1/3">
+                        <label for="resin-select" class="block text-sm font-medium text-gray-700 mb-1">Select a Resin</label>
+                        <select id="resin-select" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition">
+                            <!-- Options will be dynamically inserted here -->
+                        </select>
+                    </div>
+                    <!-- Temperature Chart -->
+                    <div class="w-full md:w-2/3 mt-4 md:mt-0">
+                        <div class="text-center mb-2">
+                             <span id="chart-temp-display" class="font-bold text-xl text-gray-800 transition-all duration-300">Select a resin to see its range</span>
+                        </div>
+                        <div class="relative w-full h-8 bg-gradient-to-r from-sky-400 via-amber-400 to-red-500 rounded-full shadow-inner">
+                            <div id="temp-indicator" class="absolute h-8 top-0 bg-white/50 backdrop-blur-sm rounded-full border-2 border-white shadow-lg transition-all duration-500 ease-out flex items-center justify-center" style="left: 0%; width: 0%;">
+                                <span id="mid-temp-value" class="text-sm font-bold text-gray-800 opacity-0 transition-opacity duration-300"></span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1 px-1">
+                            <span id="min-temp-label">65°C</span>
+                            <span id="max-temp-label">149°C</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Notes Section -->
+            <section id="notes-section" class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-200 opacity-0 transition-opacity duration-500 h-0 overflow-hidden">
+                <h2 class="text-2xl font-bold text-gray-700 mb-4">Notes on Selected Resin</h2>
+                <div id="resin-notes" class="text-gray-600 prose prose-sm max-w-none">
+                    <p>Select a resin from the dropdown above to see helpful notes and tips.</p>
+                </div>
+            </section>
+            
+            <!-- The Incense Journey Section -->
+            <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-700 mb-6">The Incense Journey: A Practical Guide</h2>
+                <div class="prose max-w-none space-y-8">
+                    
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="md:w-1/2">
+                            <h3>1. The Quick Release Method</h3>
+                            <p>For "The Incense Journey," where the goal is to get a quick, powerful release of aroma to saturate a room, the temperature needs to be hotter than normal. To achieve this, set the warmer to 200°C. This is the temperature of the internal coil that will be heating the surface plate, ensuring a rapid release of fragrance.</p>
+                        </div>
+                        <div class="md:w-1/2">
+                             <img src="https://thinksql1.github.io/Incense/20250923_183943.jpg" alt="Electric incense warmer showing a high temperature setting." class="rounded-xl shadow-lg w-full h-auto">
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row-reverse gap-6 items-center">
+                        <div class="md:w-1/2">
+                            <h3>2. Understanding Surface Temperature</h3>
+                            <p>Think of warming resins like cooking food—the aroma fills the room as it heats. This grill surface thermometer shows an optimal grilling temperature of 325°F. Notice that the actual surface temperature is just above 160°C. This is the desired temperature for the plate where the resin sits for a strong, steady release.</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://thinksql1.github.io/Incense/1000019787.jpg" alt="A grill surface thermometer indicating a surface temperature over 160 degrees Celsius." class="rounded-xl shadow-lg w-full h-auto">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="md:w-1/2">
+                            <h3>3. The Resin's Actual Temperature</h3>
+                            <p>As seen with this Dragon's Blood powder, some resins react very quickly, turning from powder to liquid almost immediately. This highlights a crucial point: the temperature ranges listed in the guides above are the recommended temperatures for the <strong>actual resin itself</strong>, not the coil or the heating surface. The resin's temperature will always be lower than the surface it's on.</p>
+                        </div>
+                         <div class="md:w-1/2">
+                           <img src="https://thinksql1.github.io/Incense/20250923_184618.jpg" alt="Dragon's Blood powder melting on an electric incense warmer." class="rounded-xl shadow-lg w-full h-auto">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>4. A Guide for Personal Experience</h3>
+                        <p>For personal use, I recommend working with the warmer's coil/thermostat set in the range of 160°C to 200°C. This spectrum will give you an opportunity to explore and enjoy the different aromatic notes that get released at various temperature settings. This is just a guide, with the intention of helping you create a positive and fragrant experience tailored to your preference.</p>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-500">Happy Incense Warming!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DATA ---
+            const resins = [
+                { name: "Sandalwood Red Powder", scientific: "Pterocarpus santalinus", origin: "Indonesia", lat: -0.7893, lng: 113.9213, tempC: [65, 93], tempF: [150, 200], note: "This is a wood powder, not a true resin, so it will not melt. It can scorch easily, so use low heat." },
+                { name: "Copal - Oro Resin", scientific: "Agathis dammara", origin: "Mexico", lat: 23.6345, lng: -102.5528, tempC: [65, 105], tempF: [150, 220], note: "Has a light, bright, and citrusy-pine fragrance. Melts very easily at low temperatures." },
+                { name: "Copal Mayan Resin", scientific: "Pinus contorta", origin: "Central America", lat: 12.7690, lng: -85.6024, tempC: [80, 121], tempF: [175, 250], note: "Offers a classic, sharp, and clean pine forest aroma. Liquefies readily." },
+                { name: "Colophony Resin", scientific: "Colophonium tot.", origin: "Portugal", lat: 39.3999, lng: -8.2245, tempC: [80, 121], tempF: [175, 250], note: "Also known as pine rosin, this provides a strong and classic sharp pine scent." },
+                { name: "Dragon's Blood Powder", scientific: "Daemonorops draco", origin: "Indonesia", lat: -0.7893, lng: 113.9213, tempC: [65, 93], tempF: [150, 200], note: "Known for its deep red color, this resin has a heavy, spicy, and somewhat floral scent. Melts at a very low temperature." },
+                { name: "Frankincense Resin", scientific: "Boswellia papyrifera", origin: "Eritrea", lat: 15.1794, lng: 39.7823, tempC: [93, 135], tempF: [200, 275], note: "Produces a rich, balsamic, and slightly fruity-citrus aroma. A classic incense resin." },
+                { name: "Palo Santo Wood Resin", scientific: "Bursera graveolens", origin: "Ecuador", lat: -1.8312, lng: -78.1834, tempC: [82, 121], tempF: [180, 250], note: "This resin from the 'holy wood' tree has a uniquely sweet, minty, and citrus-wood scent." },
+                { name: "Sandarac Gum Resin", scientific: "Tetraclinis articulata", origin: "Morocco", lat: 31.7917, lng: -7.0926, tempC: [105, 149], tempF: [220, 300], note: "Has a warm, sweet, and balsamic fragrance with distinct notes of pine and fruit. Has a higher melting point." },
+                { name: "Dammar Gum Resin", scientific: "Shorea wiesneri", origin: "Indonesia", lat: -0.7893, lng: 113.9213, tempC: [65, 105], tempF: [150, 220], note: "Dammar has a light, airy fragrance with notes of citrus and pine. It melts into a clear liquid very quickly." },
+                { name: "Opoponax Gum Resin", scientific: "Commiphora opoponax", origin: "Somalia", lat: 5.1521, lng: 46.1996, tempC: [93, 135], tempF: [200, 275], note: "Often called 'sweet myrrh,' this resin has a warm, sweet, earthy, and balsamic fragrance." },
+                { name: "Frankincense (乳香)", scientific: "Boswellia neglecta", origin: "Kenya", lat: -0.0236, lng: 37.9062, tempC: [93, 135], tempF: [200, 275], note: "Similar to other frankincense varieties, with a rich balsamic and citrusy aroma." },
+                { name: "Burgundy Pitch Resin", scientific: "Pini burgundica", origin: "Europe", lat: 48.8566, lng: 12.3522, tempC: [80, 121], tempF: [175, 250], note: "Typically from the Norway Spruce, it has a deep, rich, and balsamic evergreen fragrance." }
+            ];
+
+            // --- MAP INITIALIZATION ---
+            const map = L.map('map').setView([20, 0], 2);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 10
+            }).addTo(map);
+
+            const customIcon = L.divIcon({
+                className: 'custom-div-icon',
+                html: "<div style='background-color:#c8a77e;width:20px;height:20px;border-radius:50%;border: 3px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.3);'></div>",
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+            
+            // --- TABLE & MAP POPULATION ---
+            const tableBody = document.getElementById('resin-table-body');
+            const resinSelect = document.getElementById('resin-select');
+            
+            const defaultOption = document.createElement('option');
+            defaultOption.textContent = "Choose a resin...";
+            defaultOption.value = "";
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            resinSelect.appendChild(defaultOption);
+
+            resins.forEach((resin, index) => {
+                const popupContent = `
+                    <h3>${resin.name}</h3>
+                    <p><em>${resin.scientific}</em></p>
+                    <p><strong>Origin:</strong> ${resin.origin}</p>
+                    <p><strong>Note:</strong> ${resin.note}</p>
+                `;
+                L.marker([resin.lat, resin.lng], {icon: customIcon}).addTo(map)
+                    .bindPopup(popupContent);
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-amber-50 transition-colors duration-200";
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${resin.name}</div>
+                        <div class="text-sm text-gray-500">${resin.scientific}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${resin.origin}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-700 temp-value" data-temp-f="${resin.tempF.join('-')}°F" data-temp-c="${resin.tempC.join('-')}°C">${resin.tempF.join('-')}°F</td>
+                    <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 max-w-xs">${resin.note}</td>
+                `;
+                tableBody.appendChild(row);
+
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = resin.name;
+                resinSelect.appendChild(option);
+            });
+
+            // --- TOGGLE SWITCH LOGIC ---
+            const toggle = document.getElementById('temp-toggle');
+            const tempHeader = document.getElementById('temp-header');
+            const tempValues = document.querySelectorAll('.temp-value');
+            const fLabel = document.getElementById('f-label');
+            const cLabel = document.getElementById('c-label');
+            
+            let isCelsius = true;
+
+            toggle.addEventListener('change', function() {
+                isCelsius = this.checked;
+                updateTableTemps();
+                updateChart();
+            });
+
+            function updateTableTemps() {
+                if (isCelsius) {
+                    tempHeader.textContent = 'Temperature (°C)';
+                    tempValues.forEach(el => el.textContent = el.dataset.tempC);
+                    cLabel.classList.remove('text-gray-400');
+                    cLabel.classList.add('text-brown-600');
+                    fLabel.classList.add('text-gray-400');
+                    fLabel.classList.remove('text-brown-600');
+                } else {
+                    tempHeader.textContent = 'Temperature (°F)';
+                    tempValues.forEach(el => el.textContent = el.dataset.tempF);
+                    fLabel.classList.remove('text-gray-400');
+                    fLabel.classList.add('text-brown-600');
+                    cLabel.classList.add('text-gray-400');
+                    cLabel.classList.remove('text-brown-600');
+                }
+            }
+            
+            // --- CHART LOGIC ---
+            const chartTempDisplay = document.getElementById('chart-temp-display');
+            const tempIndicator = document.getElementById('temp-indicator');
+            const minTempLabel = document.getElementById('min-temp-label');
+            const maxTempLabel = document.getElementById('max-temp-label');
+            const notesSection = document.getElementById('notes-section');
+            const resinNotes = document.getElementById('resin-notes');
+
+            const fullRangeF = [150, 300];
+            const fullRangeC = [65, 149];
+
+            resinSelect.addEventListener('change', updateChart);
+
+            function updateChart() {
+                const selectedIndex = resinSelect.value;
+                if (selectedIndex === "") {
+                    // Hide notes section if default is selected
+                    notesSection.style.opacity = '0';
+                    notesSection.style.height = '0';
+                    return;
+                }
+
+                const resin = resins[selectedIndex];
+                const unit = isCelsius ? 'C' : 'F';
+                const fullRange = isCelsius ? fullRangeC : fullRangeF;
+                const resinRange = resin['temp' + unit];
+                
+                const rangeSpan = fullRange[1] - fullRange[0];
+                const startPercent = ((resinRange[0] - fullRange[0]) / rangeSpan) * 100;
+                const widthPercent = ((resinRange[1] - resinRange[0]) / rangeSpan) * 100;
+
+                const midTempValue = document.getElementById('mid-temp-value');
+                if (widthPercent > 15) {
+                    const midTemp = Math.round((resinRange[0] + resinRange[1]) / 2);
+                    midTempValue.textContent = `${midTemp}°`;
+                    midTempValue.style.opacity = '1';
+                } else {
+                    midTempValue.textContent = '';
+                    midTempValue.style.opacity = '0';
+                }
+
+                tempIndicator.style.left = `${startPercent}%`;
+                tempIndicator.style.width = `${widthPercent}%`;
+
+                chartTempDisplay.textContent = `${resin.name}: ${resinRange[0]} - ${resinRange[1]}°${unit}`;
+                minTempLabel.textContent = `${fullRange[0]}°${unit}`;
+                maxTempLabel.textContent = `${fullRange[1]}°${unit}`;
+                
+                // Update and show notes
+                resinNotes.innerHTML = `<p>${resin.note}</p>`;
+                notesSection.style.opacity = '1';
+                notesSection.style.height = 'auto';
+            }
+
+            // Initialize on load
+            updateTableTemps();
+            updateChart(); // Run once to set initial labels for C
+        });
+    </script>
+
+</body>
+</html>
+
+
