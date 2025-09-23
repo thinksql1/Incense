@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Incense Journey™ - Registration</title>
+    <!-- Combined styles from Proxy Onboarding Guide -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Warm, paper-like off-white from guide */
+            color: #37352F; /* Soft, dark charcoal from guide */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2em;
+            margin: 0;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .koto-title {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        .koto-card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE8E3;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 2.5em 3em;
+            box-sizing: border-box;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #606770;
+            margin-bottom: 2em;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #37352F;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #EAE8E3;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFDFD;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            border-color: #BDB0A4; /* A soft, warm focus color */
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(189, 176, 164, 0.2);
+        }
+
+        .koto-section-divider {
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(55, 53, 47, 0), rgba(55, 53, 47, 0.2), rgba(55, 53, 47, 0));
+            margin: 2.5rem 0;
+        }
+        
+        .attendee-fields {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #EAE8E3;
+            border-radius: 8px;
+            background-color: #F9F9F7;
+        }
+        
+        button {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 20px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            margin-top: 10px;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        button[type="submit"] {
+            background-color: #5D4037; /* Deep, earthy brown from the other style */
+            color: white;
+            border-color: #5D4037;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4E342E;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        button[type="button"] {
+            background-color: #FFFFFF;
+            color: #37352F;
+            border-color: #EAE8E3;
+        }
+
+        button[type="button"]:hover {
+            background-color: #F9F9F7;
+            border-color: #BDB0A4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="koto-card">
+            <header class="text-center">
+                <h1 class="koto-title" style="font-size: 2.25rem; color: #37352F;">The Incense Journey™</h1>
+                <p style="font-size: 1.1rem; color: #606770; margin-top: 0.5rem; margin-bottom: 1.5rem;">Event Registration</p>
+                <p style="max-width: 500px; margin: 0 auto 2rem auto;">Please provide your information as the proxy, then add the names and email addresses for each of your attendees.</p>
+            </header>
+
+            <!-- Your form action should be the Make.com webhook URL -->
+            <form action="YOUR_MAKE_WEBHOOK_URL_HERE" method="POST">
+                
+                <h3 style="font-family: 'Noto Serif JP', serif; font-size: 1.5rem; color: #37352F; margin-bottom: 1rem;">Your Information (Proxy)</h3>
+                <label for="proxy_name">Your Name</label>
+                <input type="text" id="proxy_name" name="proxy_name" required>
+                
+                <label for="proxy_email">Your Email</label>
+                <input type="email" id="proxy_email" name="proxy_email" required>
+
+                <div class="koto-section-divider"></div>
+
+                <h3 style="font-family: 'Noto Serif JP', serif; font-size: 1.5rem; color: #37352F; margin-bottom: 0.5rem;">Attendee Information</h3>
+                <div id="attendees-container">
+                    <!-- Attendee fields will be added by JavaScript -->
+                </div>
+
+                <button type="button" onclick="addAttendee()">Add Another Attendee</button>
+                <button type="submit">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function addAttendee() {
+            const container = document.getElementById('attendees-container');
+            const attendeeDiv = document.createElement('div');
+            attendeeDiv.className = 'attendee-fields';
+            
+            attendeeDiv.innerHTML = `
+                <label>Attendee Name:</label>
+                <input type="text" name="attendee_name[]" required>
+                <label>Attendee Email:</label>
+                <input type="email" name="attendee_email[]" required>
+            `;
+            
+            container.appendChild(attendeeDiv);
+        }
+        // Add the first attendee fields when the page loads
+        window.onload = addAttendee;
+    </script>
+
+</body>
+</html>
