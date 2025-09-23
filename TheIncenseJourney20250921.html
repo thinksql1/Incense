@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Styles adapted from the Proxy Onboarding Guide */
+        /* Styles adapted from the Proxy Onboarding Guide with mobile-first responsiveness */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #FDFBF8; /* A warm, paper-like off-white */
@@ -16,7 +16,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             margin: 0;
-            padding: 2em;
+            padding: 1em; /* Reduced padding for mobile */
         }
 
         h1, h2, h3, h4 {
@@ -45,7 +45,7 @@
             border-radius: 0.75rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            padding: 2rem;
+            padding: 1.5rem; /* Adjusted padding for mobile */
         }
 
         .koto-card:hover {
@@ -53,25 +53,6 @@
             transform: translateY(-2px);
         }
         
-        .koto-button {
-            display: inline-block;
-            background-color: #5D4037; /* Deep, earthy brown */
-            color: white;
-            padding: 14px 32px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .koto-button:hover {
-            background-color: #4E342E;
-            transform: translateY(-1px);
-        }
-
         /* Utility Classes */
         .container { max-width: 56rem; margin-left: auto; margin-right: auto; }
         .text-center { text-align: center; }
@@ -82,11 +63,14 @@
         .mt-20 { margin-top: 5rem; }
         .mt-4 { margin-top: 1rem; }
         .mt-3 { margin-top: 0.75rem; }
-        .grid { display: grid; }
-        .md-grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .gap-8 { gap: 2rem; }
-        .list-disc { list-style-type: disc; }
-        .list-inside { list-style-position: inside; }
+        .grid { display: grid; gap: 1.5rem; } /* Default to single column with gap */
+        
+        .list-disc { 
+            list-style-type: disc; 
+            list-style-position: outside; /* Better for wrapping text */
+            padding-left: 1.25rem; /* Indent the list */
+        }
+
         .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
         .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
         .flex { display: flex; }
@@ -94,18 +78,37 @@
         .flex-grow { flex-grow: 1; }
         .border-t { border-top: 1px solid #EAE8E3; }
         .pt-4 { padding-top: 1rem; }
-        .text-4xl { font-size: 2.25rem; }
-        .md-text-5xl { font-size: 3rem; }
-        .text-3xl { font-size: 1.875rem; }
-        .text-2xl { font-size: 1.5rem; }
-        .text-xl { font-size: 1.25rem; }
+        
+        /* Font size defaults for mobile */
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.25rem; }
         .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
         .text-sm { font-size: 0.875rem; }
+
         .italic { font-style: italic; }
         .max-w-2xl { max-width: 42rem; }
         .mx-auto { margin-left: auto; margin-right: auto; }
         .leading-relaxed { line-height: 1.625; }
         .font-light { font-weight: 300; }
+
+        /* Tablet and Desktop Styles */
+        @media (min-width: 768px) {
+            body {
+                padding: 2em;
+            }
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 2rem;
+            }
+            .koto-card {
+                padding: 2rem;
+            }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 1.875rem; }
+            h3 { font-size: 1.25rem; }
+        }
 
     </style>
 </head>
@@ -115,7 +118,7 @@
 
         <!-- Header Section -->
         <header class="text-center mb-12">
-            <h1 class="text-4xl md-text-5xl koto-title">The Incense Journey</h1>
+            <h1 class="koto-title">The Incense Journey</h1>
             <p class="mt-3 text-lg koto-subtitle" style="color: #606770;">SEPTEMBER 21st &nbsp;&nbsp;|&nbsp;&nbsp; 2:00 PM - 4:30 PM</p>
         </header>
 
@@ -135,12 +138,12 @@
 
         <!-- Incense Materials Section -->
         <main>
-            <div class="grid md-grid-cols-2 gap-8">
+            <div class="grid">
                 
                 <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Sandalwood Red Powder</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Pterocarpus santalinus – Indonesia</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Promotes mental clarity and deep calm, easing stress and mental fatigue.</li>
                         <li>Traditionally used to reduce inflammation and soothe the skin.</li>
                         <li>Supports meditation practices by grounding scattered thoughts.</li>
@@ -151,7 +154,7 @@
                 <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Copal – Oro Resin</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Agathis dammara – Mexico</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Clears stagnant energy, fostering emotional balance and inner peace.</li>
                         <li>Mild expectorant properties that can ease breathing and open the lungs.</li>
                         <li>Enhances focus and connection during spiritual or reflective practices.</li>
@@ -162,7 +165,7 @@
                 <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Copal Mayan Resin</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Pinus contorta – Central America</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Known for cleansing the mind of intrusive or negative thoughts.</li>
                         <li>May help reduce muscle tension and discomfort when burned in ritual use.</li>
                         <li>Traditionally linked with strengthening resilience and vitality.</li>
@@ -173,7 +176,7 @@
                 <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Colophony Resin</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Colophonium totum – Portugal</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Stimulates alertness and concentration with a sharp, resinous profile.</li>
                         <li>Has mild antimicrobial properties when used in fumigation.</li>
                         <li>Encourages a sense of endurance and physical stamina.</li>
@@ -184,7 +187,7 @@
                 <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Dragon’s Blood Powder</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Daemonorops draco</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Strongly protective for the psyche, reducing fear and anxiety.</li>
                         <li>Used historically to speed wound healing and reduce inflammation.</li>
                         <li>Invigorates energy levels, fostering motivation and drive.</li>
@@ -195,7 +198,7 @@
                 <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Frankincense Resin</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Boswellia papyrifera – Eritrea</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Reduces stress and anxiety by calming the limbic system.</li>
                         <li>Known for anti-inflammatory and immune-supportive properties.</li>
                         <li>Deepens breath and enhances meditative or prayerful states.</li>
@@ -206,7 +209,7 @@
                  <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Palo Santo Wood Resin</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Bursera graveolens – Ecuador</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Uplifts mood and alleviates symptoms of depression or grief.</li>
                         <li>Traditionally used to repel insects and purify the air.</li>
                         <li>Encourages a centered, grounded state ideal for meditation.</li>
@@ -217,7 +220,7 @@
                 <div class="koto-card flex flex-col">
                     <h3 class="text-xl koto-title">Sandarac Gum Resin</h3>
                     <p class="text-sm mb-4" style="color: #8D6E63;">Tetraclinis articulata – Morocco</p>
-                    <ul class="list-disc list-inside space-y-2 flex-grow" style="color: #606770;">
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
                         <li>Promotes relaxation and sleep by easing mental restlessness.</li>
                         <li>Known for gentle antiseptic properties in folk medicine.</li>
                         <li>Balances emotions, fostering patience and steadiness.</li>
