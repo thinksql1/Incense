@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aromatic Benefit Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Zen Garden -->
+    <!-- Application Structure Plan: The "Getting Started Guide" section has been relocated to the bottom of the main content area to serve as a concluding resource after users have explored the individual items. This improves the initial focus on the core filtering functionality while still providing a valuable next step. The core interaction flow (filter -> scan cards -> open modal for details) is preserved. -->
+    <!-- Visualization & Content Choices: Report Info: List of resins and a starter guide link. Goal: Categorize by benefit, provide deep knowledge, and offer a curated starting point, all with a professional, Zen aesthetic. Viz/Presentation: The layout change is structural. The new guide section is now placed at the end of the main content flow. Interaction: Core filter-and-click interaction is unchanged. Justification: Moving the guide to the bottom creates a more logical user flow: explore the library first, then access the curated guide for a starting point. Library/Method: Vanilla JS, Tailwind CSS, Google Fonts. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        :root {
+            --bg-main: #F4F4F3;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5A5A5A;
+            --accent: #6C7A89;
+            --accent-light: #D3D9DE;
+            --highlight: #A3B18A;
+        }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .filter-btn {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--accent-light);
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover {
+            background-color: var(--bg-card);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        .active-filter {
+            background-color: var(--accent) !important;
+            color: white !important;
+            border-color: var(--accent) !important;
+        }
+        .modal-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-scrollbar::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        .modal-scrollbar::-webkit-scrollbar-thumb {
+            background-color: var(--accent-light);
+            border-radius: 10px;
+        }
+        .card-shadow {
+             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+        .card-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.07);
+        }
+        .kanji-symbol {
+            font-size: 1.5rem;
+            line-height: 1;
+            color: var(--accent);
+        }
+        .purchase-btn {
+            display: inline-block;
+            background-color: var(--bg-main);
+            color: var(--accent);
+            border: 1px solid var(--accent-light);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .purchase-btn:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-12 md:py-16">
+
+        <header class="text-center mb-12">
+             
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight" style="color: var(--text-primary);">香りの探求</h1>
+            <p class="mt-3 text-lg font-light" style="color: var(--text-secondary);">Aromatic Benefit Explorer</p>
+        </header>
+
+        <nav id="filter-nav" class="flex flex-wrap justify-center gap-3 mb-12">
+            <button data-filter="all" class="filter-btn px-5 py-2 rounded-md text-sm font-medium active-filter">All</button>
+            <button data-filter="focus" class="filter-btn px-5 py-2 rounded-md text-sm font-medium">Focus & Clarity</button>
+            <button data-filter="muscle" class="filter-btn px-5 py-2 rounded-md text-sm font-medium">Muscle Relaxant</button>
+            <button data-filter="calm" class="filter-btn px-5 py-2 rounded-md text-sm font-medium">Calm</button>
+            <button data-filter="overthinking" class="filter-btn px-5 py-2 rounded-md text-sm font-medium">Anti-Overthinking</button>
+        </nav>
+        
+        <div id="fragrance-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        </div>
+        
+        <section class="text-center mt-16 p-6 rounded-lg border" style="background-color: var(--bg-card); border-color: var(--accent-light);">
+            <h2 class="text-2xl font-medium mb-3" style="color: var(--text-primary);">Getting Started Guide</h2>
+            <p class="mb-5 max-w-2xl mx-auto" style="color: var(--text-secondary);">
+                A curated guide to suggested "heavy hitters"—powerful and noteworthy fragrances from vendors in the U.S.A. to begin your aromatic journey.
+            </p>
+            <a href="https://thinksql1.github.io/Incense/GettingStarted.html" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 rounded-md text-sm font-medium filter-btn active-filter">
+                Explore the Guide
+            </a>
+        </section>
+
+    </div>
+
+    <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm p-4 hidden transition-opacity duration-300">
+        <div id="modal-content" class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-lg border border-gray-200 shadow-xl p-8 md:p-10 modal-scrollbar" style="background-color: var(--bg-card);">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-3xl font-thin" style="color: var(--text-secondary);">&times;</button>
+            
+            <h2 id="modal-name" class="text-3xl font-bold mb-1" style="color: var(--text-primary);"></h2>
+            <p id="modal-scientific-name" class="text-md font-light italic mb-6" style="color: var(--text-secondary);"></p>
+
+            <div class="mb-8 p-4 rounded-md border" style="background-color: var(--bg-main); border-color: var(--accent-light);">
+                <h3 class="font-medium text-md mb-1 text-center" style="color: var(--text-secondary);">Ideal Temperature</h3>
+                <p class="text-2xl font-mono text-center" id="modal-temp" style="color: var(--text-primary);"></p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="font-semibold text-lg mb-3 border-b pb-2" style="border-color: var(--accent-light);">Key Benefits</h3>
+                    <ul id="modal-benefits" class="list-disc list-inside space-y-2 font-light" style="color: var(--text-secondary);"></ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-3 border-b pb-2" style="border-color: var(--accent-light);">Active Properties & Evidence</h3>
+                    <p id="modal-evidence" class="font-light leading-relaxed" style="color: var(--text-secondary);"></p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-3 border-b pb-2" style="border-color: var(--accent-light);">Geographic Origin</h3>
+                    <p id="modal-origin" class="font-light" style="color: var(--text-secondary);"></p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-3 border-b pb-2" style="border-color: var(--accent-light);">Ancient & Cultural Significance</h3>
+                    <p id="modal-practices" class="font-light leading-relaxed" style="color: var(--text-secondary);"></p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-3 border-b pb-2" style="border-color: var(--accent-light);">Spiritual Information</h3>
+                    <p id="modal-spiritual" class="font-light leading-relaxed" style="color: var(--text-secondary);"></p>
+                </div>
+                <div id="modal-purchase-section">
+                    <h3 class="font-semibold text-lg mb-3 border-b pb-2" style="border-color: var(--accent-light);">Learn More / Purchase</h3>
+                    <div id="modal-links" class="flex flex-wrap gap-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fragrances = [
+                {
+                    id: 'agarwood',
+                    name: 'Agarwood (Oud)',
+                    categories: ['calm', 'overthinking'],
+                    icon: '沈',
+                    scientificName: 'Aquilaria spp.',
+                    tempRange: '120-150°C / 250-300°F',
+                    benefits: ['Promotes deep tranquility and relaxation', 'Aids in profound meditation', 'Reduces obsessive thinking', 'Instills a sense of the sacred'],
+                    evidence: 'Contains agarofurans and sesquiterpenes. These compounds are known to have psychoactive properties that can calm the nervous system. Traditional use and anecdotal evidence strongly support its role in alleviating stress and focusing the mind for spiritual practice.',
+                    origin: 'Southeast Asian rainforests, particularly in Vietnam, Cambodia, Indonesia, and Malaysia.',
+                    practices: 'Known as the "Wood of the Gods," it is one of the most precious raw materials in the world. It is central to Middle Eastern perfumery and incense burning (Bakhoor) and is highly valued in Japanese Kōdō (incense ceremony).',
+                    spiritual: 'Used to facilitate a deep connection to the divine. Its scent is believed to purify the mind and soul, awaken the senses, and transport one to a higher state of consciousness. It is associated with dispelling ignorance and bringing enlightenment.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/agarwood-powder-grade-a-vietnam-aquilaria-33098?_pos=1&_sid=7d3bb49e3&_ss=r'
+                },
+                {
+                    id: 'cedar',
+                    name: 'Siberian Cedar',
+                    categories: ['muscle', 'overthinking'],
+                    icon: '力',
+                    scientificName: 'Pinus sibirica',
+                    tempRange: '99-116°C / 210-240°F',
+                    benefits: ['Helps relax tired muscles and soothe aches', 'Grounds and stabilizes an overactive mind', 'Promotes a sense of security and strength', 'Purifies the air with a fresh, forest scent'],
+                    evidence: 'Cedar resin and wood oil contain compounds like cedrol and cedrene. Cedrol, in particular, has been studied for its sedative effects. Inhalation has been shown to decrease heart rate and blood pressure, promoting physical and mental relaxation.',
+                    origin: 'The vast taiga forests of Siberia and the Russian Far East.',
+                    practices: 'Cedar is one of the most important ceremonial plants for many Native American and Siberian cultures. It is burned for purification, used in sweat lodges, and carried as a protector against negative influences. It represents strength and eternal life.',
+                    spiritual: 'Associated with power, protection, and grounding. Cedar smoke is used to cleanse spaces, people, and objects before ceremony. It helps to clear away distracting thoughts and connect one to the wisdom and strength of the earth.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/siberian-cedar-resin-pinus-siberica-fresh-earthy-musky-for-medicine-incense-perfume?_pos=2&_sid=93920d78f&_ss=r'
+                },
+                {
+                    id: 'copal',
+                    name: 'Copal',
+                    categories: ['calm', 'focus'],
+                    icon: '静',
+                    scientificName: 'Protium copal, Bursera spp.',
+                    tempRange: '71-88°C / 160-190°F',
+                    benefits: ['Clears negative or stagnant energy', 'Promotes a calm and clear mind', 'Reduces anxiety and stress', 'Enhances meditation and spiritual connection'],
+                    evidence: 'Copal resin is rich in triterpenes. While clinical research is limited, some studies on related compounds suggest triterpenes can have anxiolytic effects. Burning the resin is believed to activate ion channels in the brain that may help alleviate anxiety.',
+                    origin: 'Primarily Central and South America, particularly Mexico and regions of the Amazon.',
+                    practices: 'Considered the "food for the gods" by the ancient Maya and Aztec civilizations. It was burned atop pyramids and in sacred cenotes as offerings, for spiritual cleansing, and during healing rituals.',
+                    spiritual: 'Strongly linked to the crown chakra, it is a powerful tool for purification and opening spiritual channels. It is used to transmute negative energy into positive, connecting the energizing force of the sun with the grounding properties of the earth.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/mexican-copal-golden-copal-hymenaea-courbaril-mexico-for-incense-and-art-sustainable-harvest?_pos=8&_sid=c54c18a5a&_ss=r'
+                },
+                {
+                    id: 'costus-root',
+                    name: 'Costus Root',
+                    categories: ['calm', 'muscle'],
+                    icon: '根',
+                    scientificName: 'Saussurea costus',
+                    tempRange: '110-130°C / 230-265°F',
+                    benefits: ['Promotes relaxation and eases tension', 'Soothes muscle spasms and discomfort', 'Acts as a grounding agent for the mind', 'Possesses anti-inflammatory properties'],
+                    evidence: 'Contains sesquiterpene lactones like costunolide and dehydrocostus lactone, which have demonstrated anti-inflammatory, antispasmodic, and analgesic effects in scientific studies, supporting its traditional use for pain and relaxation.',
+                    origin: 'Himalayan regions of India, Nepal, and Pakistan.',
+                    practices: 'An important herb in Tibetan medicine and Traditional Chinese Medicine (TCM) for pain, digestive issues, and respiratory conditions. It was also a key ingredient in Roman perfumes and sacred oils.',
+                    spiritual: 'Its earthy, animalic scent is deeply grounding. Used to fortify the spirit, enhance concentration during meditation, and is considered an aphrodisiac in some traditions. It helps connect one to the energies of the earth.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/costus-root-powder-fresh-fragrant-22122?_pos=2&_sid=2cd16c6a6&_ss=r'
+                },
+                {
+                    id: 'dammar',
+                    name: 'Dammar',
+                    categories: ['focus', 'calm'],
+                    icon: '光',
+                    scientificName: 'Agathis dammara, Shorea spp.',
+                    tempRange: '80-95°C / 175-205°F',
+                    benefits: ['Promotes mental clarity and focus', 'Lifts spirits and alleviates sadness', 'Brings a sense of light and purity to a space', 'Aids in meditation and visualization'],
+                    evidence: 'Composed of triterpenoid resins. Traditionally used for its astringent properties. Aromatherapeutically, its light, citrusy scent is associated with mood elevation, though specific clinical research on its aromatic effects is limited.',
+                    origin: 'Southeast Asia, particularly Indonesia, Malaysia, and the Philippines.',
+                    practices: 'Long used as an incense in Southeast Asia for purification. Commercially, it is a key ingredient in making traditional varnishes and lacquers due to its clear, glossy finish.',
+                    spiritual: 'The name "Dammar" means "light" in Malay. It is burned to bring light to the darkness of the soul and is believed to connect one with angelic and light-bearing entities. Excellent for dispelling melancholy and promoting hope.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/copal-copal-doro-grade-a-premium-quality-shorea-javonica-dammar?_pos=1&_psq=dammar&_ss=e&_v=1.0'
+                },
+                {
+                    id: 'dragons-blood',
+                    name: 'Dragon\'s Blood',
+                    categories: ['calm', 'overthinking'],
+                    icon: '護',
+                    scientificName: 'Daemonorops draco, Dracaena cinnabari',
+                    tempRange: '90-110°C / 195-230°F',
+                    benefits: ['Promotes healing and tissue regeneration', 'Acts as a powerful anti-inflammatory and antiseptic', 'Cleanses spaces and banishes negativity', 'Boosts spiritual power and focus'],
+                    evidence: 'The resin is rich in phenols, flavonoids, and proanthocyanidins. Compounds like taspine contribute to its famed wound-healing properties by stimulating tissue regeneration. Its various polyphenolic compounds provide antioxidant, anti-inflammatory, and antimicrobial effects.',
+                    origin: 'Socotra archipelago (Yemen) for Dracaena species, and Southeast Asia (primarily Indonesia) for Daemonorops species.',
+                    practices: 'Used since antiquity in Traditional Chinese Medicine, Ayurvedic medicine, and by Greeks and Romans for wound healing. It was also highly prized as a vibrant red pigment for varnish, dyes, and ink.',
+                    spiritual: 'A potent resin for protection, purification, and banishing negative energy. Its smoke is used to create a protective barrier, cleanse ritual tools, and is believed to amplify the power and intention of other herbs and spells it is burned with.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/dragons-blood-virgin-pure-sustainable-05022?_pos=3&_sid=b0548731e&_ss=r'
+                },
+                {
+                    id: 'frankincense',
+                    name: 'Frankincense',
+                    categories: ['focus', 'calm'],
+                    icon: '集',
+                    scientificName: 'Boswellia sacra, B. serrata, & others',
+                    tempRange: '79-93°C / 175-200°F',
+                    benefits: ['Enhances focus and concentration', 'Reduces stress and anxiety', 'Purifies the air and environment', 'Aids in deep meditation'],
+                    evidence: 'Contains Boswellic acids and Incensole Acetate. Scientific studies suggest Incensole Acetate may have anxiolytic (anxiety-reducing) and anti-depressive effects by activating specific ion channels in the brain, contributing to a sense of calm and well-being.',
+                    origin: 'Dry, mountainous regions of the Arabian Peninsula (Oman, Yemen), and Northeast Africa (Somalia).',
+                    practices: 'Used extensively by ancient Egyptians, Romans, and Greeks in sacred ceremonies for purification and meditation. At its peak, it was valued more than gold and was a key component of religious incense like Kyphi.',
+                    spiritual: 'Aids in meditation by stilling the mind. It is used for clearing negative energy, consecrating sacred spaces and tools, and promoting higher states of consciousness. It is associated with the sun and spiritual enlightenment.',
+                    purchaseLinks: [
+                        { name: 'Royal Green Hojari (B. sacra)', url: 'https://apothecarysgarden.com/collections/everything-frankincense/products/royal-green-hojari-frankincense-oman-64930' },
+                        { name: 'Serrata Powder (B. serrata)', url: 'https://apothecarysgarden.com/collections/everything-frankincense/products/frankincense-serrata-powdered-fresh-incense-boswellic-acids-medicine-olibanum-ayurveda' }
+                    ]
+                },
+                {
+                    id: 'guggul',
+                    name: 'Guggul',
+                    categories: ['muscle', 'calm'],
+                    icon: '浄',
+                    scientificName: 'Commiphora wightii',
+                    tempRange: '110-130°C / 230-265°F',
+                    benefits: ['Reduces inflammation, especially in joints', 'Soothes sore muscles and relieves pain', 'Promotes detoxification', 'Calms the mind and body'],
+                    evidence: 'Contains active constituents called guggulsterones. Extensive research has validated its anti-inflammatory and anti-arthritic properties, showing it can inhibit inflammatory markers like NF-κB, similar to modern NSAIDs.',
+                    origin: 'Dry, arid regions of India, Pakistan, and Bangladesh.',
+                    practices: 'A cornerstone of Ayurvedic medicine for over 3,000 years, primarily used to treat arthritis, high cholesterol, and obesity. Its name in Sanskrit means "protects from disease."',
+                    spiritual: 'Highly valued for its purifying properties. It is burned to clear spaces of negative influences, protect against the evil eye, and to create a sacred atmosphere for prayer and ritual.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/gum-guggul-commiphora-25366?_pos=1&_sid=83b5f979e&_ss=r&variant=40020366131334'
+                },
+                {
+                    id: 'labdanum',
+                    name: 'Labdanum',
+                    categories: ['calm', 'overthinking'],
+                    icon: '安',
+                    scientificName: 'Cistus creticus, Cistus ladanifer',
+                    tempRange: '82-99°C / 180-210°F',
+                    benefits: ['Promotes a profound sense of grounding', 'Calms the nervous system and reduces feelings of stress', 'Aids in introspective and meditative work', 'Serves as a powerful scent fixative'],
+                    evidence: 'Contains labdane-type diterpenoids and flavonoids. Recent research has explored its neuroprotective potential. Andalusian labdanum absolute showed significant acetylcholinesterase inhibitory effects, a mechanism relevant to cognitive function and calmness.',
+                    origin: 'The Mediterranean region, particularly Spain, Portugal, and Crete.',
+                    practices: 'Known in antiquity as the "Balm of Gilead." Shepherds would collect the resin that stuck to the beards of goats grazing on the Cistus shrubs. It was a primary ingredient in ancient perfumes and sacred incense.',
+                    spiritual: 'A deeply grounding and centering resin. It is used in meditation to quiet the mind and encourage introspection. Its ancient, warm scent is associated with comfort, security, and connecting with deep, primal wisdom.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/labdanum-crete-cistus-creticus-back-in-88965?_pos=1&_sid=ee3d901ea&_ss=r'
+                },
+                {
+                    id: 'myrrh',
+                    name: 'Myrrh',
+                    categories: ['muscle', 'calm'],
+                    icon: '癒',
+                    scientificName: 'Commiphora myrrha & others',
+                    tempRange: '93-107°C / 200-225°F',
+                    benefits: ['Soothes muscle and joint discomfort', 'Acts as a powerful antiseptic and anti-inflammatory', 'Promotes emotional grounding', 'Purifies sacred spaces'],
+                    evidence: 'Rich in furanodienes and other sesquiterpenes. Research indicates these compounds possess analgesic (pain-relieving) and anti-inflammatory properties. Some studies suggest they interact with the body\'s opioid receptors, which may explain its traditional use for pain and wound healing.',
+                    origin: 'Arabian Peninsula (Yemen, Oman) and parts of Northeast Africa (Ethiopia, Somalia).',
+                    practices: 'A vital component in ancient healing, perfumery, and embalming processes, particularly in Ancient Egypt. It was used in Ayurvedic and Traditional Chinese Medicine for wound healing, arthritis, and circulatory health.',
+                    spiritual: 'Associated with grounding, healing, and the Earth. Used to clear pathways for emotional healing from grief or loss. It helps to connect the spiritual with the physical, providing strength and solace during difficult times.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/kua-myrrh-perfumed-myrrh-commiphora-80929?_pos=1&_psq=Myrrh&_ss=e&_v=1.0'
+                },
+                {
+                    id: 'norway-spruce',
+                    name: 'Norway Spruce',
+                    categories: ['muscle', 'calm'],
+                    icon: '森',
+                    scientificName: 'Picea abies',
+                    tempRange: '100-120°C / 212-250°F',
+                    benefits: ['Relaxes muscles and eases respiratory congestion', 'Promotes a sense of calm and grounding', 'Evokes the feeling of a pristine forest', 'Supports immune function'],
+                    evidence: 'The resin is rich in monoterpenes like α-pinene and limonene, which have known anti-inflammatory, bronchodilatory, and antiseptic properties, supporting its traditional use in salves for wounds and respiratory ailments.',
+                    origin: 'Native to Northern, Central, and Eastern Europe.',
+                    practices: 'A traditional source of burgundy pitch and rosin. In European folk medicine, the resin was used to make salves for wounds, sores, and rheumatic pain. Its fresh scent was valued for clearing the air in sickrooms.',
+                    spiritual: 'Associated with protection, purification, and renewal. Burning the resin is believed to cleanse a space of negativity and to connect one with the deep, ancient wisdom of the forest.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/norway-spruce-resin-lithuania-sustainably-30993?_pos=1&_psq=Norway+Spruce&_ss=e&_v=1.0'
+                },
+                {
+                    id: 'opoponax',
+                    name: 'Opoponax',
+                    categories: ['calm', 'muscle'],
+                    icon: '甘',
+                    scientificName: 'Commiphora guidottii',
+                    tempRange: '95-115°C / 205-240°F',
+                    benefits: ['Deeply relaxing and sedating', 'Soothes muscle tension and spasms', 'Enhances meditation and dreamwork', 'Acts as a powerful cleansing agent'],
+                    evidence: 'Contains bisabolenes and other sesquiterpenes. While less studied than Myrrh, these compounds are believed to contribute to its antispasmodic and anti-inflammatory effects. Its sweet, balsamic scent is widely used in perfumery for its calming base notes.',
+                    origin: 'Somalia and Ethiopia.',
+                    practices: 'Often referred to as "Sweet Myrrh," it was used in ancient perfumery and incense. King Solomon reportedly regarded it as one of the noblest of all incense gums.',
+                    spiritual: 'Used for protection, purification, and increasing spiritual awareness. Its gentle, sweet aroma is excellent for cleansing a space before meditation and is believed to aid in dream recall and visionary work.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/opoponax-commiphora-guidotti-scented-myrrh-fair-trade-and-sustainable-co-op-harvested-in-somalia?_pos=1&_psq=Opoponax&_ss=e&_v=1.0'
+                },
+                {
+                    id: 'sandalwood',
+                    name: 'Sandalwood',
+                    categories: ['calm', 'overthinking'],
+                    icon: '空',
+                    scientificName: 'Santalum album',
+                    tempRange: '107-121°C / 225-250°F',
+                    benefits: ['Calms the mind and settles thoughts', 'Reduces anxiety and nervous tension', 'Promotes restful sleep', 'Aids in achieving a deep meditative state'],
+                    evidence: 'The primary active compounds are α-santalol and β-santalol. Studies have shown that α-santalol can have a sedative effect on the central nervous system, reducing physiological arousal and promoting a state of relaxation, which is beneficial for an overactive mind.',
+                    origin: 'Native to Southern India and Southeast Asia. Due to overharvesting, sustainable plantations are now also located in Australia.',
+                    practices: 'A cornerstone of Ayurvedic medicine and Hindu and Buddhist spiritual practices for thousands of years. Used in pastes for religious markings, in incense for temple worship, and in medicine for its cooling and calming properties.',
+                    spiritual: 'Promotes tranquility and a connection to the higher self. It is believed to quiet the mental chatter of the conscious mind, allowing for greater intuition and clarity. Excellent for grounding and dispelling restlessness during spiritual practice.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/sandalwood-powder-mysore-quality-santalum-96489?_pos=1&_sid=df762a370&_ss=r'
+                },
+                {
+                    id: 'storax',
+                    name: 'Storax',
+                    categories: ['calm', 'overthinking'],
+                    icon: '夢',
+                    scientificName: 'Liquidambar orientalis',
+                    tempRange: '95-115°C / 205-240°F',
+                    benefits: ['Promotes deep relaxation and restful sleep', 'Soothes anxiety and nervous exhaustion', 'Aids in meditation and dream work', 'Helps release emotional tension'],
+                    evidence: 'Contains cinnamic acid, cinnamyl cinnamate, and styrol. These compounds are known for their calming, antiseptic, and expectorant properties, which supports its traditional use for stress and respiratory issues.',
+                    origin: 'Coastal regions of southwestern Turkey.',
+                    practices: 'A key ingredient in the sacred ancient Egyptian incense, Kyphi, which was used to induce trance states and promote sleep. Also highly valued in ancient Greece and Rome for its medicinal and aromatic properties.',
+                    spiritual: 'A powerful resin for journeying into the subconscious. It is used to enhance meditation, promote vivid dreams, and to access deep emotional states for healing and release. It is associated with sensuality and the night.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/storax?_pos=2&_psq=Storax&_ss=e&_v=1.0'
+                },
+                {
+                    id: 'white-pine',
+                    name: 'White Pine',
+                    categories: ['muscle', 'focus'],
+                    icon: '松',
+                    scientificName: 'Pinus strobus',
+                    tempRange: '100-120°C / 212-250°F',
+                    benefits: ['Soothes sore muscles and joints', 'Helps clear respiratory passages', 'Promotes mental clarity and alertness', 'Purifies and freshens the air'],
+                    evidence: 'Pine resin is rich in terpenes like α-pinene and β-pinene. These compounds are well-researched for their anti-inflammatory, bronchodilatory, and antimicrobial activities. α-pinene is also known to counteract some effects of THC and improve focus.',
+                    origin: 'Eastern North America.',
+                    practices: 'A vital medicinal and ceremonial plant for many Native American tribes, particularly the Haudenosaunee (Iroquois), who revere it as the "Tree of Peace." The resin was used as a topical treatment for wounds and as an antiseptic.',
+                    spiritual: 'Represents peace, harmony, and healing. Its smoke is used for purification and to carry prayers. It is believed to bring wisdom, clear negative thought patterns, and encourage forgiveness.',
+                    purchaseLink: 'https://apothecarysgarden.com/products/fresh-pine-sappitchresin-for-incense-43738?_pos=1&_sid=3c63d6cb3&_ss=r'
+                }
+            ];
+
+            const grid = document.getElementById('fragrance-grid');
+            const modal = document.getElementById('detail-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const filterNav = document.getElementById('filter-nav');
+
+            const renderCards = (filter = 'all') => {
+                grid.innerHTML = '';
+                
+                const sortedFragrances = fragrances.sort((a, b) => a.name.localeCompare(b.name));
+                
+                const filteredFragrances = filter === 'all' 
+                    ? sortedFragrances
+                    : sortedFragrances.filter(f => f.categories.includes(filter));
+
+                if (filteredFragrances.length === 0) {
+                    grid.innerHTML = `<p class="text-center col-span-full font-light" style="color: var(--text-secondary);">No fragrances found for this category.</p>`;
+                    return;
+                }
+
+                filteredFragrances.forEach(fragrance => {
+                    const card = document.createElement('div');
+                    card.className = 'p-6 rounded-lg border border-transparent cursor-pointer transition-all duration-300 card-shadow';
+                    card.style.backgroundColor = 'var(--bg-card)';
+                    card.dataset.id = fragrance.id;
+                    card.innerHTML = `
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h3 class="text-xl font-medium" style="color: var(--text-primary);">${fragrance.name}</h3>
+                                <p class="text-sm font-light" style="color: var(--text-secondary);">${fragrance.scientificName}</p>
+                            </div>
+                            <span class="kanji-symbol" title="${fragrance.categories.join(', ')}">${fragrance.icon}</span>
+                        </div>
+                         <div class="mt-4 pt-4 border-t" style="border-color: var(--accent-light);">
+                            <span class="text-xs uppercase font-semibold tracking-wider" style="color: var(--text-secondary);">Temp</span>
+                            <p class="font-mono text-lg" style="color: var(--text-primary);">${fragrance.tempRange}</p>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => showModal(fragrance.id));
+                    grid.appendChild(card);
+                });
+            };
+
+            const showModal = (id) => {
+                const fragrance = fragrances.find(f => f.id === id);
+                if (!fragrance) return;
+
+                document.getElementById('modal-name').textContent = fragrance.name;
+                document.getElementById('modal-scientific-name').textContent = fragrance.scientificName;
+                document.getElementById('modal-temp').textContent = fragrance.tempRange;
+                document.getElementById('modal-evidence').textContent = fragrance.evidence;
+                document.getElementById('modal-origin').textContent = fragrance.origin;
+                document.getElementById('modal-practices').textContent = fragrance.practices;
+                document.getElementById('modal-spiritual').textContent = fragrance.spiritual;
+                
+                const benefitsList = document.getElementById('modal-benefits');
+                benefitsList.innerHTML = '';
+                fragrance.benefits.forEach(benefit => {
+                    const li = document.createElement('li');
+                    li.textContent = benefit;
+                    benefitsList.appendChild(li);
+                });
+                
+                const purchaseSection = document.getElementById('modal-purchase-section');
+                const linksContainer = document.getElementById('modal-links');
+                linksContainer.innerHTML = '';
+
+                if (fragrance.purchaseLinks) {
+                    purchaseSection.style.display = 'block';
+                    fragrance.purchaseLinks.forEach(link => {
+                        const a = document.createElement('a');
+                        a.href = link.url;
+                        a.textContent = link.name;
+                        a.className = 'purchase-btn';
+                        a.target = '_blank';
+                        a.rel = 'noopener noreferrer';
+                        linksContainer.appendChild(a);
+                    });
+                } else if (fragrance.purchaseLink) {
+                    purchaseSection.style.display = 'block';
+                    const a = document.createElement('a');
+                    a.href = fragrance.purchaseLink;
+                    a.textContent = 'Learn More / Purchase';
+                    a.className = 'purchase-btn';
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    linksContainer.appendChild(a);
+                } else {
+                    purchaseSection.style.display = 'none';
+                }
+
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const hideModal = () => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            };
+            
+            filterNav.addEventListener('click', (e) => {
+                if (e.target.matches('.filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter'));
+                    e.target.classList.add('active-filter');
+                    renderCards(e.target.dataset.filter);
+                }
+            });
+
+            closeModalBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    hideModal();
+                }
+            });
+            
+            renderCards();
+        });
+    </script>
+</body>
+</html>
