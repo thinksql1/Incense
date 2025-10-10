@@ -165,7 +165,7 @@
 
     <script>
         // Initialize Leaflet map
-        const map = L.map('map').setView([20, 30], 2); // Centered view
+        const map = L.map('map', { minZoom: 2 }).setView([20, 30], 2); // Centered view, minZoom prevents repeating world
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             subdomains: 'abcd',
@@ -218,5 +218,6 @@
     </script>
 </body>
 </html>
+
 
 
