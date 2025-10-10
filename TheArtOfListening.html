@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Follow-Up to Our Incense Journey</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- LeafletJS for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f1ea; /* Washi paper inspired background */
+            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23dcd8d0%22%20fill-opacity%3D%220.2%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%2040L40%200H20L0%2020M40%2040V20L20%2040%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif JP', serif;
+        }
+        .shingon-red { color: #942a25; }
+        .shingon-gold { color: #b6922e; }
+        .charcoal-gray { color: #333333; }
+        .section-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid #e0d9cd;
+        }
+        .fragrance-active {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(182, 146, 46, 0.4);
+            border-color: #b6922e;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <!-- Enso Circle SVG -->
+            <svg class="mx-auto mb-4 h-24 w-24 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 102 102" stroke-width="2">
+                <path stroke="currentColor" stroke-linecap="round" d="M99.18,69.57c-2.34,8.7-7.53,16.29-14.7,21.92C74.6,98.66,63.12,101,51,101c-10.43,0-20.3-2.12-28.77-6.26C11.13,90.06,4.6,81.1,2.06,70.52c-1.89-7.9, -1.33-16.2, 1.48-23.91C7.5,35.26,14.63,26.6,24.18,20.43c11.08-7.14,24.3-8.86,37.33-4.94c12.18,3.68,22.34,12.35,27.56,23.63C93,50.1,95.06,62.3,91.88,73.57"/>
+            </svg>
+            <h1 class="text-4xl md:text-5xl font-bold shingon-red mb-2">香道への道</h1>
+            <p class="text-lg charcoal-gray">A Guide to the Way of Fragrance</p>
+        </header>
+
+        <!-- Introduction to Kodo -->
+        <section class="section-card mb-12 p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold shingon-red mb-4 border-b border-gray-300 pb-2">The Inspiration: Kōdō, The Way of Fragrance</h2>
+            <p class="mb-4">Our journey together was inspired by the ancient Japanese art of Kōdō (香道), the "Way of Fragrance." More than just smelling incense, Kōdō is a refined and disciplined practice of appreciating fragrance. It involves specific rituals and etiquette to quiet the mind, open the heart, and connect deeply with the aromatic wood or resin being offered.</p>
+            <p class="mb-4">In Kōdō, we don't "burn" incense; we "listen" to it. By gently warming the material, we release its complex layers of scent without the harshness of smoke. This allows for a much richer and more nuanced experience.</p>
+            <p class="font-semibold">I am a dedicated student of <a href="https://shihan-wellness.com/" target="_blank" class="shingon-gold hover:underline">John Launius</a> of The Incense Journey, who is training me in this beautiful art form to one day become a Komoto (a licensed incense ceremony practitioner). It is an honor to share the beginnings of this path with you.</p>
+        </section>
+
+        <!-- How to Warm Incense -->
+        <section class="section-card mb-12 p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold shingon-red mb-4 border-b border-gray-300 pb-2">Warming Incense on an Electric Heater</h2>
+            <p class="mb-4">An electric incense heater offers precise temperature control, allowing you to "listen" to your aromatics just as in Kōdō. Here’s a simple guide:</p>
+            <ol class="list-decimal list-inside space-y-3">
+                <li><strong>Prepare a Foil Cup:</strong> Place a reusable <a href="https://www.mermadearts.com/p/incense-tools/foil-cups-re-usable-perfect-heater-size-25-pieces" target="_blank" class="shingon-gold hover:underline">foil cup</a> on the heater's surface. This protects the heater and provides an even surface for your incense.</li>
+                <li><strong>Start Low:</strong> Always begin at a low temperature setting (around 160-180°F or 70-80°C). This gently awakens the resin or wood.</li>
+                <li><strong>Place a Small Piece:</strong> Put a tiny piece of resin or a wood chip into the foil cup. A little goes a long way.</li>
+                <li><strong>Listen Patiently:</strong> Close your eyes and notice the first whispers of fragrance. As the scent begins to fade or change, you can gradually increase the temperature.</li>
+                <li><strong>Observe the Transformation:</strong> Each aromatic has a story to tell through its changing scent profile. You'll notice lighter top notes first, followed by deeper heart and base notes as the temperature rises.</li>
+                <li><strong>Know When to Stop:</strong> When the material has released all its fragrance and begins to smell charred or bitter, it's time to turn off the heater. Let it cool completely before cleaning or replacing the foil cup.</li>
+            </ol>
+             <div class="mt-6 text-center">
+                <a href="https://www.mermadearts.com/p/electric-heaters-and-censers/mermade-electric-incense-heaters" target="_blank" class="inline-block bg-[#942a25] text-white font-bold py-2 px-6 rounded-lg hover:bg-[#7a231f] transition-colors duration-300 shadow-md">Shop for Electric Heaters</a>
+            </div>
+        </section>
+
+        <!-- Interactive Fragrance Map and Details -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold shingon-red text-center mb-8">The Fragrances of Our Journey</h2>
+
+            <!-- Map Container -->
+            <div id="map" class="h-96 w-full rounded-lg shadow-lg z-0 mb-8 border-2 border-gray-300"></div>
+
+            <!-- Fragrance Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Labdanum -->
+                <div id="fragrance-labdanum" class="fragrance-card section-card p-6 rounded-lg shadow-md border-2 border-transparent transition-all duration-300 cursor-pointer" data-lat="35.24" data-lng="24.80" data-zoom="7" data-sci-name="Cistus creticus" data-uses="Used in spiritual incense, for treating ailments like coughs and colds, and as a foundational note in perfumes.">
+                    <h3 class="text-xl font-bold shingon-red">Labdanum</h3>
+                    <p class="text-sm text-gray-500 mb-3">Origin: Crete (Mediterranean)</p>
+                    <p class="mb-3">A sticky brown resin from the Cistus creticus (Rockrose) plant. It has a complex, rich aroma—ambery, leathery, and slightly sweet. It's a foundational note in many perfumes and has been used for millennia in spiritual incense and for treating ailments like coughs and colds.</p>
+                    <p class="mb-3"><strong>Temp:</strong> 185-250°F / 85-120°C</p>
+                    <a href="https://scents-of-earth.com/labdanum-gum-resin-spain/?searchid=0&search_query=labd" target="_blank" class="shingon-gold font-semibold hover:underline">View on Scents of Earth &rarr;</a>
+                </div>
+
+                <!-- Boswellia sacra -->
+                <div id="fragrance-boswellia" class="fragrance-card section-card p-6 rounded-lg shadow-md border-2 border-transparent transition-all duration-300 cursor-pointer" data-lat="21.0" data-lng="57.0" data-zoom="5" data-sci-name="Boswellia sacra" data-uses="Used for thousands of years in spiritual ceremonies to purify spaces and elevate consciousness.">
+                    <h3 class="text-xl font-bold shingon-red">Boswellia sacra (Frankincense)</h3>
+                    <p class="text-sm text-gray-500 mb-3">Origin: Oman, Yemen, Somalia</p>
+                    <p class="mb-3">The quintessential sacred resin. Its aroma is bright, citrusy, and piney. Used for thousands of years in spiritual ceremonies to purify spaces and elevate consciousness. Medicinally, its anti-inflammatory properties are highly prized.</p>
+                    <p class="mb-3"><strong>Temp:</strong> 195-280°F / 90-138°C</p>
+                    <a href="https://scents-of-earth.com/frankincense-resin-hojary-royal-superior-oman/?searchid=111104&search_query=bosw" target="_blank" class="shingon-gold font-semibold hover:underline">View on Scents of Earth &rarr;</a>
+                </div>
+
+                <!-- Kyphi -->
+                <div id="fragrance-kyphi" class="fragrance-card section-card p-6 rounded-lg shadow-md border-2 border-transparent transition-all duration-300 cursor-pointer" data-lat="26.82" data-lng="30.80" data-zoom="6" data-sci-name="Ancient Compound Incense" data-uses="Used in temple rituals to honor the gods, as a medicine, and as a perfume to induce a tranquil state.">
+                    <h3 class="text-xl font-bold shingon-red">Kyphi</h3>
+                    <p class="text-sm text-gray-500 mb-3">Origin: Ancient Egypt</p>
+                    <p class="mb-3">An ancient Egyptian compound incense. Recipes often included honey, wine, raisins, frankincense, and myrrh. Its scent is famously complex, deep, and calming—perfect for inducing a tranquil state before sleep.</p>
+                    <p class="mb-3"><strong>Temp:</strong> 180-240°F / 82-115°C</p>
+                    <a href="https://scents-of-earth.com/ancient-egyptian-kyphi/?searchid=111105&search_query=kyphi" target="_blank" class="shingon-gold font-semibold hover:underline">View on Scents of Earth &rarr;</a>
+                </div>
+
+                <!-- Indian Sandalwood -->
+                <div id="fragrance-sandalwood" class="fragrance-card section-card p-6 rounded-lg shadow-md border-2 border-transparent transition-all duration-300 cursor-pointer" data-lat="15.31" data-lng="75.71" data-zoom="6" data-sci-name="Santalum album" data-uses="Highly valued in Hinduism and Buddhism to aid meditation, soothe the nerves, and as a base for perfumes.">
+                    <h3 class="text-xl font-bold shingon-red">Indian Sandalwood</h3>
+                    <p class="text-sm text-gray-500 mb-3">Origin: India (Mysore region)</p>
+                    <p class="mb-3">Santalum album is a sacred wood highly valued in Hinduism and Buddhism. Its aroma is creamy, sweet, and woody—instantly calming and centering. It is used to aid meditation, soothe the nerves, and as a base for perfumes and attars.</p>
+                    <p class="mb-3"><strong>Temp:</strong> 280-350°F / 138-177°C</p>
+                    <a href="https://scents-of-earth.com/sandalwood-chips-mysore-quality-indonesia/?searchid=111106&search_query=Santalum+album" target="_blank" class="shingon-gold font-semibold hover:underline">View on Scents of Earth &rarr;</a>
+                </div>
+
+                <!-- Benzoin -->
+                <div id="fragrance-benzoin" class="fragrance-card section-card p-6 rounded-lg shadow-md border-2 border-transparent transition-all duration-300 cursor-pointer" data-lat="-0.58" data-lng="101.34" data-zoom="6" data-sci-name="Styrax benzoin" data-uses="Used in incense blends for purification and prosperity, and in 'Friar's Balsam' for respiratory issues.">
+                    <h3 class="text-xl font-bold shingon-red">Benzoin</h3>
+                    <p class="text-sm text-gray-500 mb-3">Origin: Sumatra (Southeast Asia)</p>
+                    <p class="mb-3">A balsamic resin from the Styrax tree. Its aroma is warm, sweet, and vanilla-like, making it a comforting and grounding scent. It's often used in incense blends for purification and prosperity, and in tinctures for respiratory issues.</p>
+                    <p class="mb-3"><strong>Temp:</strong> 190-260°F / 88-127°C</p>
+                    <a href="https://scents-of-earth.com/benzoin-sumatra-resin-indonesia/?searchid=111107&search_query=benzoin" target="_blank" class="shingon-gold font-semibold hover:underline">View on Scents of Earth &rarr;</a>
+                </div>
+
+                <!-- Borneol Camphor -->
+                <div id="fragrance-borneol" class="fragrance-card section-card p-6 rounded-lg shadow-md border-2 border-transparent transition-all duration-300 cursor-pointer" data-lat="1.18" data-lng="111.95" data-zoom="5" data-sci-name="Dryobalanops aromatica" data-uses="Used in traditional Chinese medicine to open the orifices, clear heat, and revive the spirit for mental focus.">
+                    <h3 class="text-xl font-bold shingon-red">Borneol Camphor</h3>
+                    <p class="text-sm text-gray-500 mb-3">Origin: Borneo, Sumatra</p>
+                    <p class="mb-3">A crystalline substance derived from the Dryobalanops aromatica tree. Unlike common camphor, borneol has a sharper, cooler, almost minty-balsamic aroma. It provides a powerful lift and is excellent for focus and clearing mental fog.</p>
+                    <p class="mb-3"><strong>Temp:</strong> 200-275°F / 93-135°C</p>
+                    <a href="https://scents-of-earth.com/borneol-camphor-japan-baieido/?searchid=111108&search_query=born" target="_blank" class="shingon-gold font-semibold hover:underline">View on Scents of Earth &rarr;</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Further Resources -->
+        <section class="mb-12 text-center">
+             <h2 class="text-3xl font-bold shingon-red mb-8">Further Resources</h2>
+             <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                 <a href="https://shihan-wellness.com/" target="_blank" class="bg-white border border-gray-300 text-charcoal-gray font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-sm">John Launius' Website</a>
+                 <a href="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/Darrell_MHC_Video.mp4" target="_blank" class="bg-white border border-gray-300 text-charcoal-gray font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-sm">The Incense Journey Videos</a>
+             </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="text-center pt-8 border-t border-gray-300">
+            <p class="text-gray-600">Thank you for sharing this fragrant space. May your journey continue to unfold beautifully.</p>
+             <!-- Vajra Symbol -->
+            <svg class="mx-auto mt-4 h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 1L9 6l-5 1 4 4-1 5 5-3 5 3-1-5 4-4-5-1L12 1zm0 22l3-5 5-1-4-4 1-5-5 3-5-3 1 5-4 4 5 1 3 5zM12 4.472l1.618 3.273.545.267 3.636.727-2.618 2.536-.218.218.618 3.636-3.273-1.727-.267-.14-3.273 1.727.618-3.636-.218-.218-2.618-2.536 3.636-.727.545-.267L12 4.472z"/>
+            </svg>
+        </footer>
+
+    </div>
+
+    <script>
+        // Initialize Leaflet map
+        const map = L.map('map').setView([20, 30], 2); // Centered view
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 10
+        }).addTo(map);
+
+        const fragranceCards = document.querySelectorAll('.fragrance-card');
+        const markers = {};
+
+        // Create markers for each fragrance
+        fragranceCards.forEach(card => {
+            const lat = card.dataset.lat;
+            const lng = card.dataset.lng;
+            const id = card.id;
+            const title = card.querySelector('h3').textContent;
+            const origin = card.querySelector('p.text-sm').textContent;
+            const sciName = card.dataset.sciName;
+            const uses = card.dataset.uses;
+
+            const popupContent = `
+                <div style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5; max-width: 250px;">
+                    <strong style="font-family: 'Noto Serif JP', serif; font-size: 16px; color: #942a25;">${title}</strong><br>
+                    <em style="color: #6b7280;">${sciName}</em>
+                    <div style="border-top: 1px solid #e5e7eb; margin: 4px 0;"></div>
+                    <strong style="color: #374151;">${origin}</strong>
+                    <p style="margin-top: 4px;">${uses}</p>
+                </div>
+            `;
+            
+            markers[id] = L.marker([lat, lng]).addTo(map)
+                .bindPopup(popupContent);
+        });
+
+        // Add click event to each fragrance card
+        fragranceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                fragranceCards.forEach(c => c.classList.remove('fragrance-active'));
+                card.classList.add('fragrance-active');
+
+                const lat = card.dataset.lat;
+                const lng = card.dataset.lng;
+                const zoom = card.dataset.zoom || 5;
+                const id = card.id;
+
+                map.flyTo([lat, lng], zoom, { animate: true, duration: 1.5 });
+                setTimeout(() => { markers[id].openPopup(); }, 300);
+            });
+        });
+
+    </script>
+</body>
+</html>
+
+
