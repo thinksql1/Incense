@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Incense Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles adapted from the Proxy Onboarding Guide with mobile-first responsiveness */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* A warm, paper-like off-white */
+            color: #37352F; /* A soft, dark charcoal */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 1em; /* Reduced padding for mobile */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .koto-title {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .koto-subtitle {
+            font-weight: 400;
+            letter-spacing: 0.025em;
+        }
+
+        .koto-section-divider {
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(55, 53, 47, 0), rgba(55, 53, 47, 0.4), rgba(55, 53, 47, 0));
+            margin: 3rem 0;
+        }
+
+        .koto-card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE8E3;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            padding: 1.5rem; /* Adjusted padding for mobile */
+        }
+
+        .koto-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        /* Utility Classes */
+        .container { max-width: 56rem; margin-left: auto; margin-right: auto; }
+        .text-center { text-align: center; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-20 { margin-top: 5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .grid { display: grid; gap: 1.5rem; } /* Default to single column with gap */
+        
+        .list-disc { 
+            list-style-type: disc; 
+            list-style-position: outside; /* Better for wrapping text */
+            padding-left: 1.25rem; /* Indent the list */
+        }
+
+        .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
+        .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-grow { flex-grow: 1; }
+        .border-t { border-top: 1px solid #EAE8E3; }
+        .pt-4 { padding-top: 1rem; }
+        
+        /* Font size defaults for mobile */
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.25rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-sm { font-size: 0.875rem; }
+
+        .italic { font-style: italic; }
+        .max-w-2xl { max-width: 42rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .leading-relaxed { line-height: 1.625; }
+        .font-light { font-weight: 300; }
+
+        /* Tablet and Desktop Styles */
+        @media (min-width: 768px) {
+            body {
+                padding: 2em;
+            }
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 2rem;
+            }
+            .koto-card {
+                padding: 2rem;
+            }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 1.875rem; }
+            h3 { font-size: 1.25rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="koto-title">The Incense Journey</h1>
+            <p class="mt-3 text-lg koto-subtitle" style="color: #606770;">OCTOBER 26th &nbsp;&nbsp;|&nbsp;&nbsp; 2:00 PM - 4:30 PM</p>
+        </header>
+
+        <!-- Introductory Contemplation Section -->
+        <section class="mb-12">
+            <div class="koto-card">
+                <h2 class="text-2xl text-center mb-6">As We Begin Today...</h2>
+                <p class="text-center italic text-lg mb-6" style="color: #606770;">
+                    Consider what is beyond the sensing of our senses and beyond the reach of our instruments.
+                </p>
+                <blockquote class="text-center text-xl font-light leading-relaxed max-w-2xl mx-auto">
+                    "What would be possible if your mind was like an air-filled ball in a series of mountain waterfalls in a stream? You would be unsinkable and free to move in any direction at any time."
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Incense Materials Section -->
+        <main>
+            <div class="grid">
+                
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Juniper Tips</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">Juniperus communis – Albania</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>Used in Tibetan morning rituals to purify spaces and increase mental awareness.</li>
+                        <li>The clean, green, and resinous scent evokes the pure air of a high-altitude forest.</li>
+                        <li>Represents the element of Air and the spiritual breath of the tree, ideal for cleansing.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“The clearest way into the Universe is through a forest wilderness.” – John Muir</p>
+                </div>
+
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Rose Petal Powder</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">Rosa spp. – India</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>A cornerstone of Ayurveda, used to calm the nervous system and cool the body.</li>
+                        <li>The aroma is believed to directly affect the heart chakra, fostering love and dissolving emotional barriers.</li>
+                        <li>Its deep, heady floral scent creates an atmosphere of sacred intimacy and compassion.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“The rose is a rose from the time it is a seed to the time it dies.” – Rumi</p>
+                </div>
+
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Hyssop Powder</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">Hyssopus officinalis – Poland</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>Inheritor of the legacy of biblical "ezov," symbolizing profound spiritual purification.</li>
+                        <li>A staple of European apothecaries, used as an expectorant and cough suppressant.</li>
+                        <li>The sharp, camphoraceous scent clears the air and sharpens the mind for sacred work.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“Purge me with hyssop, and I shall be clean; wash me, and I shall be whiter than snow.” – Psalm 51:7</p>
+                </div>
+
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Jawee Resin</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">(Benzoin Composition) – Singapore</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>A traditional incense composed of three resins—benzoin, copal, and dammar—from Singapore's historic trade routes.</li>
+                        <li>The name echoes the Arabic "lubān jāwī" or "frankincense of Java," a testament to ancient trade.</li>
+                        <li>Releases a wonderfully sweet, honeyed, and balsamic aroma that is both grounding and uplifting.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“Within you, there is a stillness and a sanctuary to which you can retreat at any time.” – Hermann Hesse</p>
+                </div>
+
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Greek Monastery Incense – Acacia</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">Greece</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>Handcrafted on Mount Athos, following a 2000-year-old tradition of sacred perfumery.</li>
+                        <li>Frankincense resin is elevated by the heavenly floral oil of Acacia farnesiana (Cassie).</li>
+                        <li>Creates a serene, mild, and sweet fragrance conducive to prayer and contemplation.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“Prayer is when you talk to God; meditation is when you listen to God.” – Diana Robinson</p>
+                </div>
+
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Musk Seeds (Ambrette)</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">Abelmoschus moschatus – India</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>Known in Sanskrit as "latākastūrikā," the premier plant-based substitute for animal musk.</li>
+                        <li>The aged seeds develop a rich, floral-musky aroma with wine-like or brandy-like notes.</li>
+                        <li>Creates a warm, sensual, and intimate atmosphere that is subtly alluring and comforting.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“The only journey is the one within.” – Rainer Maria Rilke</p>
+                </div>
+                
+                 <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Storax Bark</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">Liquidambar orientalis – Turkey</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>From a "living fossil" tree, a Tertiary relict whose lineage dates back millions of years.</li>
+                        <li>Used by Cleopatra as a "love elixir" and by ancient Egyptians in the mummification process.</li>
+                        <li>The scent is a complex floral-balsamic heart pierced by a sharp, medicinal top note.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“The wound is the place where the Light enters you.” – Rumi</p>
+                </div>
+
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Juniper Berries – Whole</h3>
+                    <p class="text-sm mb-4" style="color: #8D6E63;">Juniperus communis – Albania</p>
+                    <ul class="list-disc space-y-2 flex-grow" style="color: #606770;">
+                        <li>Prized globally for their potent flavor, forming the essential botanical that defines gin.</li>
+                        <li>A long history in European folk medicine as a powerful diuretic, antiseptic, and carminative.</li>
+                        <li>The smoke is sharp, fruity, and pungent, representing the element of Earth and potent protection.</li>
+                    </ul>
+                    <p class="mt-4 pt-4 border-t text-center italic">“And into the forest I go, to lose my mind and find my soul.” – John Muir</p>
+                </div>
+            </div>
+        </main>
+        
+        <div class="koto-section-divider"></div>
+
+        <!-- Proxies Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl text-center mb-8">Proxies Around the Country</h2>
+            <div class="space-y-6 max-w-2xl mx-auto">
+                <div class="koto-card" style="padding: 1rem 1.5rem; background-color: #F9F9F7;">
+                    <p style="font-weight: 600; margin-bottom: 0.25rem;">Andrew Lusk – <span style="font-weight: 400;">Orange County, CA</span></p>
+                    <p class="text-sm" style="color: #606770; margin-bottom: 0;">Investor, Student of Tea Ceremony, and a Senior apprentice in the Way of Incense.</p>
+                </div>
+                <div class="koto-card" style="padding: 1rem 1.5rem; background-color: #F9F9F7;">
+                    <p style="font-weight: 600; margin-bottom: 0.25rem;">Darrell Wright – <span style="font-weight: 400;">Swartz Creek, MI</span></p>
+                    <p class="text-sm" style="color: #606770; margin-bottom: 0;">Darrell leads others through sound journeys, hypnosis, and spiritual exploration, and is a senior apprentice in the Way of Incense.</p>
+                </div>
+                <div class="koto-card" style="padding: 1rem 1.5rem; background-color: #F9F9F7;">
+                    <p style="font-weight: 600; margin-bottom: 0.25rem;">Elize Fauvelle – <span style="font-weight: 400;">St. Louis, MO</span></p>
+                    <p class="text-sm" style="color: #606770; margin-bottom: 0;">A senior apprentice in The Way of Incense. She is also a textile artist, inspired by the spirits around the world.</p>
+                </div>
+                <div class="koto-card" style="padding: 1rem 1.5rem; background-color: #F9F9F7;">
+                    <p style="font-weight: 600; margin-bottom: 0.25rem;">Daris Davis – <span style="font-weight: 400;">Vienna, MO</span></p>
+                    <p class="text-sm" style="color: #606770; margin-bottom: 0;">Kambo &amp; Reiki Practitioner supporting mind, body, and spirit healing, and a senior apprentice in the Way of Incense.</p>
+                </div>
+                <div class="koto-card" style="padding: 1rem 1.5rem; background-color: #F9F9F7;">
+                    <p style="font-weight: 600; margin-bottom: 0.25rem;">Randi Light – <span style="font-weight: 400;">Ogden Dunes, IN</span></p>
+                    <p class="text-sm" style="color: #606770; margin-bottom: 0;">Hypnosis Instructor & Healer has intuitively hypnotized thousands of people with her Essential 4 Success System to heal from trauma, clear their karma, love themselves unconditionally, and activate their true power and potential.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing Thought -->
+        <footer class="mt-20 text-center">
+            <p class="text-2xl italic" style="font-family: 'Noto Serif JP', serif; color: #8D6E63;">
+                "I wish you no past and no future. I wish you only the present."
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
