@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Incense Warmer: Performance Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+    <!-- GSAP and ScrollTrigger for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f8f7f4; /* A soft, warm off-white */
+            --bg-card: #ffffff;
+            --text-primary: #44403c; /* stone-700 */
+            --text-secondary: #78716c; /* stone-500 */
+            --text-heading: #1c1917; /* stone-900 */
+            --accent-1: #0d9488; /* A deep teal for 110V */
+            --accent-2: #f59e0b; /* A vibrant amber for 220V */
+            --accent-3: #4ade80; /* A pleasant green */
+            --accent-link: #d97706; /* amber-600 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden; /* Prevent horizontal scrollbars from animations */
+        }
+        .chart-container {
+            position: relative;
+            height: 60vh;
+            width: 100%;
+        }
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        h1 { color: var(--text-heading); }
+        h2 { color: var(--text-heading); }
+        p { color: var(--text-primary); line-height: 1.75; }
+        a { color: var(--accent-link); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-8 max-w-5xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Electric Incense Warmer Analysis</h1>
+            <p class="text-lg text-stone-500 mt-4 max-w-2xl mx-auto">A detailed performance comparison between 110V and 220V power sources for the discerning practitioner.</p>
+        </header>
+
+        <main>
+            <!-- Chart Section -->
+            <section id="chart-section" class="card p-6 md:p-8 mb-10 fade-in-section">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-center">Temperature Performance Curve</h2>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-6">
+                    <!-- Temperature Unit Toggle -->
+                    <div class="flex items-center space-x-3">
+                        <span class="font-medium text-stone-600">Celsius (°C)</span>
+                        <label for="temp-toggle" class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="temp-toggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-stone-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-amber-200 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                        </label>
+                        <span class="font-medium text-stone-600">Fahrenheit (°F)</span>
+                    </div>
+                     <!-- Fragrance Selector -->
+                    <div class="w-full md:w-auto">
+                        <label for="fragrance-selector" class="block text-sm font-medium text-stone-600 mb-2 text-center">Visualize Ideal Heating Range:</label>
+                        <select id="fragrance-selector" class="w-full max-w-xs mx-auto bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2.5">
+                            <option value="none" selected>Select Fragrance...</option>
+                            <!-- Options will be populated by JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                 <div class="mt-6 text-center text-sm text-stone-500">
+                    <p>Note: The "With Lid" data point (450.2°C at 220V) is shown as a separate point for reference.</p>
+                </div>
+            </section>
+
+            <!-- Analysis and Information Section -->
+            <section id="analysis-section" class="space-y-10">
+                <div class="card p-6 md:p-8 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-4">Understanding the Temperatures</h2>
+                    <div class="space-y-4">
+                        <p>The chart displays the <strong class="font-semibold text-stone-900">surface temperature</strong> of the electric heater. However, the temperature of your incense material will be different due to heat transfer principles.</p>
+                        <ul class="list-disc list-inside space-y-3 pl-4 text-stone-600">
+                            <li><strong class="font-semibold text-stone-800">Heater Surface to Aluminum Dish:</strong> Aluminum is an excellent heat conductor. Still, you can expect a small temperature drop between the heater's surface and the aluminum foil cup or dish. This loss, typically around <strong class="font-semibold" style="color: var(--accent-1);">5-15°C (9-27°F)</strong>, occurs as heat transfers through the materials and radiates into the surrounding air. The exact difference depends on the thickness of the foil and the ambient room temperature.</li>
+                            <li><strong class="font-semibold text-stone-800">Dish to Plant Material:</strong> The actual incense material will be at a lower temperature than the dish it's in. The material needs time to absorb the heat. Factors like the material's density, moisture content, and particle size will affect how quickly it heats up. The temperature of the resin or wood will lag behind the dish, gradually rising as it warms. This is why gentle, progressive heating is often preferred to avoid scorching the material.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card p-6 md:p-8 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-4">Impact of Environmental Factors</h2>
+                     <div class="space-y-4 text-stone-600">
+                        <p>Your surrounding environment can subtly influence the heating process:</p>
+                        <ul class="list-disc list-inside space-y-3 pl-4">
+                           <li><strong class="font-semibold text-stone-800">Humidity:</strong> Higher humidity means there's more water vapor in the air. This air requires more energy to heat, which can slightly slow the warmer's heating rate and potentially lower its peak temperature. The effect is generally minor but can be noticeable in very humid conditions.</li>
+                           <li><strong class="font-semibold text-stone-800">Elevation:</strong> At higher elevations, air pressure is lower. This lower pressure allows liquids (like the volatile oils in resins) to vaporize at slightly lower temperatures. You may find that you can achieve a good aroma at a lower dial setting when at a significant altitude compared to sea level.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card p-6 md:p-8 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-4">Using the Lid for a Temperature Boost</h2>
+                     <div class="space-y-4 text-stone-600">
+                        <p>While most measurements were taken with the lid off for consistency, the included lid is a powerful tool for manipulating the temperature. By placing the lid on the warmer, you trap heat, which can significantly increase the surface temperature.</p>
+                        <ul class="list-disc list-inside space-y-3 pl-4">
+                           <li><strong class="font-semibold text-stone-800">Measured Increase:</strong> As shown on the chart, at the highest 220V setting, using the lid resulted in a temperature of 450.2°C—a substantial increase of <strong class="font-semibold" style="color: var(--accent-2);">36.4°C (65.5°F)</strong> over the lid-off temperature.</li>
+                           <li><strong class="font-semibold text-stone-800">Practical Applications:</strong> You can use this effect to your advantage. If you want to warm the device up more quickly, start with the lid on. If a particular resin or wood requires a higher temperature to release its full aroma, placing the lid on temporarily can provide that extra boost of heat.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="card p-6 md:p-8 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-4">Testing Equipment & Methodology</h2>
+                     <div class="space-y-4 text-stone-600">
+                        <p>The data for this analysis was collected using the following equipment:</p>
+                        <ul class="list-disc list-inside space-y-3 pl-4">
+                            <li><strong>Heater:</strong> <a href="https://www.aliexpress.us/item/3256809591500787.html" target="_blank" class="hover:underline">Electric Incense Warmer</a></li>
+                            <li><strong>Thermometer:</strong> <a href="https://www.amazon.com/dp/B07P8NWH67" target="_blank" class="hover:underline">K Type Dual Channel Thermometer</a></li>
+                            <li><strong>Probe:</strong> <a href="https://www.amazon.com/dp/B0C8SQ6MKX" target="_blank" class="hover:underline">K Type Thermocouple Sensor</a></li>
+                            <li><strong>Power Source:</strong> <a href="https://www.amazon.com/dp/B0CLGZW9WD" target="_blank" class="hover:underline">BLUETTI AC2A Portable Power Station</a></li>
+                            <li><strong>Voltage Converter:</strong> <a href="https://www.amazon.com/dp/B0CY8BTMC9" target="_blank" class="hover:underline">200w 110V to 220V Transformer</a></li>
+                        </ul>
+                        <p>A true sine wave portable power station was used to ensure clean and stable electricity, as the household wiring was found to be too "noisy" for the device to function correctly. This method ensures that the recorded temperatures are accurate representations of the heater's capability at each voltage.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 mb-4 fade-in-section">
+            <p class="text-stone-400">Analysis generated based on user-provided data.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- GSAP ANIMATIONS ---
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from('header > *', {
+                duration: 1.2,
+                opacity: 0,
+                y: -50,
+                stagger: 0.2,
+                ease: 'expo.out'
+            });
+
+            gsap.utils.toArray('.fade-in-section').forEach(section => {
+                const elementsToAnimate = section.querySelectorAll('h2, p, ul, .flex, .chart-container');
+
+                gsap.from(elementsToAnimate, { 
+                    autoAlpha: 0,
+                    y: 50,
+                    duration: 1.2,
+                    ease: 'expo.out',
+                    stagger: 0.2,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 85%', 
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // --- DATA SETUP ---
+            const dialSettings = [60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400, 420, 440, 460, 480, 500, 520];
+            const tempsC110V = [38.7, 49.3, 58.6, 67.5, 81.0, 92.7, 104.6, 110.4, 125.1, 140.7, 145.0, 155.4, 168.1, 175.1, 181.1, 190.8, 202.3, 212.1, 219.2, 225.5, 231.3, 236.8, 239.7, 241.5];
+            const tempsC220V = [65.5, 85.1, 106.5, 123.4, 147.5, 170.6, 193.4, 213.4, 234.3, 259.9, 267.6, 286.5, 304.4, 317.3, 327.5, 348.7, 361.5, 377.4, 389.1, 399.0, 407.5, 414.9, 418.0, 413.8];
+            const withLidTempC = 450.2;
+
+            const fragrances = [
+                "Acacia Gum Resin – Crushed – Sudan", "Agarwood Powder – Grade A – Sustainable", "Aloeswood – Hakusui (Vietnam)", "Aloeswood – Kokonoe no Kumo (Indonesia)", "Aloeswood – Ogurayama (Indonesia)", "Aloeswood – Tsukigase (Indonesia)", "Amber Resin (Pinus succinifera) – Poland", "Ammoniacum Tears (Gum Ammoniacum)", "Ancient Bethlehem", "Ancient Egyptian Kyphi", "Ancient Jerusalem", "Ancient Rome Blend", "Arabian Jasmine – Greek Monastery Incense", "Australian Sandalwood Chips (Santalum spicatum) – Western Australia", "Balsam of Tolu Resin – Colombia", "Baieido Borneol Camphor (25 g) – Japan", "Baieido Borneol Camphor (100 g) – Japan", "Baieido Mysore Sandalwood Chips – India", "Baieido Sutoko Jirushi Chips – Japan", "Baieido Zuikun Jirushi Chips – Japan", "Benzoin Almonds – Grade A – Laos", "Benzoin Powder – Sumatra", "Benzoin Resin – Sumatra", "Black Frankincense Ameero", "Black Mastic", "Boswellia aden – Yemen", "Boswellia carteri – Somalia", "Boswellia carteri – Aden 1st Choice – Yemen", "Boswellia frereana – Somalia (Maydi)", "Boswellia papyrifera – Eritrea", "Boswellia sacra – Oman (Hojary, Sultan’s Choice)", "Boswellia serrata – India", "Burgundy Pitch Resin – France", "Calamus Root (Acorus calamus) – Russia", "Calamus Root Powder (Acorus calamus) – Russia", "Cedar Resin (Pinus cembra sibirica) – Germany", "Colophony Resin – Portugal", "Copal Mayan Resin – Central America", "Copal Oro Resin – Mexico", "Cypress – Greek Monastery Incense", "Dammar Gum Resin – White – Indonesia", "Dioscoridis Frankincense", "Dragon’s Blood Resin Superior – Indonesia", "Elemi (Canarium commune) – Philippines", "Eritrea Frankincense (Boswellia papyrifera)", "Eucalyptus Leaf Powder – Portugal", "Frankincense Dalzielii", "Frankincense Dioscoridis", "Frankincense Hojary – Black – Oman", "Frankincense Hojary Sultan’s Choice – Oman", "Frankincense Honey – Somalia", "Frankincense Indian (Boswellia serrata)", "Frankincense Maydi (Boswellia frereana) – Somalia", "Frankincense Neglecta – Ethiopia (Ogaden)", "Frankincense Occulta", "Frankincense Socotrana", "Galangal Root Powder – Thailand", "Galbanum Resin (Ferula galbaniflua/gummosa) – Iran", "Greek Monastery Incense – Acacia", "Greek Monastery Incense – Honeysuckle", "Greek Monastery Incense – Orange Blossom", "Greek Monastery Incense – Rose", "Greek Monastery Incense – Sandalwood", "Greek Monastery Incense – Arabian Jasmine", "Greek Monastery Incense – Cypress", "Guggul Resin Superior (Nagar Grade) – Pakistan", "Halmaddi Resin", "Hibiscus Powder (Hibiscus rosa) – Egypt", "Honey Frankincense – Somalia", "Honeysuckle – Greek Monastery Incense", "Hyssop (Hyssopus officinalis) – Poland", "Hyraceum Stone", "Jawee Resin (Benzoin Blend) – Singapore", "Juniper Berries – USA", "Juniper Tips – Albania", "Kenyan Frankincense – White", "Khinjuk Mastic (Pistacia khinjuk)", "Labdanum Gum Resin – Spain", "Lemon – Greek Monastery Incense", "Mastic Gum Resin – Greece", "Mayan Jaguar Blend", "Melchior Church Blend Incense", "Mount Atlas Mastic", "Musk Seeds – India", "Myrrh Gum Resin – Somalia", "Myrrh Resin Chunks (Gold Standard) – Kenya", "Nardostachys jatamansi (Spikenard Root) – France", "Neglecta Frankincense – Ethiopia (Ogaden)", "Norway Spruce Resin", "Opoponax Resin (Sweet Myrrh) – Somalia", "Orange Blossom – Greek Monastery Incense", "Orris Root Cut (Racine d’Iris) – France", "Palo Santo Wood Resin – Peru", "Rose – Greek Monastery Incense", "Rose Petal Powder (Rosa spp.) – India", "Sandalwood Chips – Mysore Quality – Indonesia", "Sandalwood Chips – Western Australia (Santalum spicatum)", "Sandalwood Greek Monastery Incense (1 oz & 4 oz)", "Sandalwood Red Powder – Indonesia", "Sandarac Gum Resin – Morocco", "Socotrana Frankincense", "Spikenard Root (Nardostachys jatamansi) – France", "Storax Bark – Turkey", "Sutoko Jirushi Chips – Baieido", "Terebinth Resin Tears – Shirazi Mastic", "Tsukigase Aloeswood – Baieido", "Vetiver Root – India", "Zuikun Jirushi Chips – Baieido"
+            ];
+            
+            const fragranceRanges = {
+                'Ultra-Low Temp (Balsams & Pastes)': { min: 43, max: 80, types: ['Balsam of Tolu', 'Kyphi', 'Halmaddi'] },
+                'Delicate Botanicals (Flowers & Leaves)': { min: 60, max: 90, types: ['Rose Petal', 'Eucalyptus', 'Hibiscus', 'Honeysuckle', 'Jasmine', 'Hyssop'] },
+                'Atypical Botanicals (Seeds)': { min: 90, max: 140, types: ['Musk Seeds'] },
+                'Low Temp Resins (Pungent & Soft)': { min: 80, max: 120, types: ['Ammoniacum', 'Galbanum', 'Mastic', 'Dammar', 'Elemi', 'Labdanum'] },
+                'Aloeswood / Agarwood': { min: 80, max: 160, types: ['Aloeswood', 'Agarwood', 'Sutoko', 'Zuikun'] },
+                'Volatile Crystals': { min: 80, max: 150, types: ['Borneol Camphor'] },
+                'Sandalwood': { min: 100, max: 150, types: ['Sandalwood'] },
+                'Standard Resins & Blends': { min: 100, max: 160, types: ['Frankincense', 'Boswellia', 'Myrrh', 'Benzoin', 'Copal', 'Guggul', 'Opoponax', 'Jawee', 'Bethlehem', 'Jerusalem', 'Rome', 'Monastery Incense', 'Mayan Jaguar', 'Melchior'] },
+                'Roots, Woods & Berries': { min: 120, max: 180, types: ['Orris Root', 'Spikenard Root', 'Vetiver Root', 'Calamus Root', 'Galangal Root', 'Juniper', 'Cedar Resin', 'Palo Santo', 'Norway Spruce'] },
+                'Hard Resins & Barks': { min: 150, max: 220, types: ["Dragon’s Blood", "Sandarac", "Storax Bark", "Colophony", "Burgundy Pitch"] },
+                'Animalics': { min: 140, max: 200, types: ['Hyraceum Stone'] },
+                'High Temp Fossil Resins': { min: 200, max: 300, types: ['Amber Resin'] },
+                'Binders (Decomposition Range)': { min: 230, max: 320, types: ['Acacia Gum'] }
+            };
+            
+            const cToF = (c) => (c * 9/5) + 32;
+            let currentUnit = 'C';
+
+            const selector = document.getElementById('fragrance-selector');
+            fragrances.forEach(f => {
+                const option = document.createElement('option');
+                option.value = f;
+                option.textContent = f;
+                selector.appendChild(option);
+            });
+
+            // --- CHART SETUP ---
+            // Get color values from CSS variables to pass directly to the chart
+            const computedStyle = getComputedStyle(document.documentElement);
+            const accent1Color = computedStyle.getPropertyValue('--accent-1').trim();
+            const accent2Color = computedStyle.getPropertyValue('--accent-2').trim();
+            const accent3Color = computedStyle.getPropertyValue('--accent-3').trim();
+
+
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dialSettings.map(String),
+                    datasets: [
+                        {
+                            label: '110V Performance',
+                            data: tempsC110V,
+                            borderColor: accent1Color, // Use direct color value
+                            backgroundColor: 'rgba(13, 148, 136, 0.2)',
+                            borderWidth: 2.5,
+                            tension: 0.4,
+                            pointBackgroundColor: accent1Color, // Use direct color value
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: accent1Color // Use direct color value
+                        },
+                        {
+                            label: '220V Performance',
+                            data: tempsC220V,
+                            borderColor: accent2Color, // Use direct color value
+                            backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                            borderWidth: 2.5,
+                            tension: 0.4,
+                            pointBackgroundColor: accent2Color, // Use direct color value
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: accent2Color // Use direct color value
+                        },
+                        {
+                            label: '220V With Lid On',
+                            data: [{ x: '520', y: withLidTempC }],
+                            borderColor: accent3Color, // Use direct color value
+                            backgroundColor: accent3Color, // Use direct color value
+                            pointStyle: 'star',
+                            radius: 12,
+                            type: 'scatter',
+                            showLine: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Heater Dial Setting', color: 'var(--text-secondary)' },
+                            ticks: { color: 'var(--text-secondary)' },
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        y: {
+                            title: { display: true, text: 'Surface Temperature (°C)', color: 'var(--text-secondary)' },
+                            ticks: { color: 'var(--text-secondary)' },
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) { label += `${context.parsed.y.toFixed(1)} °${currentUnit}`; }
+                                    return label;
+                                }
+                            }
+                        },
+                        legend: { labels: { color: 'var(--text-primary)' } },
+                        annotation: { annotations: {} }
+                    }
+                }
+            });
+
+            const tempToggle = document.getElementById('temp-toggle');
+            tempToggle.addEventListener('change', () => {
+                currentUnit = tempToggle.checked ? 'F' : 'C';
+                updateChartData(currentUnit);
+            });
+            
+            selector.addEventListener('change', () => {
+                 updateChartAnnotation(selector.value, currentUnit);
+            });
+
+            function updateChartData(unit) {
+                const isF = unit === 'F';
+                chart.data.datasets[0].data = isF ? tempsC110V.map(cToF) : tempsC110V;
+                chart.data.datasets[1].data = isF ? tempsC220V.map(cToF) : tempsC220V;
+                chart.data.datasets[2].data = [{ x: '520', y: isF ? cToF(withLidTempC) : withLidTempC }];
+                chart.options.scales.y.title.text = `Surface Temperature (°${unit})`;
+                
+                updateChartAnnotation(selector.value, unit);
+                chart.update();
+            }
+            
+            function updateChartAnnotation(fragranceName, unit) {
+                const annotations = chart.options.plugins.annotation.annotations;
+                if (annotations.range) { delete annotations.range; }
+                if (fragranceName === 'none' || fragranceName === 'Select Fragrance...') {
+                    chart.update();
+                    return;
+                }
+
+                let range = null;
+                const lowerFragName = fragranceName.toLowerCase();
+                for (const category in fragranceRanges) {
+                    const { types } = fragranceRanges[category];
+                    if (types.some(type => lowerFragName.includes(type.toLowerCase()))) {
+                        range = fragranceRanges[category];
+                        break;
+                    }
+                }
+                
+                if (range) {
+                    const isF = unit === 'F';
+                    const yMin = isF ? cToF(range.min) : range.min;
+                    const yMax = isF ? cToF(range.max) : range.max;
+                    
+                    annotations.range = {
+                        type: 'box',
+                        yMin: yMin,
+                        yMax: yMax,
+                        backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                        borderColor: 'rgba(217, 119, 6, 0.3)',
+                        borderWidth: 1,
+                        label: {
+                            content: `Ideal for ${fragranceName.split('–')[0].trim()}`,
+                            enabled: true,
+                            position: 'start',
+                            color: 'rgba(217, 119, 6, 0.8)',
+                            font: { weight: 'bold' }
+                        }
+                    };
+                }
+                chart.update();
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
