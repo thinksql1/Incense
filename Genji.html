@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kōdō Ceremony: The Tale of Genji</title>
+    <meta name="description" content="A Kōdō ceremony honoring The Tale of Genji, hosted at The Village Tea Hut.">
+    
+    <!-- 
+      This meta tag sets the browser chrome color.
+      It's updated by CSS variables for light/dark mode.
+    -->
+    <meta name="theme-color" content="#F6F5F1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#222222" media="(prefers-color-scheme: dark)">
+
+    <style>
+        /* ========================================
+        CSS Table of Contents
+        ========================================
+        1. Base & Root Styles
+        2. Color Tokens (Light & Dark)
+        3. Typography
+        4. Layout
+        5. Components
+           - Site Header
+           - Opening Paragraph & Divider
+           - Genji-mon (NEW)
+           - Styled List (NEW)
+           - Station Cards
+           - Pull Quotes
+           - Closing Reflection
+           - Back to Top Button
+        6. Animations & Utilities
+        7. Print Styles
+        ========================================
+        */
+
+        /* ========================================
+        1. Base & Root Styles
+        ========================================
+        */
+        :root {
+            /* Set base font size for rem calculations */
+            font-size: 100%;
+            
+            /* Enable smooth scrolling by default if no preference is set */
+            @media (prefers-reduced-motion: no-preference) {
+                scroll-behavior: smooth;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Set color variables */
+            background-color: var(--c-bg);
+            color: var(--c-text);
+            
+            /* Set typography variables */
+            font-family: var(--ff-sans);
+            font-size: 1rem;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            /* Smooth color transitions for dark/light mode toggle */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ========================================
+        2. Color Tokens (Light & Dark)
+        ========================================
+        */
+        :root {
+            /* Base Palette */
+            --p-matcha: #C9D3B2;
+            --p-clay: #B58D6A;
+            --p-bamboo: #D9C9A3;
+            --p-ink: #1E1E1E;
+            --p-cloud: #F6F5F1;
+
+            /* Light Mode Tokens */
+            --c-bg: var(--p-cloud);
+            --c-text: var(--p-ink);
+            --c-text-subtle: #585858;
+            --c-text-on-accent: #111;
+            --c-border: #E0DED9;
+            --c-border-subtle: #C9C7C2;
+            --c-bg-accent: #EFEBE4; /* A lighter, warmer gray */
+            --c-bg-station: #FFFFFF;
+            --c-accent-matcha: var(--p-matcha);
+            --c-accent-clay: var(--p-clay);
+            --c-accent-bamboo: var(--p-bamboo);
+
+            /* Set theme color for browser chrome */
+            --theme-color-meta: var(--c-bg);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Mode Tokens */
+                --c-bg: #222222;
+                --c-text: #EAEAEA;
+                --c-text-subtle: #9F9F9F;
+                --c-text-on-accent: #FFFFFF;
+                --c-border: #444444;
+                --c-border-subtle: #555555;
+                --c-bg-accent: #303030;
+                --c-bg-station: #2B2B2B;
+
+                /* Desaturate accents slightly for dark mode */
+                --c-accent-matcha: #9FAA8A;
+                --c-accent-clay: #A17C5D;
+                --c-accent-bamboo: #A89C7E;
+
+                /* Set theme color for browser chrome */
+                --theme-color-meta: var(--c-bg);
+            }
+        }
+        
+        /* Apply theme color to meta tag */
+        meta[name="theme-color"] {
+            content: var(--theme-color-meta);
+        }
+
+        /* ========================================
+        3. Typography
+        ========================================
+        */
+        :root {
+            /* System font stacks for a clean, native feel */
+            --ff-serif: "Iowan Old Style", "Apple Garamond", "Palatino Linotype", "Palatino", "Book Antiqua", Georgia, "Times New Roman", Times, serif;
+            --ff-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--ff-serif);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--c-text);
+            margin-bottom: 0.75rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 2.75rem); /* Responsive font size */
+            font-weight: 700;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            max-width: 70ch; /* Readable line length */
+        }
+        
+        p:last-child,
+        figure:last-child,
+        ul:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: var(--c-accent-clay);
+            text-decoration: none;
+            transition: color 0.2s ease, text-decoration-color 0.2s ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--c-text);
+            text-decoration: underline;
+            text-decoration-color: var(--c-accent-matcha);
+            text-decoration-thickness: 2px;
+            outline: 2px solid transparent; /* Remove default, handle focus visible */
+        }
+
+        a:focus-visible {
+             outline: 2px dashed var(--c-accent-clay);
+             outline-offset: 2px;
+             border-radius: 2px;
+        }
+        
+        em, .latin-name {
+            font-style: italic;
+            color: var(--c-text-subtle);
+        }
+        
+        strong {
+            font-weight: 600;
+            color: var(--c-text);
+        }
+
+        /* ========================================
+        4. Layout
+        ========================================
+        */
+        .site-header,
+        .journey-container {
+            width: 100%;
+            max-width: 74ch; /* Max width based on readable characters */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .site-header {
+            padding-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .journey-container {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* ========================================
+        5. Components
+        ========================================
+        */
+
+        /* --- Site Header --- */
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--c-text-subtle);
+            font-style: italic;
+            max-width: 60ch;
+            margin: 0.5rem auto 1.5rem auto;
+        }
+
+        .ornamental-rule {
+            width: 5rem;
+            height: 2px;
+            background-color: var(--c-accent-matcha);
+            border: 0;
+            margin: 0 auto;
+        }
+
+        /* --- Opening Paragraph & Divider --- */
+        .opening-paragraph {
+            font-size: 1.1rem;
+            text-align: left;
+            max-width: 70ch;
+            margin: 0 auto 2rem auto;
+        }
+        
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background-color: var(--c-border);
+            width: 100px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* --- Genji-mon (NEW) --- */
+        .genji-mon-container {
+            padding: 1rem 0;
+        }
+        
+        .genji-mon {
+            position: relative;
+            width: 110px; /* (5 * 10px bars) + (4 * 15px gaps) */
+            height: 70px; /* 60px bar + 10px top connector */
+            margin: 1.5rem auto;
+        }
+        
+        .genji-mon .bar {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 60px;
+            background: var(--c-accent-clay);
+            transition: background-color 0.3s ease;
+        }
+        
+        .genji-mon .bar-1 { left: 0; }
+        .genji-mon .bar-2 { left: 25px; } /* 10px bar + 15px gap */
+        .genji-mon .bar-3 { left: 50px; } /* 25px + 10px + 15px */
+        .genji-mon .bar-4 { left: 75px; } /* 50px + 10px + 15px */
+        .genji-mon .bar-5 { left: 100px; } /* 75px + 10px + 15px */
+        
+        /* Connector for "Hahakigi" (Chapter 2), connecting bars 2, 3, 4 */
+        .genji-mon.hahakigi::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 25px; /* Start of bar 2 */
+            width: 60px; /* (End of bar 4) - (Start of bar 2) = (75px + 10px) - 25px */
+            height: 10px;
+            background: var(--c-accent-clay);
+            transition: background-color 0.3s ease;
+        }
+
+        /* --- Styled List (NEW) --- */
+        .styled-list {
+            list-style: none;
+            padding-left: 0; /* Remove default padding */
+            margin-top: 1.5rem;
+        }
+        
+        .styled-list li {
+            position: relative;
+            margin-bottom: 1.25rem;
+            padding-left: 2rem; /* Indentation for text */
+        }
+        
+        .styled-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0.25rem;
+            top: 0;
+            color: var(--c-accent-matcha);
+            font-size: 1.25rem;
+            line-height: 1.65; /* Align with text */
+            transition: color 0.3s ease;
+        }
+
+        /* --- Station Cards --- */
+        /* This style is reused from the previous page */
+        .station {
+            background-color: var(--c-bg-station);
+            border: 1px solid var(--c-border);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            position: relative; /* For animation stacking context */
+            
+            /* Add a subtle shadow for depth */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        @media (max-width: 600px) {
+            .station {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* This style is hidden, but kept for potential future use */
+        .station-number {
+            display: none; /* Hide the "1" badge for this page */
+        }
+
+        /* --- Pull Quotes --- */
+        /* This style is reused from the previous page */
+        .pull-quote {
+            margin: 2rem 0 1rem 0;
+            padding: 1.25rem 1.75rem;
+            background-color: var(--c-bg-accent);
+            border-left: 4px solid var(--c-accent-clay);
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pull-quote blockquote {
+            margin: 0;
+            font-family: var(--ff-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: var(--c-text); /* Ensure quote text is prominent */
+        }
+        
+        .pull-quote blockquote p {
+            margin-bottom: 0;
+        }
+
+        .pull-quote figcaption {
+            margin-top: 0.75rem;
+            text-align: right;
+            font-family: var(--ff-sans);
+            font-style: normal;
+            font-variant: small-caps;
+            letter-spacing: 0.5px;
+            color: var(--c-text-subtle);
+            font-size: 0.95rem;
+        }
+        
+        .pull-quote figcaption em {
+            font-variant: normal;
+            font-weight: 600;
+        }
+
+        /* --- Closing Reflection --- */
+        /* This style is reused from the previous page */
+        .closing-reflection {
+            background: none;
+            border: 0;
+            border-top: 1px solid var(--c-border);
+            border-bottom: 1px solid var(--c-border);
+            border-radius: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1rem;
+            box-shadow: none;
+            padding: 2.5rem 1.5rem;
+            margin-top: 2.5rem;
+        }
+        
+        .closing-reflection h2 {
+            text-align: center;
+        }
+
+        .closing-reflection p {
+            max-width: 60ch;
+            margin: 0 auto;
+        }
+
+        /* --- Back to Top Button --- */
+        /* This style is reused from the previous page */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 3rem;
+            text-align: center;
+            
+            background-color: var(--c-accent-clay);
+            color: var(--p-cloud);
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            
+            /* Start hidden, show with JS */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s ease;
+        }
+        
+        .back-to-top:hover,
+        .back-to-top:focus {
+            background-color: var(--p-clay);
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+        6. Animations & Utilities
+        ========================================
+        */
+
+        /* Visually hidden class for screen readers */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Fade-in animations for page load */
+        .js-animate {
+            opacity: 0;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .js-animate {
+                animation: fadeIn 0.8s ease-out forwards;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(15px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Stagger animations for a graceful entrance */
+            .site-header { animation-delay: 0.1s; }
+            .opening-paragraph { animation-delay: 0.2s; }
+            .genji-mon-container { animation-delay: 0.3s; }
+            .section-divider { animation-delay: 0.3s; }
+            .station:nth-of-type(1) { animation-delay: 0.4s; }
+            .station.closing-reflection { animation-delay: 0.5s; }
+        }
+
+        /* ========================================
+        7. Print Styles
+        ========================================
+        */
+        @media print {
+            :root {
+                /* Force light mode for printing */
+                --c-bg: #FFFFFF;
+                --c-text: #000000;
+                --c-text-subtle: #444444;
+                --c-border: #BBBBBB;
+                --c-bg-accent: #F4F4F4;
+                --c-bg-station: #FFFFFF;
+                --c-accent-matcha: #BBBBBB;
+                --c-accent-clay: #888888;
+            }
+            
+            body {
+                font-size: 10pt;
+                line-height: 1.4;
+                background-color: #fff;
+                color: #000;
+            }
+
+            .site-header,
+            .journey-container,
+            .station {
+                max-width: 100%;
+                width: 100%;
+                padding: 0;
+            }
+            
+            .site-header {
+                text-align: left;
+                padding-bottom: 1rem;
+                border-bottom: 2px solid #000;
+            }
+
+            h1 {
+                font-size: 18pt;
+                text-align: left;
+            }
+            
+            h2 {
+                font-size: 14pt;
+                page-break-after: avoid;
+            }
+            
+            .tagline,
+            .ornamental-rule,
+            .back-to-top,
+            .genji-mon-container, /* Hide Genji-mon */
+            .section-divider, /* Hide divider */
+            .station + .station::before /* Hide spine divider (if any) */ {
+                display: none;
+            }
+            
+            .station {
+                border: 1px solid #ccc;
+                box-shadow: none;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                page-break-inside: avoid; /* Try to keep stations intact */
+            }
+
+            .styled-list li::before {
+                color: #888;
+            }
+            
+            .pull-quote {
+                border-left-color: #999;
+                background-color: #f9f9f9;
+                padding: 0.75rem 1rem;
+            }
+
+            .pull-quote blockquote {
+                font-size: 1.1em;
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+            
+            /* Show URL for links in quotes, but not for internal anchors */
+            .pull-quote a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 90%;
+            }
+
+            /* REMOVED .print-header CSS block 
+            */
+        }
+
+    </style>
+</head>
+
+<!-- Add id="top" for the "Back to Top" anchor -->
+<body id="top">
+
+    <!-- Screen-reader-only skip link -->
+    <a href="#main-content" class="visually-hidden">Skip to main content</a>
+
+    <!-- 
+      REMOVED the .print-header HTML div
+    -->
+
+    <header class="site-header js-animate">
+        <h1>Kōdō Ceremony: The Tale of Genji</h1>
+        <!-- No tagline or rule on this page -->
+    </header>
+
+    <main id="main-content" class="journey-container">
+
+        <p class="opening-paragraph js-animate">Thank you for taking part in the Kōdō Ceremony honoring <em>The Tale of Genji</em> and the evocative Genji mon patterns. A special thank you to The Village Tea Hut for graciously hosting this gathering and creating a space where tradition, fragrance, and reflection could flourish. Your presence in this sacred space of scent, poetry, and stillness brings to life a tradition nearly one thousand years in the making. <em>The Tale of Genji</em>, written by Murasaki Shikibu in the 11th century, is considered the world’s first psychological novel, a masterwork of poetic subtlety and emotional depth. Within its elegant narrative, fragrance plays a central role, with incense often used to communicate, to enchant, and to remember. Centuries later, these sensibilities evolved into <em>kumikō</em>, or incense matching games, where refined court members would identify subtle differences in fragrance and associate them with chapters of <em>The Tale of Genji</em>. The symbols used in these games, the Genji mons, serve as poetic emblems, marking not only literary episodes but sensory impressions. Tonight’s ceremony weaves these threads together, narrative, fragrance, and moment, into a shared experience of presence and impermanence.</p>
+
+        <!-- Pure CSS Genji-mon -->
+        <div class="genji-mon-container js-animate" aria-label="Genji-mon for Hahakigi, Chapter 2 (The Broom Tree)">
+            <div class="genji-mon hahakigi">
+                <div class="bar bar-1"></div>
+                <div class="bar bar-2"></div>
+                <div class="bar bar-3"></div>
+                <div class="bar bar-4"></div>
+                <div class="bar bar-5"></div>
+            </div>
+        </div>
+        
+        <hr class="section-divider js-animate">
+
+        <!-- Station 1: Wisteria -->
+        <section id="station-1" class="station js-animate" aria-labelledby="heading-1">
+            <h2 id="heading-1">Zen Koans as Wisteria Vines</h2>
+            <p>Zen koans are often likened to wisteria vines because they twist and turn your usual thinking patterns, encouraging you to climb out of linear logic and into a more unexpected perspective.</p>
+            <ul class="styled-list">
+                <li><strong>Wisteria Imagery in The Tale of Genji:</strong> In the classic Japanese novel, wisteria leaves symbolize delicate, fleeting beauty and the elegance of transient moments, reflecting the novel’s themes of impermanence and refined emotion.</li>
+                <li><strong>Connection to the Way of Incense (Kōdō):</strong> Just like wisteria and koans, the way of incense is about appreciating the ephemeral. It is about savoring a fragrance that is here for a moment and then gone, teaching a kind of mindfulness of the transient.</li>
+                <li><strong>Ephemeral Beauty and Transience:</strong> All three, koans, wisteria imagery, and Kōdō, invite you to find meaning in things that are fleeting and beautiful for just a short time.</li>
+                <li><strong>Twisting Perspectives:</strong> Just as wisteria vines twist and wind, and koans twist your thinking, the way of incense twists your senses gently, bringing you into a deeper awareness.</li>
+                <li><strong>Finding Elegance in the Fleeting:</strong> Each of these elements teaches the value of appreciating moments that do not last forever but are meaningful because of their transience.</li>
+                <li><strong>Shared Spirit of Mindfulness:</strong> Overall, it is all about a shared spirit of mindfulness and finding depth in the delicate, the beautiful, and the fleeting.</li>
+            </ul>
+        </section>
+
+        <!-- Closing Reflection -->
+        <section id="reflection" class="station closing-reflection js-animate" aria-label="Final Thought">
+            <h2>Final Thought</h2>
+            <p>Whether in the form of a question that cannot be answered, a vine that blooms briefly before falling, or a single breath of incense that lingers and vanishes, these traditions remind us that truth, beauty, and awakening are not found in permanence but in presence.</p>
+        </section>
+
+    </main>
+
+    <!-- "Back to Top" floating button -->
+    <a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
+
+    <!-- 
+    ========================================
+    Embedded JavaScript
+    for Progressive Enhancement
+    (Reused from previous page)
+    ========================================
+    - Manages visibility of the "Back to Top" button.
+    - Adds animation classes (respecting reduced motion).
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // 1. Add animation classes if motion is not reduced
+            if (!reducedMotion) {
+                document.querySelectorAll('.js-animate').forEach(el => {
+                    // Set initial opacity to 0 to prevent flash
+                    el.style.opacity = '0';
+                });
+            } else {
+                 // If motion is reduced, remove the class so they are visible by default
+                 document.querySelectorAll('.js-animate').forEach(el => {
+                    el.classList.remove('js-animate');
+                 });
+            }
+
+            // 2. "Back to Top" button visibility
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (backToTopButton) {
+                const scrollObserver = new IntersectionObserver(entries => {
+                    // Check if the top of the page (body#top) is NOT intersecting
+                    if (!entries[0].isIntersecting) {
+                        backToTopButton.classList.add('visible');
+                    } else {
+                        backToTopButton.classList.remove('visible');
+                    }
+                }, { 
+                    rootMargin: "-400px 0px 0px 0px" // Triggers 400px from top
+                });
+                
+                scrollObserver.observe(document.body);
+            }
+            
+        });
+    </script>
+
+</body>
+</html>
