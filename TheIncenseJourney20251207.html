@@ -1,445 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Incense Journey™ | December Recap</title>
-<meta name="description" content="A holiday ritual recap for The Incense Journey presented by Shihan Wellness and YENology.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Incense Journey - December 7th</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #37352F;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 1em;
+        }
 
-<!-- Fonts: Playfair Display (Serif/Scholar) and Inter (Sans/Modernist) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
+        }
 
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons"></script>
+        .container {
+            max-width: 56rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-<style>
-    /* * DESIGN TOKENS 
-     * Derived from "Incense Journey Website Design Brief.pdf" & "Award-Winning Website Design.pdf"
-     */
-    :root {
-        /* Palette: Ash & Ember */
-        --color-charcoal: #1A1A1A; /* Kuro Charcoal - Night/Void */
-        --color-ash: #EBEAE5;      /* Miyako Ash - Text/Light */
-        --color-gold: #C1AA67;     /* Sacra Gold - Highlights */
-        --color-kyara: #4A3B32;    /* Kyara Brown - Accents */
-        --color-card-bg: rgba(255, 255, 255, 0.03);
-        --color-border: rgba(255, 255, 255, 0.08);
+        .text-center {
+            text-align: center;
+        }
 
-        /* Spacing (Ma) */
-        --space-sm: clamp(1rem, 2vw, 1.5rem);
-        --space-md: clamp(2rem, 4vw, 3rem);
-        --space-lg: clamp(4rem, 8vw, 6rem);
+        .koto-title {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        .koto-subtitle {
+            font-weight: 400;
+            letter-spacing: 0.025em;
+            color: #606770;
+        }
+
+        .koto-card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE8E3;
+            border-radius: 0.75rem;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 12px;
+            transition: 0.3s;
+            padding: 1.5rem;
+        }
+
+        .koto-card:hover {
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 20px;
+            transform: translateY(-2px);
+        }
+
+        .koto-section-divider {
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(55, 53, 47, 0), rgba(55, 53, 47, 0.4), rgba(55, 53, 47, 0));
+            margin: 3rem 0;
+        }
+
+        /* Utility Classes mimicking Tailwind */
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-20 { margin-top: 5rem; }
+        .mt-12 { margin-top: 3rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-3 { margin-top: 0.75rem; }
         
-        /* Typography */
-        --font-serif: 'Playfair Display', serif;
-        --font-sans: 'Inter', sans-serif;
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-grow { flex-grow: 1; }
         
-        /* Fluid Type */
-        --fs-sm: 0.875rem;
-        --fs-base: clamp(1rem, 1vw + 0.5rem, 1.125rem);
-        --fs-lg: clamp(1.5rem, 2vw + 1rem, 2rem);
-        --fs-xl: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+        .border-t { border-top: 1px solid #EAE8E3; }
+        .pt-4 { padding-top: 1rem; }
 
-        /* Animation */
-        --ease-premium: cubic-bezier(0.25, 1, 0.5, 1);
-    }
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.25rem; margin-top: 0; margin-bottom: 0.5rem; }
 
-    /* RESET & BASE */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-        background-color: var(--color-charcoal);
-        color: var(--color-ash);
-        font-family: var(--font-sans);
-        line-height: 1.6;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-    }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-sm { font-size: 0.875rem; }
+        
+        .italic { font-style: italic; }
+        .font-light { font-weight: 300; }
+        .font-semibold { font-weight: 600; }
+        
+        .leading-relaxed { line-height: 1.625; }
+        .max-w-2xl { max-width: 42rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
 
-    h1, h2, h3 {
-        font-family: var(--font-serif);
-        font-weight: 400;
-        color: var(--color-ash);
-    }
-
-    strong { font-weight: 600; color: var(--color-gold); }
-
-    a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
-    a:hover { color: var(--color-gold); }
-
-    /* UTILITIES */
-    .container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 var(--space-sm);
-    }
-
-    .text-gold { color: var(--color-gold); }
-    .text-center { text-align: center; }
-    .italic { font-style: italic; }
-    .serif { font-family: var(--font-serif); }
-
-    /* HERO SECTION */
-    .hero {
-        min-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        position: relative;
-        padding: var(--space-lg) 0;
-        background: radial-gradient(circle at 50% 50%, rgba(193, 170, 103, 0.08) 0%, rgba(26, 26, 26, 0) 60%);
-    }
-
-    .hero-date {
-        font-family: var(--font-sans);
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: var(--fs-sm);
-        color: var(--color-gold);
-        margin-bottom: var(--space-sm);
-        display: block;
-    }
-
-    .hero-title {
-        font-size: var(--fs-xl);
-        line-height: 1.1;
-        margin-bottom: var(--space-md);
-        max-width: 15ch;
-    }
-
-    .hero-text {
-        font-size: var(--fs-base);
-        max-width: 60ch;
-        color: rgba(235, 234, 229, 0.8);
-        margin-bottom: var(--space-md);
-    }
-
-    /* CTA BUTTON */
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem 2.5rem;
-        border: 1px solid var(--color-gold);
-        color: var(--color-gold);
-        font-family: var(--font-sans);
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        transition: all 0.4s var(--ease-premium);
-        background: transparent;
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        background: var(--color-gold);
-        color: var(--color-charcoal);
-        transform: translateY(-2px);
-    }
-
-    /* BENTO GRID */
-    .grid-section {
-        padding: var(--space-lg) 0;
-    }
-
-    .bento-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-    }
-
-    @media (min-width: 768px) {
-        .bento-grid {
-            grid-template-columns: repeat(2, 1fr);
+        /* Proxy Card Specifics */
+        .proxy-card {
+            padding: 1rem 1.5rem;
+            background-color: #F9F9F7;
         }
-    }
-
-    @media (min-width: 1024px) {
-        .bento-grid {
-            grid-template-columns: repeat(3, 1fr);
+        .proxy-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            margin-top: 0;
         }
-        /* Make the first item span 2 columns for visual hierarchy */
-        .card-featured {
-            grid-column: span 2;
+        .proxy-desc {
+            font-size: 0.875rem;
+            color: #606770;
+            margin-bottom: 0;
+            margin-top: 0;
         }
-    }
 
-    /* GLASS CARD */
-    .glass-card {
-        background: var(--color-card-bg);
-        border: 1px solid var(--color-border);
-        padding: var(--space-md);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        transition: transform 0.4s var(--ease-premium), border-color 0.4s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-    }
-
-    .glass-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(193, 170, 103, 0.3);
-    }
-
-    .card-header {
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .card-title {
-        font-size: 1.25rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .card-subtitle {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--color-gold);
-        opacity: 0.9;
-    }
-
-    .card-body {
-        flex-grow: 1;
-        font-size: 0.95rem;
-        color: rgba(235, 234, 229, 0.7);
-        margin-bottom: 1.5rem;
-    }
-
-    .card-quote {
-        font-family: var(--font-serif);
-        font-style: italic;
-        color: var(--color-ash);
-        font-size: 1.1rem;
-        line-height: 1.4;
-        position: relative;
-        padding-left: 1rem;
-        border-left: 2px solid var(--color-gold);
-    }
-
-    /* ANIMATION UTILS */
-    .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 1s var(--ease-premium);
-    }
-    .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* FOOTER */
-    footer {
-        padding: var(--space-lg) 0;
-        text-align: center;
-        border-top: 1px solid var(--color-border);
-        margin-top: var(--space-lg);
-        color: rgba(235, 234, 229, 0.5);
-    }
-
-    /* SMOKE EFFECT (CSS Only for simplicity/performance) */
-    .smoke-overlay {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: url('https://images.unsplash.com/photo-1536566482680-fca31930a0bd?q=80&w=1200&auto=format&fit=crop');
-        background-size: cover;
-        opacity: 0.05;
-        pointer-events: none;
-        z-index: -1;
-        mix-blend-mode: overlay;
-    }
-</style>
+        /* Responsive */
+        @media (min-width: 768px) {
+            body { padding: 2em; }
+            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+            .koto-card { padding: 2rem; }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 1.875rem; }
+            h3 { font-size: 1.25rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="smoke-overlay"></div>
+    <div class="container">
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <div class="container reveal">
-            <span class="hero-date">December 7th, 2025</span>
-            <h1 class="hero-title">The Incense Journey™<br><span class="italic text-gold" style="font-size: 0.6em">A Holiday Ritual</span></h1>
-            
-            <p class="hero-text">
-                Thank you for attending the holiday Frankincense and Myrrh presentation. From all of us at <strong>Shihan Wellness</strong> and <strong>YENology</strong>, we wish you a peaceful holiday season and a bright new year.
-            </p>
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="koto-title">The Incense Journey</h1>
+            <p class="mt-3 text-lg koto-subtitle">DECEMBER 7th &nbsp;&nbsp;|&nbsp;&nbsp; 2:00 PM - 4:00 PM CST</p>
+        </header>
 
-            <div style="margin-top: 2rem;">
-                <p class="hero-text" style="font-size: 0.9em; margin-bottom: 1rem;">
-                    As a gift of gratitude, please enjoy a <strong>10% discount</strong> on all incense and any items in the store.
+        <!-- Introductory Contemplation Section -->
+        <section class="mb-12">
+            <div class="koto-card">
+                <h2 class="text-2xl text-center mb-6">A HOLIDAY RITUAL</h2>
+                <p class="text-center text-lg leading-relaxed max-w-2xl mx-auto" style="color: #606770;">
+                    Thank you for attending the holiday Frankincense and Myrrh presentation of The Incense Journey™ – A Holiday Ritual. From all of us at Shihan Wellness and YENology, we wish you a peaceful holiday season and a bright new year.
                 </p>
-                <a href="https://www.yen-ology.com" target="_blank" class="btn">
-                    Visit YENology <i data-feather="arrow-right"></i>
-                </a>
+                <p class="text-center text-lg leading-relaxed max-w-2xl mx-auto mt-4" style="color: #606770;">
+                    As a gift of gratitude, please enjoy a ten percent discount on all incense and any items in the store or online at <a href="http://www.yen-ology.com" style="color: #8D6E63; text-decoration: none; border-bottom: 1px solid #8D6E63;">www.yen-ology.com</a>.
+                </p>
+                <blockquote class="text-center text-xl font-light italic leading-relaxed max-w-2xl mx-auto mt-6">
+                    "We look forward to offering many more transformative experiences in 2026. Thank you for being part of this journey."
+                </blockquote>
             </div>
-        </div>
-    </header>
+        </section>
 
-    <!-- MAIN CONTENT: THE RESINS -->
-    <main class="container grid-section">
-        <div class="bento-grid">
+        <!-- Incense Materials Section -->
+        <main>
+            <div class="grid">
+                
+                <!-- 1 -->
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Frankincense — Hojary Black</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Boswellia sacra) — Oman</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        This rare resin rises with a cool and steady clarity, like winter air moving across desert stone. Its presence clears the breath and settles the mind into a quiet inner brightness.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“Light begins in the stillness where the heart remembers itself.”</p>
+                </div>
 
-            <!-- Item 1: Hojary Black (Featured) -->
-            <article class="glass-card card-featured reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Boswellia sacra — Oman</span>
-                    <h2 class="card-title">Frankincense — Hojary Black</h2>
+                <!-- 2 -->
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Myrrh</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Commiphora myrrha) — Somalia</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        Earthy and grounding, Myrrh wraps the spirit with warmth. It encourages reflection, restores presence, and invites the body to settle into a deeper peace.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“Peace grows wherever the soul stands gently in its own truth.”</p>
                 </div>
-                <div class="card-body">
-                    <p>This rare resin rises with a cool and steady clarity, like winter air moving across desert stone. Its presence clears the breath and settles the mind into a quiet inner brightness.</p>
-                </div>
-                <div class="card-quote">
-                    “Light begins in the stillness where the heart remembers itself.”
-                </div>
-            </article>
 
-            <!-- Item 2: Myrrh -->
-            <article class="glass-card reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Commiphora myrrha — Somalia</span>
-                    <h2 class="card-title">Myrrh</h2>
+                <!-- 3 -->
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Frankincense</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Boswellia neglecta) — Ethiopia</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        Thick and resin-rich, the aroma rises with a smoky sweetness that softens tension and loosens the weight of the year. It supports emotional renewal and release.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“In letting go, we make space for what is quietly waiting to arrive.”</p>
                 </div>
-                <div class="card-body">
-                    <p>Earthy and grounding, Myrrh wraps the spirit with warmth. It encourages reflection, restores presence, and invites the body to settle into a deeper peace.</p>
-                </div>
-                <div class="card-quote">
-                    “Peace grows wherever the soul stands gently in its own truth.”
-                </div>
-            </article>
 
-            <!-- Item 3: Boswellia neglecta -->
-            <article class="glass-card reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Boswellia neglecta — Ethiopia</span>
-                    <h2 class="card-title">Frankincense — Neglecta</h2>
+                <!-- 4 -->
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Frankincense</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Boswellia papyrifera) — Eritrea</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        Airy and luminous, this resin lifts the inner world like the first dawn after a long night. It renews hope and brings gentle spaciousness to the breath.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“New beginnings step forward as softly as morning light.”</p>
                 </div>
-                <div class="card-body">
-                    <p>Thick and resin-rich, the aroma rises with a smoky sweetness that softens tension and loosens the weight of the year. It supports emotional renewal and release.</p>
-                </div>
-                <div class="card-quote">
-                    “In letting go, we make space for what is quietly waiting to arrive.”
-                </div>
-            </article>
 
-            <!-- Item 4: Boswellia papyrifera -->
-            <article class="glass-card reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Boswellia papyrifera — Eritrea</span>
-                    <h2 class="card-title">Frankincense — Papyrifera</h2>
+                <!-- 5 -->
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Frankincense — Maydi</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Boswellia frereana) — Somalia</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        Warm, sweet, and resinous, Maydi brings uplift and subtle joy. It reminds the spirit that even in winter, warmth rises from within.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“Joy is the quiet fire that glows even in the coldest seasons.”</p>
                 </div>
-                <div class="card-body">
-                    <p>Airy and luminous, this resin lifts the inner world like the first dawn after a long night. It renews hope and brings gentle spaciousness to the breath.</p>
-                </div>
-                <div class="card-quote">
-                    “New beginnings step forward as softly as morning light.”
-                </div>
-            </article>
 
-            <!-- Item 5: Maydi -->
-            <article class="glass-card card-featured reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Boswellia frereana — Somalia</span>
-                    <h2 class="card-title">Frankincense — Maydi</h2>
+                <!-- 6 -->
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Frankincense</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Boswellia carterii) — Yemen</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        Smooth and centering, this resin quiets the mind and deepens contemplation. It settles the inner landscape like snowfall on an empty field.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“In stillness, the soul speaks in a language older than words.”</p>
                 </div>
-                <div class="card-body">
-                    <p>Warm, sweet, and resinous, Maydi brings uplift and subtle joy. It reminds the spirit that even in winter, warmth rises from within.</p>
+                
+                 <!-- 7 -->
+                 <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Frankincense</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Boswellia serrata) — India</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        Dry, clear, and cleansing, this incense refreshes the mind and dissolves stagnant thoughts. It renews inner energy with a gentle steadiness.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“When the mind is clear, the way becomes simple again.”</p>
                 </div>
-                <div class="card-quote">
-                    “Joy is the quiet fire that glows even in the coldest seasons.”
-                </div>
-            </article>
 
-            <!-- Item 6: Carterii -->
-            <article class="glass-card reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Boswellia carterii — Yemen</span>
-                    <h2 class="card-title">Frankincense — Carterii</h2>
+                <!-- 8 -->
+                <div class="koto-card flex flex-col">
+                    <h3 class="text-xl koto-title">Myrrh Black Resin</h3>
+                    <p class="text-sm" style="color: #8D6E63;">(Commiphora myrrha) — Somalia</p>
+                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
+                        Deep, shadowed, and smoky, Black Myrrh invites inward movement. It supports healing, forgiveness, and the return to one’s own inner light.
+                    </p>
+                    <p class="mt-4 pt-4 border-t text-center italic">“Every shadow carries an invitation to reclaim your radiance.”</p>
                 </div>
-                <div class="card-body">
-                    <p>Smooth and centering, this resin quiets the mind and deepens contemplation. It settles the inner landscape like snowfall on an empty field.</p>
-                </div>
-                <div class="card-quote">
-                    “In stillness, the soul speaks in a language older than words.”
-                </div>
-            </article>
+            </div>
+        </main>
+        
+        <div class="koto-section-divider"></div>
 
-            <!-- Item 7: Serrata -->
-            <article class="glass-card reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Boswellia serrata — India</span>
-                    <h2 class="card-title">Frankincense — Serrata</h2>
+        <!-- Proxies Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl text-center mb-8">Proxies Around the Country</h2>
+            <div class="space-y-6 max-w-2xl mx-auto">
+                
+                <div class="koto-card proxy-card">
+                    <p class="proxy-name">Andrew Lusk – <span style="font-weight: 400;">Orange County, CA</span></p>
+                    <p class="proxy-desc">Investor, Student of Tea Ceremony, and a Senior apprentice in the Way of Incense.</p>
                 </div>
-                <div class="card-body">
-                    <p>Dry, clear, and cleansing, this incense refreshes the mind and dissolves stagnant thoughts. It renews inner energy with a gentle steadiness.</p>
+
+                <div class="koto-card proxy-card">
+                    <p class="proxy-name">Darrell Wright – <span style="font-weight: 400;">Swartz Creek, MI</span></p>
+                    <p class="proxy-desc">Darrell leads others through sound journeys, hypnosis, and spiritual exploration, and is a senior apprentice in the Way of Incense.</p>
                 </div>
-                <div class="card-quote">
-                    “When the mind is clear, the way becomes simple again.”
+
+                <div class="koto-card proxy-card">
+                    <p class="proxy-name">Elize Fauvelle – <span style="font-weight: 400;">St. Louis, MO</span></p>
+                    <p class="proxy-desc">A senior apprentice in The Way of Incense. She is also a textile artist, inspired by the spirits around the world.</p>
                 </div>
-            </article>
 
-            <!-- Item 8: Black Myrrh -->
-            <article class="glass-card reveal">
-                <div class="card-header">
-                    <span class="card-subtitle">Commiphora myrrha — Somalia</span>
-                    <h2 class="card-title">Myrrh Black Resin</h2>
+                <div class="koto-card proxy-card">
+                    <p class="proxy-name">Daris Davis – <span style="font-weight: 400;">Vienna, MO</span></p>
+                    <p class="proxy-desc">Kambo & Reiki Practitioner supporting mind, body, and spirit healing, and a senior apprentice in the Way of Incense.</p>
                 </div>
-                <div class="card-body">
-                    <p>Deep, shadowed, and smoky, Black Myrrh invites inward movement. It supports healing, forgiveness, and the return to one’s own inner light.</p>
+
+                <div class="koto-card proxy-card">
+                    <p class="proxy-name">Dr. Wei Wei Han - <span style="font-weight: 400;">Peterborough, Ontario, Canada</span></p>
+                    <p class="proxy-desc">Dr. Wei Wei (assisted by Trisha Arscott) Is a seasoned naturopath doctor and acupuncturist of 25 years.</p>
                 </div>
-                <div class="card-quote">
-                    “Every shadow carries an invitation to reclaim your radiance.”
-                </div>
-            </article>
 
-        </div>
-    </main>
+            </div>
+        </section>
 
-    <!-- FOOTER -->
-    <footer class="container reveal">
-        <div style="margin-bottom: 2rem; opacity: 0.6;">
-            <i data-feather="sun" style="width: 20px;"></i>
-        </div>
-        <p style="margin-bottom: 1rem; color: var(--color-ash);">We look forward to offering many more transformative experiences in 2026.</p>
-        <p>Thank you for being part of this journey.</p>
-        <div style="margin-top: 3rem; font-size: 0.8rem;">
-            &copy; 2025 Shihan Wellness & YENology
-        </div>
-    </footer>
+        <!-- Closing Thought -->
+        <footer class="mt-20 text-center">
+            <p class="text-2xl italic" style="font-family: 'Noto Serif JP', serif; color: #606770;">
+                Thank you for being part of this journey.
+            </p>
+        </footer>
 
-    <script>
-        // 1. Initialize Feather Icons
-        feather.replace();
-
-        // 2. Intersection Observer for Scroll Reveals (Scrollytelling effect)
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Optional: Unobserve if you only want it to animate once
-                    // observer.unobserve(entry.target); 
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach((el, index) => {
-            // Add staggering delay via inline style for js-controlled stagger
-            el.style.transitionDelay = `${index % 3 * 0.1}s`; 
-            observer.observe(el);
-        });
-    </script>
+    </div>
 
 </body>
 </html>
