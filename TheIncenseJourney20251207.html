@@ -3,290 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Incense Journey - December 7th</title>
+    <title>The Incense Journey | A Holiday Ritual</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Zen+Old+Mincho:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
+        /* --- 1. DESIGN TOKENS (Ash & Ember System) --- */
+        :root {
+            --color-ash: #EBEAE5;       /* Text / Light Accents */
+            --color-charcoal: #1A1A1A;  /* Background / Void */
+            --color-kyara: #4A3B32;     /* Dark Earth / Borders */
+            --color-gold: #C1AA67;      /* Divine / Highlights */
+            --color-sage: #929C92;      /* Secondary Mute */
+            
+            --font-serif: 'Zen Old Mincho', serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- 2. BASE STYLES --- */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8;
-            color: #37352F;
+            background-color: var(--color-charcoal);
+            color: var(--color-ash);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            margin: 0;
-            padding: 1em;
         }
 
+        /* Selection Color */
+        ::selection {
+            background: var(--color-gold);
+            color: var(--color-charcoal);
+        }
+
+        /* Typography */
         h1, h2, h3, h4 {
-            font-family: 'Noto Serif JP', serif;
-        }
-
-        .container {
-            max-width: 56rem;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .koto-title {
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            font-family: var(--font-serif);
+            font-weight: 400;
             margin: 0;
         }
 
-        .koto-subtitle {
-            font-weight: 400;
-            letter-spacing: 0.025em;
-            color: #606770;
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            letter-spacing: 0.05em;
+            line-height: 1.1;
         }
 
-        .koto-card {
-            background-color: #FFFFFF;
-            border: 1px solid #EAE8E3;
-            border-radius: 0.75rem;
-            box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 12px;
-            transition: 0.3s;
-            padding: 1.5rem;
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--color-gold);
+            margin-bottom: 2rem;
         }
 
-        .koto-card:hover {
-            box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 20px;
-            transform: translateY(-2px);
+        h3 {
+            font-size: 1.35rem;
+            letter-spacing: 0.02em;
         }
 
-        .koto-section-divider {
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(55, 53, 47, 0), rgba(55, 53, 47, 0.4), rgba(55, 53, 47, 0));
-            margin: 3rem 0;
+        p {
+            font-weight: 300;
+            opacity: 0.9;
         }
 
-        /* Utility Classes mimicking Tailwind */
-        .mb-12 { margin-bottom: 3rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mt-20 { margin-top: 5rem; }
-        .mt-12 { margin-top: 3rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-3 { margin-top: 0.75rem; }
-        
-        .grid {
-            display: grid;
-            gap: 1.5rem;
+        a {
+            color: var(--color-gold);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
         }
 
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .flex-grow { flex-grow: 1; }
-        
-        .border-t { border-top: 1px solid #EAE8E3; }
-        .pt-4 { padding-top: 1rem; }
+        a:hover {
+            border-bottom-color: var(--color-gold);
+        }
 
-        h1 { font-size: 2.25rem; }
-        h2 { font-size: 1.875rem; }
-        h3 { font-size: 1.25rem; margin-top: 0; margin-bottom: 0.5rem; }
+        /* --- 3. LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
 
-        .text-lg { font-size: 1.125rem; }
-        .text-xl { font-size: 1.25rem; }
-        .text-2xl { font-size: 1.5rem; }
-        .text-3xl { font-size: 1.875rem; }
-        .text-sm { font-size: 0.875rem; }
-        
+        .section-spacer {
+            height: 15vh;
+        }
+
+        .text-center { text-align: center; }
+        .text-gold { color: var(--color-gold); }
         .italic { font-style: italic; }
-        .font-light { font-weight: 300; }
-        .font-semibold { font-weight: 600; }
+        .uppercase { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; }
         
-        .leading-relaxed { line-height: 1.625; }
-        .max-w-2xl { max-width: 42rem; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+        /* Grid System */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
 
-        /* Proxy Card Specifics */
+        @media(min-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* --- 4. COMPONENTS --- */
+
+        /* The Incense "Card" - Minimalist/Editorial */
+        .incense-block {
+            border-left: 1px solid rgba(193, 170, 103, 0.3); /* Faint gold line */
+            padding-left: 2rem;
+            transition: all 0.5s var(--easing);
+            position: relative;
+        }
+
+        .incense-block:hover {
+            border-left-color: var(--color-gold);
+            background: linear-gradient(90deg, rgba(193, 170, 103, 0.05) 0%, transparent 100%);
+        }
+
+        .incense-meta {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-sage);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .incense-quote {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(235, 234, 229, 0.1);
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--color-gold);
+            font-size: 0.95rem;
+        }
+
+        /* Proxy Cards */
+        .proxy-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
         .proxy-card {
-            padding: 1rem 1.5rem;
-            background-color: #F9F9F7;
-        }
-        .proxy-name {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            margin-top: 0;
-        }
-        .proxy-desc {
-            font-size: 0.875rem;
-            color: #606770;
-            margin-bottom: 0;
-            margin-top: 0;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s var(--easing), border-color 0.3s;
         }
 
-        /* Responsive */
-        @media (min-width: 768px) {
-            body { padding: 2em; }
-            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
-            .koto-card { padding: 2rem; }
-            h1 { font-size: 3rem; }
-            h2 { font-size: 1.875rem; }
-            h3 { font-size: 1.25rem; }
+        .proxy-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-gold);
         }
+
+        /* --- 5. IMAGERY & ATMOSPHERE --- */
+        .visual-break {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            filter: grayscale(20%) sepia(10%) contrast(110%);
+            opacity: 0.8;
+            margin: 4rem 0;
+            border-radius: 2px;
+        }
+
+        .master-image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+        
+        .master-image-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: filter 0.5s;
+        }
+
+        .master-image-grid img:hover {
+            filter: brightness(1.1);
+        }
+
+        /* --- 6. ANIMATIONS ("The Waft") --- */
+        @keyframes waft {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .waft-in {
+            animation: waft 1.5s var(--easing) forwards;
+            opacity: 0; /* Start hidden */
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-charcoal); }
+        ::-webkit-scrollbar-thumb { background: var(--color-kyara); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <header class="container" style="padding-top: 15vh; min-height: 80vh;">
+        <div class="text-center">
+            <p class="uppercase text-gold waft-in">December 7th &nbsp;|&nbsp; 2:00 PM - 4:00 PM CST</p>
+            <h1 class="waft-in delay-1" style="margin-top: 2rem;">The Incense Journey</h1>
+            <p class="waft-in delay-2" style="margin-top: 1rem; letter-spacing: 0.2em; font-size: 0.9rem; opacity: 0.6;">A HOLIDAY RITUAL</p>
+        </div>
 
-        <!-- Header Section -->
-        <header class="text-center mb-12">
-            <h1 class="koto-title">The Incense Journey</h1>
-            <p class="mt-3 text-lg koto-subtitle">DECEMBER 7th &nbsp;&nbsp;|&nbsp;&nbsp; 2:00 PM - 4:00 PM CST</p>
-        </header>
+        <div class="waft-in delay-3" style="margin-top: 4rem; position: relative;">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J05.jpg" alt="Incense Ritual" class="visual-break" style="height: 50vh; margin: 0;">
+            <p class="text-center" style="font-size: 0.75rem; opacity: 0.5; margin-top: 10px;">YENOLOGY, Saint Louis</p>
+        </div>
+    </header>
 
-        <!-- Introductory Contemplation Section -->
-        <section class="mb-12">
-            <div class="koto-card">
-                <h2 class="text-2xl text-center mb-6">A HOLIDAY RITUAL</h2>
-                <p class="text-center text-lg leading-relaxed max-w-2xl mx-auto" style="color: #606770;">
-                    Thank you for attending the holiday Frankincense and Myrrh presentation of The Incense Journey™ – A Holiday Ritual. From all of us at Shihan Wellness and YENology, we wish you a peaceful holiday season and a bright new year.
-                </p>
-                <p class="text-center text-lg leading-relaxed max-w-2xl mx-auto mt-4" style="color: #606770;">
-                    As a gift of gratitude, please enjoy a ten percent discount on all incense and any items in the store or online at <a href="http://www.yen-ology.com" style="color: #8D6E63; text-decoration: none; border-bottom: 1px solid #8D6E63;">www.yen-ology.com</a>.
-                </p>
-                <blockquote class="text-center text-xl font-light italic leading-relaxed max-w-2xl mx-auto mt-6">
-                    "We look forward to offering many more transformative experiences in 2026. Thank you for being part of this journey."
-                </blockquote>
-            </div>
-        </section>
-
-        <!-- Incense Materials Section -->
-        <main>
-            <div class="grid">
-                
-                <!-- 1 -->
-                <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Frankincense — Hojary Black</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Boswellia sacra) — Oman</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        This rare resin rises with a cool and steady clarity, like winter air moving across desert stone. Its presence clears the breath and settles the mind into a quiet inner brightness.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“Light begins in the stillness where the heart remembers itself.”</p>
-                </div>
-
-                <!-- 2 -->
-                <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Myrrh</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Commiphora myrrha) — Somalia</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        Earthy and grounding, Myrrh wraps the spirit with warmth. It encourages reflection, restores presence, and invites the body to settle into a deeper peace.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“Peace grows wherever the soul stands gently in its own truth.”</p>
-                </div>
-
-                <!-- 3 -->
-                <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Frankincense</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Boswellia neglecta) — Ethiopia</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        Thick and resin-rich, the aroma rises with a smoky sweetness that softens tension and loosens the weight of the year. It supports emotional renewal and release.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“In letting go, we make space for what is quietly waiting to arrive.”</p>
-                </div>
-
-                <!-- 4 -->
-                <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Frankincense</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Boswellia papyrifera) — Eritrea</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        Airy and luminous, this resin lifts the inner world like the first dawn after a long night. It renews hope and brings gentle spaciousness to the breath.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“New beginnings step forward as softly as morning light.”</p>
-                </div>
-
-                <!-- 5 -->
-                <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Frankincense — Maydi</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Boswellia frereana) — Somalia</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        Warm, sweet, and resinous, Maydi brings uplift and subtle joy. It reminds the spirit that even in winter, warmth rises from within.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“Joy is the quiet fire that glows even in the coldest seasons.”</p>
-                </div>
-
-                <!-- 6 -->
-                <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Frankincense</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Boswellia carterii) — Yemen</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        Smooth and centering, this resin quiets the mind and deepens contemplation. It settles the inner landscape like snowfall on an empty field.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“In stillness, the soul speaks in a language older than words.”</p>
-                </div>
-                
-                 <!-- 7 -->
-                 <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Frankincense</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Boswellia serrata) — India</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        Dry, clear, and cleansing, this incense refreshes the mind and dissolves stagnant thoughts. It renews inner energy with a gentle steadiness.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“When the mind is clear, the way becomes simple again.”</p>
-                </div>
-
-                <!-- 8 -->
-                <div class="koto-card flex flex-col">
-                    <h3 class="text-xl koto-title">Myrrh Black Resin</h3>
-                    <p class="text-sm" style="color: #8D6E63;">(Commiphora myrrha) — Somalia</p>
-                    <p class="text-lg flex-grow leading-relaxed mb-4" style="color: #4A4A4A; margin-top: 1rem;">
-                        Deep, shadowed, and smoky, Black Myrrh invites inward movement. It supports healing, forgiveness, and the return to one’s own inner light.
-                    </p>
-                    <p class="mt-4 pt-4 border-t text-center italic">“Every shadow carries an invitation to reclaim your radiance.”</p>
-                </div>
-            </div>
-        </main>
-        
-        <div class="koto-section-divider"></div>
-
-        <!-- Proxies Section -->
-        <section class="mb-12">
-            <h2 class="text-3xl text-center mb-8">Proxies Around the Country</h2>
-            <div class="space-y-6 max-w-2xl mx-auto">
-                
-                <div class="koto-card proxy-card">
-                    <p class="proxy-name">Andrew Lusk – <span style="font-weight: 400;">Orange County, CA</span></p>
-                    <p class="proxy-desc">Investor, Student of Tea Ceremony, and a Senior apprentice in the Way of Incense.</p>
-                </div>
-
-                <div class="koto-card proxy-card">
-                    <p class="proxy-name">Darrell Wright – <span style="font-weight: 400;">Swartz Creek, MI</span></p>
-                    <p class="proxy-desc">Darrell leads others through sound journeys, hypnosis, and spiritual exploration, and is a senior apprentice in the Way of Incense.</p>
-                </div>
-
-                <div class="koto-card proxy-card">
-                    <p class="proxy-name">Elize Fauvelle – <span style="font-weight: 400;">St. Louis, MO</span></p>
-                    <p class="proxy-desc">A senior apprentice in The Way of Incense. She is also a textile artist, inspired by the spirits around the world.</p>
-                </div>
-
-                <div class="koto-card proxy-card">
-                    <p class="proxy-name">Daris Davis – <span style="font-weight: 400;">Vienna, MO</span></p>
-                    <p class="proxy-desc">Kambo & Reiki Practitioner supporting mind, body, and spirit healing, and a senior apprentice in the Way of Incense.</p>
-                </div>
-
-                <div class="koto-card proxy-card">
-                    <p class="proxy-name">Dr. Wei Wei Han - <span style="font-weight: 400;">Peterborough, Ontario, Canada</span></p>
-                    <p class="proxy-desc">Dr. Wei Wei (assisted by Trisha Arscott) Is a seasoned naturopath doctor and acupuncturist of 25 years.</p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Closing Thought -->
-        <footer class="mt-20 text-center">
-            <p class="text-2xl italic" style="font-family: 'Noto Serif JP', serif; color: #606770;">
-                Thank you for being part of this journey.
+    <section class="container waft-in">
+        <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+            <h2 class="font-serif">Gratitude & Reflection</h2>
+            <p class="waft-in">
+                Thank you for attending the holiday Frankincense and Myrrh presentation of The Incense Journey™. From all of us at Shihan Wellness and YENology, we wish you a peaceful holiday season and a bright new year.
             </p>
-        </footer>
+            <div style="margin: 3rem 0; padding: 2rem; border-top: 1px solid var(--color-kyara); border-bottom: 1px solid var(--color-kyara);">
+                <p style="font-size: 1.1rem; color: var(--color-gold); font-family: var(--font-serif); font-style: italic;">
+                    "We look forward to offering many more transformative experiences in 2026. Thank you for being part of this journey."
+                </p>
+            </div>
+            <p class="text-sm">
+                As a gift of gratitude, please enjoy a ten percent discount on all incense and any items in the store or online at <a href="http://www.yen-ology.com">www.yen-ology.com</a>.
+            </p>
+        </div>
+    </section>
 
+    <div class="section-spacer"></div>
+
+    <div class="container waft-in">
+        <div class="master-image-grid">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J01.jpg" alt="Ritual Preparation">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J03.jpg" alt="Listening to Incense">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J07.jpg" alt="Ash and Ember">
+        </div>
     </div>
 
+    <main class="container">
+        <div class="text-center waft-in" style="margin-bottom: 5rem;">
+            <h2 style="margin-bottom: 0.5rem;">The Materials</h2>
+            <p class="uppercase" style="opacity: 0.5;">Boswellia & Commiphora</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="incense-block waft-in">
+                <span class="incense-meta">Hojary Black (Boswellia sacra) — Oman</span>
+                <h3>Frankincense</h3>
+                <p>This rare resin rises with a cool and steady clarity, like winter air moving across desert stone. Its presence clears the breath and settles the mind into a quiet inner brightness.</p>
+                <div class="incense-quote">“Light begins in the stillness where the heart remembers itself.”</div>
+            </div>
+
+            <div class="incense-block waft-in">
+                <span class="incense-meta">Commiphora myrrha — Somalia</span>
+                <h3>Myrrh</h3>
+                <p>Earthy and grounding, Myrrh wraps the spirit with warmth. It encourages reflection, restores presence, and invites the body to settle into a deeper peace.</p>
+                <div class="incense-quote">“Peace grows wherever the soul stands gently in its own truth.”</div>
+            </div>
+
+            <div class="incense-block waft-in">
+                <span class="incense-meta">Boswellia neglecta — Ethiopia</span>
+                <h3>Frankincense</h3>
+                <p>Thick and resin-rich, the aroma rises with a smoky sweetness that softens tension and loosens the weight of the year. It supports emotional renewal and release.</p>
+                <div class="incense-quote">“In letting go, we make space for what is quietly waiting to arrive.”</div>
+            </div>
+
+            <div class="incense-block waft-in">
+                <span class="incense-meta">Boswellia papyrifera — Eritrea</span>
+                <h3>Frankincense</h3>
+                <p>Airy and luminous, this resin lifts the inner world like the first dawn after a long night. It renews hope and brings gentle spaciousness to the breath.</p>
+                <div class="incense-quote">“New beginnings step forward as softly as morning light.”</div>
+            </div>
+
+            <div class="incense-block waft-in">
+                <span class="incense-meta">Maydi (Boswellia frereana) — Somalia</span>
+                <h3>Frankincense</h3>
+                <p>Warm, sweet, and resinous, Maydi brings uplift and subtle joy. It reminds the spirit that even in winter, warmth rises from within.</p>
+                <div class="incense-quote">“Joy is the quiet fire that glows even in the coldest seasons.”</div>
+            </div>
+
+            <div class="incense-block waft-in">
+                <span class="incense-meta">Boswellia carterii — Yemen</span>
+                <h3>Frankincense</h3>
+                <p>Smooth and centering, this resin quiets the mind and deepens contemplation. It settles the inner landscape like snowfall on an empty field.</p>
+                <div class="incense-quote">“In stillness, the soul speaks in a language older than words.”</div>
+            </div>
+
+             <div class="incense-block waft-in">
+                <span class="incense-meta">Boswellia serrata — India</span>
+                <h3>Frankincense</h3>
+                <p>Dry, clear, and cleansing, this incense refreshes the mind and dissolves stagnant thoughts. It renews inner energy with a gentle steadiness.</p>
+                <div class="incense-quote">“When the mind is clear, the way becomes simple again.”</div>
+            </div>
+
+            <div class="incense-block waft-in">
+                <span class="incense-meta">Black Resin (Commiphora myrrha) — Somalia</span>
+                <h3>Myrrh</h3>
+                <p>Deep, shadowed, and smoky, Black Myrrh invites inward movement. It supports healing, forgiveness, and the return to one’s own inner light.</p>
+                <div class="incense-quote">“Every shadow carries an invitation to reclaim your radiance.”</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="section-spacer"></div>
+
+    <section class="container">
+        <h2 class="text-center waft-in">Proxies Around the Country</h2>
+        
+        <div class="waft-in" style="margin: 2rem auto 4rem auto; max-width: 600px;">
+            <div style="display: flex; gap: 10px;">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D01.jpg" style="width: 50%; object-fit: cover; opacity: 0.8;">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D02.jpg" style="width: 50%; object-fit: cover; opacity: 0.8;">
+            </div>
+            <p class="text-center uppercase" style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">The Soul Place, Owosso, MI</p>
+        </div>
+
+        <div class="proxy-list waft-in">
+            <div class="proxy-card">
+                <h4 class="text-gold">Andrew Lusk</h4>
+                <p class="text-sm">Orange County, CA</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Investor, Student of Tea Ceremony, and a Senior apprentice in the Way of Incense.</p>
+            </div>
+
+            <div class="proxy-card">
+                <h4 class="text-gold">Darrell Wright</h4>
+                <p class="text-sm">Swartz Creek, MI</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Darrell leads others through sound journeys, hypnosis, and spiritual exploration, and is a senior apprentice in the Way of Incense.</p>
+            </div>
+
+            <div class="proxy-card">
+                <h4 class="text-gold">Elize Fauvelle</h4>
+                <p class="text-sm">St. Louis, MO</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">A senior apprentice in The Way of Incense. She is also a textile artist, inspired by the spirits around the world.</p>
+            </div>
+
+            <div class="proxy-card">
+                <h4 class="text-gold">Daris Davis</h4>
+                <p class="text-sm">Vienna, MO</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Kambo & Reiki Practitioner supporting mind, body, and spirit healing, and a senior apprentice in the Way of Incense.</p>
+            </div>
+
+            <div class="proxy-card">
+                <h4 class="text-gold">Dr. Wei Wei Han</h4>
+                <p class="text-sm">Peterborough, Ontario</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Dr. Wei Wei (assisted by Trisha Arscott) is a seasoned naturopath doctor and acupuncturist of 25 years.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container text-center waft-in" style="margin-top: 6rem; padding-bottom: 6rem;">
+        <p class="italic text-gold" style="font-family: var(--font-serif); font-size: 1.5rem;">
+            Thank you for being part of this journey.
+        </p>
+        <div style="width: 1px; height: 50px; background: var(--color-gold); margin: 2rem auto; opacity: 0.5;"></div>
+        <p class="uppercase" style="font-size: 0.7rem; opacity: 0.4;">© 2025 The Incense Journey</p>
+    </footer>
+
+    <script>
+        // Simple Intersection Observer to trigger the "Waft" animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.waft-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
