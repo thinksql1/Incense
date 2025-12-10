@@ -176,6 +176,7 @@
             border-radius: 2px;
         }
 
+        /* Master Image Grid Styling */
         .master-image-grid {
             display: flex;
             flex-wrap: wrap;
@@ -198,10 +199,10 @@
             filter: brightness(1.1);
         }
         
-        /* Specific Grid for Peterborough (4 images) */
+        /* Location Grid Styling (For Owosso and Peterborough Images) */
         .location-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(1, 1fr); /* FIX: Stacks on Mobile */
             gap: 10px;
             margin-bottom: 0.5rem;
         }
@@ -219,8 +220,14 @@
              filter: brightness(1.1);
         }
         
-        @media(min-width: 768px) {
-            .location-grid {
+        /* Desktop/Tablet Layouts */
+        @media (min-width: 768px) {
+            /* Owosso grid (2 images) */
+            .location-grid.owosso-layout {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            /* Peterborough grid (4 images) */
+            .location-grid.peterborough-layout {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
@@ -289,7 +296,6 @@
         <div class="master-image-grid">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J01.jpg" alt="Ritual Preparation">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J03.jpg" alt="Listening to Incense">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J02.jpg" alt="The Way of Fragrance">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J06.jpg" alt="Sacred Smoke">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J07.jpg" alt="Ash and Ember">
         </div>
@@ -366,7 +372,7 @@
         <h2 class="text-center waft-in">Proxies Around the Country</h2>
         
         <div class="waft-in" style="margin: 3rem auto; max-width: 800px;">
-             <div class="location-grid" style="grid-template-columns: repeat(2, 1fr);">
+             <div class="location-grid owosso-layout">
                 <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D01.jpg" alt="Owosso Ritual Space">
                 <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D02.jpg" alt="Owosso Altar">
             </div>
@@ -374,7 +380,7 @@
         </div>
 
         <div class="waft-in" style="margin: 3rem auto 5rem auto; max-width: 800px;">
-            <div class="location-grid">
+            <div class="location-grid peterborough-layout">
                 <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W01.jpg" alt="Peterborough Sanctuary">
                 <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W02.jpg" alt="Peterborough Ritual">
                 <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W03.jpg" alt="Peterborough Space">
