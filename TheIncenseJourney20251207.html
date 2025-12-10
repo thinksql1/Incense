@@ -177,22 +177,52 @@
         }
 
         .master-image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             margin-bottom: 4rem;
+            justify-content: center;
         }
         
         .master-image-grid img {
             width: 100%;
+            max-width: 350px;
             height: 300px;
             object-fit: cover;
             filter: brightness(0.9);
             transition: filter 0.5s;
+            flex: 1 1 300px;
         }
 
         .master-image-grid img:hover {
             filter: brightness(1.1);
+        }
+        
+        /* Specific Grid for Peterborough (4 images) */
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .location-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: filter 0.5s;
+            border-radius: 2px;
+        }
+        
+        .location-grid img:hover {
+             filter: brightness(1.1);
+        }
+        
+        @media(min-width: 768px) {
+            .location-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         /* --- 6. ANIMATIONS ("The Waft") --- */
@@ -253,9 +283,14 @@
     <div class="section-spacer"></div>
 
     <div class="container waft-in">
+        <div class="text-center" style="margin-bottom: 2rem;">
+            <p class="uppercase text-gold" style="opacity: 0.7;">The Ceremony</p>
+        </div>
         <div class="master-image-grid">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J01.jpg" alt="Ritual Preparation">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J03.jpg" alt="Listening to Incense">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J02.jpg" alt="The Way of Fragrance">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J06.jpg" alt="Sacred Smoke">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/J07.jpg" alt="Ash and Ember">
         </div>
     </div>
@@ -330,12 +365,22 @@
     <section class="container">
         <h2 class="text-center waft-in">Proxies Around the Country</h2>
         
-        <div class="waft-in" style="margin: 2rem auto 4rem auto; max-width: 600px;">
-            <div style="display: flex; gap: 10px;">
-                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D01.jpg" style="width: 50%; object-fit: cover; opacity: 0.8;">
-                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D02.jpg" style="width: 50%; object-fit: cover; opacity: 0.8;">
+        <div class="waft-in" style="margin: 3rem auto; max-width: 800px;">
+             <div class="location-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D01.jpg" alt="Owosso Ritual Space">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/D02.jpg" alt="Owosso Altar">
             </div>
-            <p class="text-center uppercase" style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">The Soul Place, Owosso, MI</p>
+            <p class="text-center uppercase" style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">The Soul Place — Owosso, Michigan</p>
+        </div>
+
+        <div class="waft-in" style="margin: 3rem auto 5rem auto; max-width: 800px;">
+            <div class="location-grid">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W01.jpg" alt="Peterborough Sanctuary">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W02.jpg" alt="Peterborough Ritual">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W03.jpg" alt="Peterborough Space">
+                <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W04.jpg" alt="Peterborough Altar">
+            </div>
+            <p class="text-center uppercase" style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">Sanctuary of the North — Peterborough, Ontario</p>
         </div>
 
         <div class="proxy-list waft-in">
