@@ -202,7 +202,7 @@
         /* Location Grid Styling (For Owosso and Peterborough Images) */
         .location-grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr); /* FIX: Stacks on Mobile */
+            grid-template-columns: repeat(1, 1fr); /* Stacks on Mobile */
             gap: 10px;
             margin-bottom: 0.5rem;
         }
@@ -226,9 +226,9 @@
             .location-grid.owosso-layout {
                 grid-template-columns: repeat(2, 1fr);
             }
-            /* Peterborough grid (4 images) */
+            /* Peterborough grid (4 images) - CHANGED to 2x2 */
             .location-grid.peterborough-layout {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(2, 1fr); 
             }
         }
 
@@ -386,7 +386,7 @@
                 <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W03.jpg" alt="Peterborough Space">
                 <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/TIJ12072025/W04.jpg" alt="Peterborough Altar">
             </div>
-            <p class="text-center uppercase" style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">Sanctuary of the North — Peterborough, Ontario</p>
+            <p class="text-center uppercase" style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">Sanctuary of the North — Peterborough, Ontario, Canada</p>
         </div>
 
         <div class="proxy-list waft-in">
