@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incense Practice: Orientation & Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        resin: {
+                            50: '#fcfaf8',
+                            100: '#f6f1eb',
+                            200: '#ede2d6',
+                            300: '#dfcabb',
+                            400: '#ceaa95',
+                            500: '#be8c72',
+                            600: '#ae735a',
+                            700: '#905b48',
+                            800: '#774c3e',
+                            900: '#603f36',
+                        }
+                    },
+                    animation: {
+                        'breath': 'breathe 12s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        breathe: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.6' },
+                            '50%': { transform: 'scale(1.5)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6f1eb;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d6ccc2;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be8c72;
+        }
+
+        /* Print Styles */
+        @media print {
+            nav, .no-print { display: none !important; }
+            body { background: white; color: black; }
+            .section-container { break-inside: avoid; page-break-inside: avoid; }
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(223, 202, 187, 0.4);
+        }
+
+        /* Paragraph Spacing for Reading Flow */
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-resin-50 text-resin-900 font-sans antialiased leading-relaxed selection:bg-resin-300 selection:text-resin-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel shadow-sm transition-all duration-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <span class="font-serif text-xl font-bold tracking-wide text-resin-800">Incense Practice</span>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-resin-600">
+                    <a href="#orientation" class="hover:text-resin-900 transition-colors">Orientation</a>
+                    <a href="#attention" class="hover:text-resin-900 transition-colors">Attention</a>
+                    <a href="#regulation" class="hover:text-resin-900 transition-colors">Regulation</a>
+                    <a href="#meaning" class="hover:text-resin-900 transition-colors">Meaning</a>
+                    <a href="#agency" class="hover:text-resin-900 transition-colors">Agency</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden text-resin-600 cursor-pointer p-2 hover:bg-resin-100 rounded-md" id="mobile-menu-btn">
+                    <i data-lucide="menu"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden bg-white border-b border-resin-200 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#orientation" class="block px-3 py-3 rounded-md text-base font-medium text-resin-700 hover:text-resin-900 hover:bg-resin-50 mobile-link">Orientation</a>
+                <a href="#attention" class="block px-3 py-3 rounded-md text-base font-medium text-resin-700 hover:text-resin-900 hover:bg-resin-50 mobile-link">Attention</a>
+                <a href="#regulation" class="block px-3 py-3 rounded-md text-base font-medium text-resin-700 hover:text-resin-900 hover:bg-resin-50 mobile-link">Regulation</a>
+                <a href="#meaning" class="block px-3 py-3 rounded-md text-base font-medium text-resin-700 hover:text-resin-900 hover:bg-resin-50 mobile-link">Meaning</a>
+                <a href="#agency" class="block px-3 py-3 rounded-md text-base font-medium text-resin-700 hover:text-resin-900 hover:bg-resin-50 mobile-link">Agency</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-16 px-6 text-center max-w-4xl mx-auto">
+        <p class="text-resin-500 uppercase tracking-[0.2em] text-sm font-semibold mb-4">Course Material</p>
+        <h1 class="text-5xl md:text-6xl font-serif font-medium text-resin-900 mb-6">Olfactory Literacy</h1>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pb-24 space-y-24">
+
+        <!-- SECTION 1: ORIENTATION -->
+        <section id="orientation" class="scroll-mt-24 section-container">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-4xl font-serif text-resin-300">01</span>
+                <h2 class="text-3xl font-serif text-resin-800 border-b border-resin-300 w-full pb-2">Orientation</h2>
+            </div>
+            <div class="text-sm uppercase tracking-wide text-resin-500 mb-8 font-semibold">Safety · Expectations · Sensory Framing</div>
+
+            <!-- Safety -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-serif text-resin-800 mb-6 flex items-center gap-2">
+                    <i data-lucide="shield-check" class="text-resin-500 w-5 h-5"></i> Safety
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Combustion -->
+                    <div class="p-6 bg-stone-100 rounded-lg border border-stone-200">
+                        <p class="text-stone-700">Traditionally, incense practice involves combustion.</p>
+                        <p class="text-stone-700">The tip of a burning incense stick can reach temperatures of approximately 800°C, producing smoke that contains carbon dioxide, carbon monoxide, aldehydes, hazardous air pollutants, and fine particulate matter (PM2.5).</p>
+                        <p class="text-stone-700 font-medium italic mb-0">These conditions can induce intoxication or altered states that are not always stable, intentional, or gentle on the nervous system.</p>
+                    </div>
+
+                    <!-- Warming -->
+                    <div class="p-6 bg-resin-100 rounded-lg border border-resin-200">
+                        <p class="text-resin-900 font-semibold">In this practice, we do not burn incense.</p>
+                        <p class="text-resin-800 mb-0">Instead, we warm natural resins and aromatic materials at controlled, low temperatures. This allows beneficial volatile organic compounds to be released slowly, creating an experience that is gentle, generative, and physiologically respectful.</p>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 border-l-4 border-resin-400 bg-white rounded-r-lg shadow-sm">
+                    <p class="text-lg font-serif text-resin-800 mb-0">Nothing here is designed to overwhelm you. You remain oriented, embodied, and choiceful at all times.</p>
+                </div>
+            </div>
+
+            <!-- Expectations -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-serif text-resin-800 mb-6">Expectations</h3>
+                <div class="grid md:grid-cols-12 gap-8">
+                    <div class="md:col-span-5 bg-white p-6 rounded-xl border border-resin-200 shadow-sm">
+                        <p class="text-resin-800 font-medium">Many people purchase an electric incense warmer and contact me thinking it is broken. Why?</p>
+                        <p class="text-resin-700">Because our minds are conditioned by transactional systems:</p>
+                        <ul class="list-none space-y-2 pl-4 border-l-2 border-resin-300 italic text-resin-600 mb-4">
+                            <li>Push a button</li>
+                            <li>Get an immediate result</li>
+                            <li>Vending machine drops the candy bar</li>
+                        </ul>
+                        <p class="text-resin-800 font-medium border-t border-resin-100 pt-4 mb-0">This practice does not work that way.</p>
+                    </div>
+                    <div class="md:col-span-7 flex flex-col justify-center">
+                        <p class="text-xl font-serif text-resin-800">This is relational, not transactional.</p>
+                        <p class="text-resin-700">It requires:</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-resin-200 rounded text-resin-900 text-sm">Willingness</span>
+                            <span class="px-3 py-1 bg-resin-200 rounded text-resin-900 text-sm">Uncertainty</span>
+                            <span class="px-3 py-1 bg-resin-200 rounded text-resin-900 text-sm">Time</span>
+                            <span class="px-3 py-1 bg-resin-200 rounded text-resin-900 text-sm">Attention</span>
+                        </div>
+                        <p class="text-resin-800">What you are learning here is a form of <strong>olfactory literacy</strong> — the ability to listen rather than extract.</p>
+                        <div class="bg-resin-50 p-4 rounded-lg border border-resin-200">
+                            <p class="mb-2 font-medium text-resin-800">The process is simple but subtle:</p>
+                            <ol class="list-decimal list-inside space-y-1 text-resin-700">
+                                <li>Observe outwardly</li>
+                                <li>Name what you notice</li>
+                                <li>Observe what has changed in your experience</li>
+                                <li>Return attention gently</li>
+                            </ol>
+                        </div>
+                        <p class="mt-4 text-resin-700 mb-0">This is a kind of fractionated learning. You are learning by listening, not forcing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sensory Framing -->
+            <div>
+                <h3 class="text-2xl font-serif text-resin-800 mb-6">Sensory Framing</h3>
+                <div class="bg-white rounded-xl shadow-sm border border-resin-200 overflow-hidden">
+                    <div class="p-8">
+                        <p class="text-resin-700">In hypnosis and NLP, attention is often guided through multiple sensory channels:</p>
+                        <div class="flex gap-4 text-sm text-resin-500 uppercase tracking-wider font-semibold mb-6 flex-wrap">
+                            <span>Visual</span> · <span>Auditory</span> · <span>Kinesthetic</span> · <span>Gustatory</span> · <span>Olfactory</span>
+                        </div>
+                        <p class="text-resin-700">Engaging multiple channels can create trance, meditation, or hypnagogic states.</p>
+                        <p class="text-resin-700">Most sensory information passes through the thalamus, where it is filtered, evaluated, and pattern-matched before we respond — often by referencing memory.</p>
+                        
+                        <div class="my-6 p-6 bg-resin-50 rounded-lg border-l-4 border-resin-600">
+                            <h4 class="font-bold text-resin-900 mb-2">Olfactory perception is different.</h4>
+                            <p class="text-resin-800 mb-0">Smell largely bypasses the thalamic relay and connects directly to the limbic system — the emotional and memory centers of the brain.</p>
+                        </div>
+                        
+                        <p class="font-serif text-xl italic text-center text-resin-800 mt-8 mb-0">
+                            "There is no need here to disarm the critical mind. Olfactory experience does not negotiate. The scent arrives. The body responds."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ATTENTION -->
+        <section id="attention" class="scroll-mt-24 section-container">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-4xl font-serif text-resin-300">02</span>
+                <h2 class="text-3xl font-serif text-resin-800 border-b border-resin-300 w-full pb-2">Attention</h2>
+            </div>
+            <div class="text-sm uppercase tracking-wide text-resin-500 mb-8 font-semibold">Scent · Temperature · Subtle Shifts</div>
+
+            <!-- Scent -->
+            <div class="bg-white border border-resin-200 rounded-xl p-8 mb-12 shadow-sm">
+                <h3 class="text-2xl font-serif text-resin-800 mb-4">Scent</h3>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <p class="text-resin-800">Close your eyes.</p>
+                        <p class="text-resin-800">Allow yourself to listen to the fragrance.</p>
+                        <div class="pl-4 border-l-2 border-resin-300 my-4">
+                            <p class="text-resin-700 font-medium mb-1">Ask gently:</p>
+                            <ul class="space-y-1 text-resin-700">
+                                <li>What do I notice?</li>
+                                <li>What is happening in my body?</li>
+                                <li>What feels different now?</li>
+                            </ul>
+                        </div>
+                        <p class="text-resin-600 italic">You may wish to write a few words down.</p>
+                    </div>
+                    <div>
+                        <p class="text-resin-800 font-medium">Notice the somatic response:</p>
+                        <ul class="grid grid-cols-2 gap-2 mb-4 text-sm text-resin-700">
+                            <li class="bg-resin-50 p-2 rounded">Sensations</li>
+                            <li class="bg-resin-50 p-2 rounded">Emotional tone</li>
+                            <li class="bg-resin-50 p-2 rounded">Changes in breath</li>
+                            <li class="bg-resin-50 p-2 rounded">Shifts in posture or energy</li>
+                        </ul>
+                        <p class="text-resin-800">Then return attention to the fragrance and repeat.</p>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-resin-100">
+                    <p class="text-resin-800">As attention deepens, the whole body may begin to participate.</p>
+                    <p class="text-resin-800">For me, this often feels like a subtle buzzing or attunement, as if the body’s frequency is aligning with the vibrating aromatic molecules.</p>
+                    <p class="text-resin-800">Over time, the distinction between observer and fragrance can soften.</p>
+                    <p class="font-serif text-xl text-center mt-6 text-resin-900 mb-0">And finally…<br><span class="italic">become the incense.</span></p>
+                </div>
+            </div>
+
+            <!-- Temperature -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-resin-50 p-8 rounded-xl border border-resin-200">
+                    <h3 class="text-xl font-serif text-resin-800 mb-4 flex items-center gap-2"><i data-lucide="thermometer" class="w-5 h-5"></i> Temperature</h3>
+                    <p class="text-resin-800">For personal practice, choose one resin and sit with it for a meaningful duration — 20 minutes or more.</p>
+                    <p class="text-resin-600 italic text-sm">(What begins as 20 minutes may become much longer.)</p>
+                    <div class="my-4 p-4 bg-white rounded border border-resin-100">
+                        <p class="mb-2 text-resin-800">Stay below <strong>250°C</strong>.</p>
+                        <p class="mb-0 text-resin-800">Most of my practice occurs between <strong>135–150°C</strong>.</p>
+                    </div>
+                    <p class="text-resin-800 mb-0">Often, unless air is gently moved toward the nose with a fan, the fragrance remains very subtle — requiring closeness and patience.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border border-resin-200">
+                    <p class="font-bold text-resin-800 mb-4">For a more precise or technical practice:</p>
+                    <ul class="space-y-2 text-resin-700 list-disc list-inside mb-6">
+                        <li>Review a terpene or aromatic compound profile for the resin</li>
+                        <li>Note the temperatures at which different compounds release</li>
+                        <li>Begin at the lowest temperature</li>
+                        <li>Increment slowly over time</li>
+                    </ul>
+                    <p class="font-medium text-resin-800">At each stage, observe:</p>
+                    <ul class="space-y-1 text-resin-700 text-sm pl-4">
+                        <li>Changes in scent profile</li>
+                        <li>Visual changes in the resin</li>
+                        <li>Memories that surface</li>
+                        <li>Somatic responses in the body</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Subtle Shifts -->
+            <div class="bg-gradient-to-r from-resin-100 to-white p-8 rounded-xl border border-resin-200">
+                <h3 class="text-xl font-serif text-resin-800 mb-4">Subtle Shifts</h3>
+                <div class="columns-1 md:columns-2 gap-8 space-y-4">
+                    <p class="text-resin-800">This is a gentle practice.</p>
+                    <p class="text-resin-800">Focus more on beauty than intensity.</p>
+                    <p class="text-resin-800">The experience unfolds like a journey rather than a peak.</p>
+                    <p class="text-resin-800">The mind may attempt to distract you or invite multitasking.</p>
+                    <p class="text-resin-800 font-medium">When that happens, simply return attention to listening.</p>
+                    <p class="text-resin-800 font-serif italic text-lg mb-0">Nothing is being demanded of you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: REGULATION -->
+        <section id="regulation" class="scroll-mt-24 section-container">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-4xl font-serif text-resin-300">03</span>
+                <h2 class="text-3xl font-serif text-resin-800 border-b border-resin-300 w-full pb-2">Regulation</h2>
+            </div>
+            <div class="text-sm uppercase tracking-wide text-resin-500 mb-8 font-semibold">Breath · Olfaction</div>
+
+            <!-- Breath -->
+            <div class="flex flex-col md:flex-row gap-12 items-center mb-16">
+                <div class="md:w-1/3 flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-inner border border-resin-100">
+                    <!-- Visual Breath Pacer -->
+                    <div class="relative w-48 h-48 flex items-center justify-center">
+                        <div class="absolute w-24 h-24 bg-resin-300 rounded-full animate-breath opacity-60 blur-xl"></div>
+                        <div class="absolute w-20 h-20 bg-resin-400 rounded-full animate-breath opacity-80 mix-blend-multiply"></div>
+                        <div class="relative z-10 text-center font-serif text-resin-800 font-medium">
+                            <div class="text-sm">Inhale / Exhale</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-serif text-resin-800 mb-4">Breath</h3>
+                    <p class="text-resin-800">Allow your breath to slow naturally.</p>
+                    <p class="text-resin-800">Simple rhythmic breathing — for example, a gentle 6-count inhale and 6-count exhale — can deepen the experience significantly.</p>
+                    <p class="text-resin-800 font-medium mt-4">Breath becomes:</p>
+                    <div class="flex flex-wrap gap-3 my-3">
+                        <span class="px-3 py-1 bg-resin-100 border border-resin-200 rounded text-resin-800 text-sm">Your drum</span>
+                        <span class="px-3 py-1 bg-resin-100 border border-resin-200 rounded text-resin-800 text-sm">Your rhythm</span>
+                        <span class="px-3 py-1 bg-resin-100 border border-resin-200 rounded text-resin-800 text-sm">Your heartbeat</span>
+                    </div>
+                    <p class="text-resin-800 italic mb-0">Your systems begin to attune, not through control, but through rhythm.</p>
+                </div>
+            </div>
+
+            <!-- Olfaction -->
+            <div class="bg-resin-800 text-resin-50 rounded-xl p-10 shadow-md">
+                <h3 class="text-2xl font-serif mb-6 text-resin-100">Olfaction</h3>
+                <p class="text-resin-200 mb-6">The human olfactory system is capable of discriminating an enormous range of scent combinations, far beyond most other senses.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-resin-900/50 p-6 rounded-lg">
+                        <p class="text-resin-100 font-medium mb-2">There is an important distinction here:</p>
+                        <p class="text-resin-300 mb-4">In synthetic fragrance, selected molecules can be combined to mimic a scent — like rose.</p>
+                        <p class="text-resin-300 mb-0">A natural rose, however, contains hundreds of aromatic molecules, creating a complex, living bouquet.</p>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <p class="text-resin-200 mb-4">It’s not that synthetic fragrance is “wrong.”</p>
+                        <p class="text-resin-200">It’s that natural materials carry complexity that invites longer, deeper listening.</p>
+                        <p class="text-white font-serif text-xl mt-2 mb-0">This complexity is often perceived as alive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MEANING -->
+        <section id="meaning" class="scroll-mt-24 section-container">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-4xl font-serif text-resin-300">04</span>
+                <h2 class="text-3xl font-serif text-resin-800 border-b border-resin-300 w-full pb-2">Meaning</h2>
+            </div>
+            <div class="text-sm uppercase tracking-wide text-resin-500 mb-8 font-semibold">Embodied Memory · Insight · Presence</div>
+
+            <div class="space-y-8">
+                <!-- Embodied Memory -->
+                <div class="bg-white p-8 rounded-xl border border-resin-200">
+                    <h3 class="text-xl font-serif text-resin-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="book-open" class="text-resin-400 w-5 h-5"></i> Embodied Memory
+                    </h3>
+                    <p class="text-resin-800">It is completely appropriate to pause and take notes when something reveals itself.</p>
+                    <p class="text-resin-800 font-medium">Write it down so you can return attention to listening.</p>
+                    <p class="text-resin-800 mt-4">The memories that arise may not be rational or linear.</p>
+                    <div class="mt-4 p-4 bg-resin-50 rounded border-l-4 border-resin-300">
+                        <p class="text-resin-800 text-sm mb-2">For example:</p>
+                        <p class="text-resin-700 italic mb-2">Buttered popcorn may evoke a movie theater — that makes sense.</p>
+                        <p class="text-resin-700 italic font-medium mb-0">But why might Borneol Camphor evoke the memory of eating a fresh donut at a cider mill?</p>
+                    </div>
+                    <p class="text-resin-800 mt-4 mb-0">The body remembers in associative, symbolic ways.</p>
+                </div>
+
+                <!-- Insight -->
+                <div class="bg-white p-8 rounded-xl border border-resin-200">
+                    <h3 class="text-xl font-serif text-resin-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="sparkles" class="text-resin-400 w-5 h-5"></i> Insight
+                    </h3>
+                    <p class="text-resin-800">As attention deepens, you may enter a trance-like state.</p>
+                    <p class="text-resin-800 mb-2">Insights can arise as:</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-sm bg-resin-100 px-2 py-1 rounded text-resin-800">Images</span>
+                        <span class="text-sm bg-resin-100 px-2 py-1 rounded text-resin-800">Emotions</span>
+                        <span class="text-sm bg-resin-100 px-2 py-1 rounded text-resin-800">Memories</span>
+                        <span class="text-sm bg-resin-100 px-2 py-1 rounded text-resin-800">Felt understandings</span>
+                        <span class="text-sm bg-resin-100 px-2 py-1 rounded text-resin-800">Personified sensations</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <p class="text-resin-700 text-sm mb-0">Some experience this as communication with disembodied intelligence.</p>
+                        <p class="text-resin-700 text-sm mb-0">Others understand it as aspects of awareness that rarely have a voice.</p>
+                    </div>
+                    <p class="text-resin-800 font-medium mt-4 text-center mb-0">Both frames are welcome.</p>
+                </div>
+
+                <!-- Presence -->
+                <div class="bg-white p-8 rounded-xl border border-resin-200">
+                    <h3 class="text-xl font-serif text-resin-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="anchor" class="text-resin-400 w-5 h-5"></i> Presence
+                    </h3>
+                    <p class="text-resin-800">Throughout all of this, the experience remains embodied.</p>
+                    <p class="text-resin-800">The scent anchors the body to the physical world while awareness expands.</p>
+                    <div class="mt-4 p-4 bg-resin-50 rounded text-center">
+                        <p class="text-resin-800 font-medium mb-2">This can create a sense of bi-location:</p>
+                        <div class="flex justify-center gap-8 text-resin-700">
+                            <span>Grounded in the body</span>
+                            <span>&bull;</span>
+                            <span>Open to subtle perception</span>
+                        </div>
+                    </div>
+                    <p class="text-resin-900 font-serif text-xl text-center mt-6 mb-0">This is presence — not escape.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: AGENCY -->
+        <section id="agency" class="scroll-mt-24 section-container">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-4xl font-serif text-resin-300">05</span>
+                <h2 class="text-3xl font-serif text-resin-800 border-b border-resin-300 w-full pb-2">Agency</h2>
+            </div>
+            <div class="text-sm uppercase tracking-wide text-resin-500 mb-8 font-semibold">Personal Interpretation · No Doctrine</div>
+            
+            <div class="bg-white p-10 rounded-xl shadow-sm border border-resin-200 mb-8">
+                <h3 class="text-2xl font-serif text-resin-800 mb-6">Personal Interpretation</h3>
+                <div class="space-y-4">
+                    <p class="text-resin-800">You are developing a skill, not following a rulebook.</p>
+                    <p class="text-resin-800">This unfolds over time.</p>
+                    <p class="text-resin-800 font-medium">If you need support, ask.</p>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t border-resin-100 grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-resin-800 mb-2">Think of this as a relationship, much like learning Tarot.</p>
+                        <p class="text-resin-700">When I first learned Tarot, I was frustrated that I wasn’t meant to memorize card definitions.</p>
+                    </div>
+                    <div class="bg-resin-50 p-6 rounded-lg -rotate-1 shadow-sm">
+                        <p class="text-resin-800 mb-2 font-medium">Instead, I sat with each card:</p>
+                        <ul class="text-sm text-resin-700 space-y-1 mb-4">
+                            <li>Observed it</li>
+                            <li>Noted what arose</li>
+                            <li>Read the description</li>
+                            <li>Sat with it again</li>
+                        </ul>
+                        <p class="text-resin-800 font-medium italic mb-0">Over time, each card became a container for lived memories, relationships, and understanding.</p>
+                    </div>
+                </div>
+                <p class="text-resin-800 text-center font-serif text-xl mt-8 mb-0">Incense works the same way.</p>
+            </div>
+
+            <div class="bg-resin-100 p-8 rounded-xl border border-resin-200">
+                <h3 class="text-2xl font-serif text-resin-800 mb-4 text-center">No Doctrine</h3>
+                <p class="text-resin-800 text-center mb-6">There is no single right way to practice. You develop your own relationship.</p>
+                <div class="flex flex-col md:flex-row justify-center gap-6 text-sm">
+                    <div class="bg-white p-4 rounded shadow-sm text-resin-700 flex-1 text-center">
+                        If someone wishes to explore combustion and intense altered states, that is a valid choice.
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm text-resin-700 flex-1 text-center">
+                        If someone wishes to explore medicinal, contemplative, or regulatory effects, that is also valid.
+                    </div>
+                </div>
+                <p class="text-center font-serif text-xl text-resin-900 mt-8 mb-0">This practice offers options, not commandments.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-resin-900 text-resin-300 py-12 text-center no-print">
+        <div class="max-w-4xl mx-auto px-6">
+            <i data-lucide="wind" class="w-8 h-8 mx-auto mb-6 opacity-50"></i>
+            <p class="font-serif italic text-lg mb-4">"Listen rather than extract."</p>
+            <p class="text-sm opacity-60">Incense Practice &copy; Darrell Wright</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        // Toggle menu open/close
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('open');
+            // Toggle icon visual if needed, though simple logic is fine here
+        });
+
+        // Close menu when a link is clicked
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
