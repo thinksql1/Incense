@@ -175,7 +175,7 @@
         /* Utility for aspect ratios to ensure videos play */
         .video-wrapper-vertical {
             position: relative;
-            padding-bottom: 177.77%; /* 16:9 aspect ratio but vertical (9:16) */
+            padding-bottom: 160%; /* Adjusted from 177% to 160% to reduce vertical height slightly */
             height: 0;
             overflow: hidden;
         }
@@ -351,9 +351,9 @@
     <section class="reveal py-12 px-6 flex flex-col items-center relative z-10">
         <h3 class="font-serif text-2xl text-ash mb-8 text-center">Resonance</h3>
         <!-- Vertical Video Container using bulletproof CSS -->
-        <div class="w-full max-w-[340px] md:max-w-sm video-wrapper-vertical bg-black rounded-lg shadow-2xl border border-ash/10 relative overflow-hidden group">
+        <div class="w-full max-w-[280px] video-wrapper-vertical bg-black rounded-lg shadow-2xl border border-ash/10 relative overflow-hidden group">
             <iframe 
-                src="https://www.youtube.com/embed/brXBTDNNMdA?controls=1&rel=0&playsinline=1" 
+                src="https://www.youtube.com/embed/brXBTDNNMdA?controls=1&rel=0&playsinline=1&modestbranding=1" 
                 title="Event Highlights" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
