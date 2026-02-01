@@ -56,7 +56,7 @@
             height: 100%;
             overflow: hidden;
             z-index: -1;
-            pointer-events: none;
+            pointer-events: none; /* Crucial: ensures clicks pass through to videos */
         }
 
         .fog-img {
@@ -67,6 +67,7 @@
             opacity: 0.4;
             background: radial-gradient(ellipse at center, rgba(193, 170, 103, 0.1) 0%, rgba(0,0,0,0) 70%);
             animation: fog 60s linear infinite;
+            pointer-events: none; /* Double insurance */
         }
 
         .fog-img-2 {
@@ -75,6 +76,10 @@
             background: radial-gradient(ellipse at center, rgba(235, 234, 229, 0.08) 0%, rgba(0,0,0,0) 60%);
             animation: fog 40s linear infinite reverse;
             bottom: 0;
+            position: absolute;
+            height: 100vh;
+            width: 300vw;
+            pointer-events: none; /* Double insurance */
         }
 
         @keyframes fog {
@@ -123,6 +128,11 @@
             transform: scale(1.02);
             z-index: 10;
         }
+        
+        /* Hidden class for "Load More" logic */
+        .masonry-item.hidden-item {
+            display: none;
+        }
 
         /* --- Text Styling --- */
         .drop-cap::first-letter {
@@ -160,6 +170,28 @@
             position: absolute;
             left: 0;
             color: #C1AA67; /* Gold bullet */
+        }
+        
+        /* Utility for aspect ratios to ensure videos play */
+        .video-wrapper-vertical {
+            position: relative;
+            padding-bottom: 177.77%; /* 16:9 aspect ratio but vertical (9:16) */
+            height: 0;
+            overflow: hidden;
+        }
+        .video-wrapper-standard {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .video-wrapper-vertical iframe,
+        .video-wrapper-standard iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -315,33 +347,88 @@
 
     </main>
 
+    <!-- HIGHLIGHT REEL (YouTube Short) -->
+    <section class="reveal py-12 px-6 flex flex-col items-center relative z-10">
+        <h3 class="font-serif text-2xl text-ash mb-8 text-center">Resonance</h3>
+        <!-- Vertical Video Container using bulletproof CSS -->
+        <div class="w-full max-w-[340px] md:max-w-sm video-wrapper-vertical bg-black rounded-lg shadow-2xl border border-ash/10 relative overflow-hidden group">
+            <iframe 
+                src="https://www.youtube.com/embed/brXBTDNNMdA?controls=1&rel=0&playsinline=1" 
+                title="Event Highlights" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
     <!-- ARTISTIC DISPLAY (Digital Kumiko Gallery) -->
-    <section class="reveal px-4 md:px-12 py-24 bg-black/20">
+    <section class="reveal px-4 md:px-12 py-24 bg-black/20" id="gallery-section">
         <div class="text-center mb-16">
             <h3 class="font-serif text-3xl text-ash mb-2">Reflections</h3>
             <p class="text-xs uppercase tracking-widest text-gold">Moments from the Evening</p>
         </div>
         
-        <div class="masonry-grid max-w-7xl mx-auto">
-            <!-- Images from Prompt -->
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/001.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/002.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/003.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/004.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/005.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/006.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/007.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/008.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/009.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/010.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/011.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
-            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/JAN2026/012.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+        <div class="masonry-grid max-w-7xl mx-auto" id="image-grid">
+            <!-- Images will be managed by JS for load more -->
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A001.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A002.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A003.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A004.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A005.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A006.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A007.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A008.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A009.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A010.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A011.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A012.png" class="masonry-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            
+            <!-- Hidden Initially -->
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A013.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A014.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A015.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A016.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A017.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A018.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A019.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A020.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A021.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A022.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A023.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A024.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A025.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A026.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A027.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A028.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A029.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A030.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A031.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A032.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A033.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A034.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A035.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A036.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A037.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A038.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A039.png" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/B001.jpeg" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/B002.jpeg" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/B003.jpeg" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/B004.jpeg" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/B005.jpeg" class="masonry-item hidden-item w-full h-auto rounded-sm cursor-pointer shadow-lg" alt="Event Moment">
+        </div>
+
+        <div class="text-center mt-12">
+            <button id="loadMoreBtn" class="inline-block border border-gold text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500">
+                View More Moments
+            </button>
         </div>
     </section>
     
     <!-- HYPNOSIS SECTION -->
     <section class="reveal py-24 px-6 bg-charcoal relative overflow-hidden border-t border-kyara/30">
-         <div class="max-w-3xl mx-auto text-left">
+         <div class="max-w-3xl mx-auto text-left relative z-10">
             
             <!-- Text Content -->
             <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4 tracking-wide">HYPNOSIS</h3>
@@ -360,11 +447,10 @@
                 To experience the essence of this work, watch The Incense Journey video here:
             </p>
 
-            <!-- Video Embed -->
-            <div class="w-full aspect-video bg-black rounded-sm shadow-2xl border border-ash/10 relative overflow-hidden group">
+            <!-- Video Embed using bulletproof CSS -->
+            <div class="w-full video-wrapper-standard bg-black rounded-sm shadow-2xl border border-ash/10 relative overflow-hidden group">
                 <iframe 
-                    class="w-full h-full" 
-                    src="https://www.youtube.com/embed/MbgEwtxhEB4?controls=1&rel=0&modestbranding=1" 
+                    src="https://www.youtube.com/embed/MbgEwtxhEB4?controls=1&rel=0" 
                     title="The Incense Journey" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -372,6 +458,24 @@
                 </iframe>
             </div>
          </div>
+    </section>
+
+    <!-- NEXT EVENT / ANNOUNCEMENT -->
+    <section class="reveal py-24 px-6 bg-charcoal text-center border-t border-kyara/30">
+        <div class="max-w-2xl mx-auto border border-gold/30 p-12 relative overflow-hidden">
+            <!-- Decorative corner accent -->
+            <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-gold"></div>
+            <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold"></div>
+            
+            <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4">Join Us Next Time</h3>
+            <p class="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-6">February 15 &bull; HOM Healing Center</p>
+            <p class="text-ash/80 font-light leading-relaxed mb-8">
+                We invite you to gather with us again for another evening of connection and presence. 
+            </p>
+            <a href="https://www.facebook.com/share/15YEg8A3ZGY/" target="_blank" class="inline-block bg-gold/10 border border-gold text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500">
+                View Event Details
+            </a>
+        </div>
     </section>
 
     <!-- VENDORS SECTION -->
@@ -499,6 +603,42 @@
 
             const revealElements = document.querySelectorAll('.reveal');
             revealElements.forEach(el => observer.observe(el));
+            
+            // --- LOAD MORE FUNCTIONALITY ---
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const hiddenItems = document.querySelectorAll('.hidden-item');
+            
+            if(loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', () => {
+                    let revealedCount = 0;
+                    const itemsToReveal = 12; // How many to show per click
+                    
+                    // Convert NodeList to Array to loop easily
+                    const itemsArray = Array.from(hiddenItems);
+                    
+                    // Filter for items that are still hidden (checking display style essentially)
+                    // But since we are removing the class 'hidden-item', we just check for that class.
+                    const currentlyHidden = document.querySelectorAll('.hidden-item');
+
+                    for (let i = 0; i < currentlyHidden.length; i++) {
+                        if (revealedCount >= itemsToReveal) break;
+                        
+                        currentlyHidden[i].classList.remove('hidden-item');
+                        // Add a small fade-in animation
+                        currentlyHidden[i].style.opacity = '0';
+                        setTimeout(() => {
+                            currentlyHidden[i].style.opacity = '1';
+                        }, 50 + (i * 20)); // Staggered fade
+                        
+                        revealedCount++;
+                    }
+
+                    // Hide button if no more items
+                    if (document.querySelectorAll('.hidden-item').length === 0) {
+                        loadMoreBtn.style.display = 'none';
+                    }
+                });
+            }
         });
     </script>
 </body>
