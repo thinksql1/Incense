@@ -38,7 +38,7 @@
     </script>
 
     <style>
-        /* --- Quiet Design Principles --- */
+        /* --- Design Principles --- */
         body {
             background-color: #1A1A1A; /* Kuro Charcoal */
             color: #EBEAE5; /* Miyako Ash */
@@ -46,7 +46,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Smoke Animation --- */
+        /* --- Ambient Smoke Background --- */
         .fog-container {
             position: fixed;
             top: 0;
@@ -101,25 +101,22 @@
             filter: blur(0);
         }
 
-        /* --- Masonry Grid for Images --- */
+        /* --- Masonry Grid --- */
         .masonry-grid {
             column-count: 2;
             column-gap: 1.5rem;
         }
         @media (min-width: 768px) {
-            .masonry-grid {
-                column-count: 3;
-            }
+            .masonry-grid { column-count: 3; }
         }
         .masonry-item {
             break-inside: avoid;
             margin-bottom: 1.5rem;
-            opacity: 0.9;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            opacity: 0.95;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             border: 1px solid rgba(193, 170, 103, 0.05);
         }
         .masonry-item:hover {
-            opacity: 1;
             transform: scale(1.02);
             border-color: rgba(193, 170, 103, 0.3);
             z-index: 10;
@@ -183,15 +180,19 @@
     <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
         <div class="reveal active transition-delay-500">
             <p class="text-gold uppercase tracking-[0.3em] text-xs mb-6">Fragrance, Focus, and the Inner Sanctuary</p>
-            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 text-ash font-bold">
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 text-ash">
                 The Incense <br> Journey
             </h1>
             
             <div class="h-16 w-[1px] bg-gradient-to-b from-transparent via-gold to-transparent mx-auto my-8"></div>
             
-            <p class="font-sans font-light text-sm md:text-base tracking-widest uppercase text-ash/70">
+            <p class="font-sans font-light text-sm md:text-base tracking-widest uppercase text-ash/70 mb-10">
                 February 15 &nbsp;|&nbsp; HOM Healing Center
             </p>
+
+            <a href="https://www.facebook.com/share/15YEg8A3ZGY/" target="_blank" class="inline-block border border-gold/50 text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500">
+                View February 15 Details
+            </a>
         </div>
         
         <!-- Scroll Indicator -->
@@ -361,7 +362,7 @@
         
     </main>
 
-    <!-- ARTISTIC DISPLAY (Gallery Focused on Facilitator and the Journey) -->
+    <!-- ARTISTIC DISPLAY -->
     <section class="reveal px-4 md:px-12 py-24 bg-black/20" id="gallery-section">
         <div class="text-center mb-16">
             <h3 class="font-serif text-3xl text-ash mb-2">Reflections of the Craft</h3>
@@ -369,7 +370,6 @@
         </div>
         
         <div class="masonry-grid max-w-6xl mx-auto" id="image-grid">
-            <!-- Posing, Facilitating, and Tool shots only -->
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A001.png" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="The Craft">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A005.png" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="The Journey">
             <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A010.png" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Preparing the Space">
@@ -509,7 +509,6 @@
             <p class="mt-2 text-[10px] tracking-widest">Silence is a Feature.</p>
         </div>
 
-        <!-- Website Credit -->
         <div class="border-t border-ash/5 pt-8 mx-auto max-w-xs">
             <p class="text-[10px] uppercase tracking-[0.2em] leading-relaxed text-ash/30">
                 Website created by <span class="text-gold/50">Darrell Wright</span><br>
@@ -540,4 +539,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
