@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Incense Journey | Fragrance, Focus, and the Inner Sanctuary</title>
+    
+    <!-- Fonts: Playfair Display (Serif/Aristocrat) and Lato (Sans/Modernist) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Config for Ash & Ember Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ash: '#EBEAE5',      /* Day Background / Text */
+                        charcoal: '#1A1A1A', /* Night Background / Base */
+                        kyara: '#4A3B32',    /* Wood/Accents */
+                        gold: '#C1AA67',     /* Highlights/Sacra */
+                        sage: '#929C92',     /* Secondary */
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- Quiet Design Principles --- */
+        body {
+            background-color: #1A1A1A; /* Kuro Charcoal */
+            color: #EBEAE5; /* Miyako Ash */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Smoke Animation --- */
+        .fog-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none; 
+        }
+
+        .fog-img {
+            position: absolute;
+            height: 100vh;
+            width: 300vw;
+            z-index: 1;
+            opacity: 0.4;
+            background: radial-gradient(ellipse at center, rgba(193, 170, 103, 0.1) 0%, rgba(0,0,0,0) 70%);
+            animation: fog 60s linear infinite;
+            pointer-events: none; 
+        }
+
+        .fog-img-2 {
+            z-index: 2;
+            opacity: 0.2;
+            background: radial-gradient(ellipse at center, rgba(235, 234, 229, 0.08) 0%, rgba(0,0,0,0) 60%);
+            animation: fog 40s linear infinite reverse;
+            bottom: 0;
+            position: absolute;
+            height: 100vh;
+            width: 300vw;
+            pointer-events: none;
+        }
+
+        @keyframes fog {
+            0% { transform: translate3d(-50px, 0, 0); }
+            50% { transform: translate3d(50px, -20px, 0); }
+            100% { transform: translate3d(-50px, 0, 0); }
+        }
+
+        /* --- Scrollytelling Reveals --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(5px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* --- Masonry Grid for Images --- */
+        .masonry-grid {
+            column-count: 2;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            border: 1px solid rgba(193, 170, 103, 0.05);
+        }
+        .masonry-item:hover {
+            opacity: 1;
+            transform: scale(1.02);
+            border-color: rgba(193, 170, 103, 0.3);
+            z-index: 10;
+        }
+
+        /* --- Text Styling --- */
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding-right: 0.5rem;
+            padding-top: 0.1rem;
+            font-family: 'Playfair Display', serif;
+            color: #C1AA67; 
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #4A3B32; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C1AA67; }
+        
+        .vendor-list li {
+            position: relative;
+            padding-left: 1rem;
+        }
+        .vendor-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #C1AA67;
+        }
+        
+        .video-wrapper-standard {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-wrapper-standard iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-gold selection:text-charcoal">
+
+    <!-- Ambient Smoke Background -->
+    <div class="fog-container">
+        <div class="fog-img"></div>
+        <div class="fog-img-2"></div>
+    </div>
+
+    <!-- Navigation / Header -->
+    <nav class="fixed top-0 w-full p-6 z-50 mix-blend-difference flex justify-between items-center opacity-0 animate-fade-in" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+        <div class="text-xs tracking-[0.2em] uppercase font-bold text-gold">The Incense Journey</div>
+        <div class="text-xs tracking-[0.2em] uppercase font-bold text-ash">Feb 15</div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
+        <div class="reveal active transition-delay-500">
+            <p class="text-gold uppercase tracking-[0.3em] text-xs mb-6">Fragrance, Focus, and the Inner Sanctuary</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 text-ash font-bold">
+                The Incense <br> Journey
+            </h1>
+            
+            <div class="h-16 w-[1px] bg-gradient-to-b from-transparent via-gold to-transparent mx-auto my-8"></div>
+            
+            <p class="font-sans font-light text-sm md:text-base tracking-widest uppercase text-ash/70">
+                February 15 &nbsp;|&nbsp; HOM Healing Center
+            </p>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 animate-bounce opacity-50">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <!-- INTRO NARRATIVE -->
+    <section class="max-w-3xl mx-auto px-6 py-24 md:py-32 leading-relaxed text-lg md:text-xl text-ash/90 relative">
+        <div class="reveal">
+            <p class="mb-8 drop-cap font-light">
+                On February 15, we invite you to the HOM Healing Center for a sensory exploration designed to still the mind and open the inner sanctuary. This experience is a curated path through the world's most sacred resins and woods, selected to settle the nervous system and invite a state of steady awareness.
+            </p>
+            <p class="font-light">
+                Guided by <span class="text-gold border-b border-gold/30 pb-0.5">John Launius</span>, this journey uses fragrance as a bridge to focus. Each material is chosen not just for its aroma, but for its historical and biological ability to clear the gate of the mind, revealing the quiet place that was always there.
+            </p>
+        </div>
+    </section>
+
+    <!-- THE SCENT JOURNEY (Scrollytelling) -->
+    <main class="space-y-32 pb-32">
+        
+        <!-- 1. Borneol Camphor -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 border-l-2 border-kyara pl-8 py-4">
+                <h2 class="font-serif text-4xl text-ash mb-2">Borneol Camphor</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Drybalanops aromatic &bull; Borneo</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    "Brain of the Dragon." Borneol does not invite the mind to wander. It clears the gate, stills the breath, and reveals the quiet place that was always there.
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pl-4 border-l border-gold/30">
+                    “Reveals the quiet place that was always there.”
+                </blockquote>
+            </div>
+            <div class="order-1 md:order-2 h-64 md:h-96 bg-gradient-to-br from-charcoal to-ash/10 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550948390-6eb7fa77e20a?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">1</div>
+            </div>
+        </section>
+
+        <!-- 2. Sandalwood -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-1 md:order-1 h-64 md:h-96 bg-gradient-to-bl from-charcoal to-kyara/20 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1615486221535-64903328c644?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">2</div>
+            </div>
+            <div class="order-2 md:order-2 border-r-2 border-kyara pr-8 py-4 text-right">
+                <h2 class="font-serif text-4xl text-ash mb-2">Sandalwood</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Santalum album &bull; India</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    Its soft presence supports emotional regulation and steady awareness. In stillness, creativity remembers how to breathe.
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pr-4 border-r border-gold/30">
+                    “Creativity remembers how to breathe.”
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- 3. Frankincense -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 border-l-2 border-kyara pl-8 py-4">
+                <h2 class="font-serif text-4xl text-ash mb-2">Frankincense</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Boswellia sacra &bull; Oman</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    Elevates attention without agitation. Supports clarity and openness. Clarity emerges when attention is unforced.
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pl-4 border-l border-gold/30">
+                    “Clarity emerges when attention is unforced.”
+                </blockquote>
+            </div>
+            <div class="order-1 md:order-2 h-64 md:h-96 bg-gradient-to-br from-charcoal to-gold/10 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1605732559281-9b168a221443?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">3</div>
+            </div>
+        </section>
+
+        <!-- 4. Palo Santo -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-1 md:order-1 h-64 md:h-96 bg-gradient-to-bl from-charcoal to-sage/20 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1628151516084-2131920df712?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">4</div>
+            </div>
+            <div class="order-2 md:order-2 border-r-2 border-kyara pr-8 py-4 text-right">
+                <h2 class="font-serif text-4xl text-ash mb-2">Palo Santo</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Bursara graveolens &bull; Peru</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    Palo Santo does not impose stillness. It waits until what is false releases its grip, and only then does the sacred make itself known.
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pr-4 border-r border-gold/30">
+                    “Only then does the sacred make itself known.”
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- 5. Labdanum -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 border-l-2 border-kyara pl-8 py-4">
+                <h2 class="font-serif text-4xl text-ash mb-2">Labdanum</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Cistus ladanifer &bull; Mediterranean</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    Encourages emotional depth and release. Containment and safety, expanding creativity and contemplation. 
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pl-4 border-l border-gold/30">
+                    “What is held with care begins to soften.”
+                </blockquote>
+            </div>
+            <div class="order-1 md:order-2 h-64 md:h-96 bg-gradient-to-br from-charcoal to-kyara/40 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600609842388-3e4b78c94297?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">5</div>
+            </div>
+        </section>
+
+        <!-- 6. Aloeswood -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-1 md:order-1 h-64 md:h-96 bg-gradient-to-bl from-charcoal to-sage/20 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1594380625345-42df292945d8?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">6</div>
+            </div>
+            <div class="order-2 md:order-2 border-r-2 border-kyara pr-8 py-4 text-right">
+                <h2 class="font-serif text-4xl text-ash mb-2">Aloeswood</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Aquilaria species &bull; SE Asia</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    A quiet complexity. Rewards patience and presence, inviting refinement of inner perception.
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pr-4 border-r border-gold/30">
+                    “Refinement reveals itself over time.”
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- 7. Kyphi -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 border-l-2 border-kyara pl-8 py-4">
+                <h2 class="font-serif text-4xl text-ash mb-2">Kyphi</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Traditional Blend &bull; Ancient Egypt</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    Kyphi harmonizes the senses and restores. Integration is where the experience becomes usable.
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pl-4 border-l border-gold/30">
+                    “Integration is where the experience becomes usable.”
+                </blockquote>
+            </div>
+            <div class="order-1 md:order-2 h-64 md:h-96 bg-gradient-to-br from-charcoal to-gold/20 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">7</div>
+            </div>
+        </section>
+
+        <!-- 8. Hōjōu-kō Gokuhin -->
+        <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-1 md:order-1 h-64 md:h-96 bg-gradient-to-bl from-charcoal to-kyara/50 rounded-sm relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="text-9xl text-ash/5 font-serif select-none">8</div>
+            </div>
+            <div class="order-2 md:order-2 border-r-2 border-gold pr-8 py-4 text-right">
+                <h2 class="font-serif text-4xl text-ash mb-2">Hōjōu-kō Gokuhin</h2>
+                <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Firebird Select &bull; Heian Period</div>
+                <p class="text-ash/80 font-light leading-7 mb-6">
+                    When fragrance is present, attention returns home. This is how the inner sanctuary opens.
+                </p>
+                <blockquote class="font-serif italic text-xl text-gold/80 pr-4 border-r border-gold/30">
+                    “Attention returns home.”
+                </blockquote>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- ARTISTIC DISPLAY (Gallery Focused on Facilitator and the Journey) -->
+    <section class="reveal px-4 md:px-12 py-24 bg-black/20" id="gallery-section">
+        <div class="text-center mb-16">
+            <h3 class="font-serif text-3xl text-ash mb-2">Reflections of the Craft</h3>
+            <p class="text-xs uppercase tracking-widest text-gold">John Launius & The Journey</p>
+        </div>
+        
+        <div class="masonry-grid max-w-6xl mx-auto" id="image-grid">
+            <!-- Posing, Facilitating, and Tool shots only -->
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A001.png" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="The Craft">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A005.png" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="The Journey">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A010.png" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Preparing the Space">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/A020.png" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Tools of the Journey">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/B002.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="John Launius">
+            <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/Incense/C2C/B005.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Preparation Detail">
+        </div>
+    </section>
+    
+    <!-- HYPNOSIS SECTION -->
+    <section class="reveal py-24 px-6 bg-charcoal relative overflow-hidden border-t border-kyara/30">
+         <div class="max-w-3xl mx-auto text-left relative z-10">
+            <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4 tracking-wide">HYPNOSIS</h3>
+            <div class="w-16 h-[1px] bg-gold mb-6"></div>
+            <p class="text-ash/80 font-light leading-7 mb-6">
+                Through Shihan Wellness, you can engage with John Launius for <span class="text-gold">Fragrance Hypnosis™</span> in person, as well as Conversational Hypnosis offered both in person and virtually, anywhere in the world.
+            </p>
+            <p class="text-ash/80 font-light leading-7 mb-8">
+                Hypnosis is the process of reaching a deeply relaxed and focused state, allowing access to the part of the mind that governs habits, patterns, and automatic responses. From this elevated state of awareness, change becomes natural, revealing greater clarity, balance, and your optimal self.
+            </p>
+            <a href="http://www.shihan-wellness.com/hypnosis" target="_blank" class="inline-block border border-gold text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500 mb-12">
+                Learn More
+            </a>
+            
+            <p class="text-ash/60 text-sm font-light italic mb-6">
+                To experience the essence of this work, watch The Incense Journey video here:
+            </p>
+
+            <div class="w-full video-wrapper-standard bg-black rounded-sm shadow-2xl border border-ash/10 relative overflow-hidden group">
+                <iframe 
+                    src="https://www.youtube.com/embed/MbgEwtxhEB4?controls=1&rel=0" 
+                    title="The Incense Journey" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+         </div>
+    </section>
+
+    <!-- NEXT EVENT / ANNOUNCEMENT -->
+    <section class="reveal py-24 px-6 bg-charcoal text-center border-t border-kyara/30">
+        <div class="max-w-2xl mx-auto border border-gold/30 p-12 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-gold"></div>
+            <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold"></div>
+            
+            <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4">Join Us Next Time</h3>
+            <p class="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-6">March 15 &bull; HOM Healing Center</p>
+            <p class="text-ash/80 font-light leading-relaxed">
+                Continuing the exploration of presence. We invite you to join us for our March session of connection and fragrance.
+            </p>
+        </div>
+    </section>
+
+    <!-- VENDORS SECTION -->
+    <section class="reveal py-24 px-6 bg-charcoal text-center border-t border-kyara/30 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-ash/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+        <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4">Recommended Vendors & Artisans</h3>
+        <p class="text-ash/60 mb-12 max-w-xl mx-auto text-sm font-light">
+            Sourcing high-quality incense is part of the practice. Below are trusted vendors who uphold the traditions of purity and sourcing integrity.
+        </p>
+        
+        <div class="max-w-4xl mx-auto text-left grid md:grid-cols-2 gap-8">
+            <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500">
+                <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                    <h4 class="font-serif text-xl text-ash">Yen-ology</h4>
+                    <a href="http://www.yen-ology.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+                </div>
+                <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                    <li>Proud sponsor of The Incense Journey™</li>
+                    <li>Receive 10% off when you mention Kōmoto, John Launius, and Shihan Wellness</li>
+                </ul>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500">
+                <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                    <h4 class="font-serif text-xl text-ash">Scents of Earth</h4>
+                    <a href="http://www.scents-of-earth.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+                </div>
+                <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                    <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+                    <li>One-time only code for orders: <strong>L2026</strong> for 15% off</li>
+                </ul>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500">
+                <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                    <h4 class="font-serif text-xl text-ash">Mermade Arts</h4>
+                    <a href="http://www.mermadearts.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+                </div>
+                <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                    <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+                </ul>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500">
+                <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                    <h4 class="font-serif text-xl text-ash">Japan Incense</h4>
+                    <a href="http://www.Japanincense.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+                </div>
+                <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                    <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+                </ul>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500">
+                <h4 class="font-serif text-xl text-ash mb-2">The Soul Place</h4>
+                <p class="text-ash/60 italic text-sm mb-4">Electric incense warmers and related items</p>
+                <div class="flex flex-col gap-3">
+                     <a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors flex items-center group">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gold mr-2 group-hover:scale-125 transition-transform"></span> Classic Heater
+                     </a>
+                     <a href="https://the-soul-place.square.site/product/premium-heater/OIA7G2KWJI2TFURFYFA7QCWP" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors flex items-center group">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gold mr-2 group-hover:scale-125 transition-transform"></span> Premium Heater
+                     </a>
+                </div>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500">
+                <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                    <h4 class="font-serif text-xl text-ash">Apothecary’s Garden</h4>
+                    <a href="http://www.Apothecarysgarden.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+                </div>
+                <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                    <li>Canadian source for premium and rare incense resins and products</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-16 text-center text-ash/40 relative">
+        <div class="mb-8">
+            <svg class="w-6 h-6 mx-auto text-gold/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            <p class="text-xs uppercase tracking-widest">&copy; 2026 The Incense Journey. All rights reserved.</p>
+            <p class="mt-2 text-[10px] tracking-widest">Silence is a Feature.</p>
+        </div>
+
+        <!-- Website Credit -->
+        <div class="border-t border-ash/5 pt-8 mx-auto max-w-xs">
+            <p class="text-[10px] uppercase tracking-[0.2em] leading-relaxed text-ash/30">
+                Website created by <span class="text-gold/50">Darrell Wright</span><br>
+                Senior Student in The Way of Incense.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
