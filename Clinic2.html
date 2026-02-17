@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Incense Material Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #cbd5e1; /* Slate 300 */
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid #334155;
+            backdrop-filter: blur(4px);
+        }
+        .data-label {
+            color: #64748b; /* Slate 500 */
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .data-value {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+        .accent-amber { color: #fbbf24; }
+        .accent-cyan { color: #22d3ee; }
+        .accent-rose { color: #fb7185; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-12 border-b border-slate-800 pb-6">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-slate-100 tracking-tight">CLINICAL INCENSE DATABASE <span class="text-emerald-500 text-lg align-top">v1.0</span></h1>
+            <div class="flex flex-col md:flex-row gap-4 mt-4 font-mono text-xs text-slate-500">
+                <span>// REF: THERMAL_LISTENING_PROTOCOLS</span>
+                <span>// STATUS: ACTIVE</span>
+                <span>// RENDER_MODE: DARK_LAB</span>
+            </div>
+        </header>
+
+        <div id="grid-container" class="grid grid-cols-1 gap-8">
+            <!-- Data Injection Point -->
+        </div>
+        
+        <footer class="mt-16 text-center border-t border-slate-800 pt-8 text-slate-600 text-xs font-mono">
+            END OF TRANSMISSION // DATASET COMPLETE
+        </footer>
+    </div>
+
+    <script>
+        const materials = [
+          {
+            "id": 1,
+            "materialName": "Borneol Camphor",
+            "gradeType": "Cleaned (refined/purified crystals; typically >96% purity)",
+            "scientificSourceName": "Dryobalanops aromatica (traditional Sumatra camphor) or refined Cinnamomum camphora / Borneolum syntheticum",
+            "category": "Crystalline terpenoid / isolate",
+            "clinicalEffectLabel": "Cognitive stimulant / permeability enhancer",
+            "thermalSweetSpotC": "70–100",
+            "keyActiveMolecules": [
+              "(+)-Borneol (bicyclic monoterpene alcohol)",
+              "Isoborneol",
+              "Camphor (bicyclic monoterpene ketone)"
+            ],
+            "mechanismNotes": "BBB permeability enhancement (tight junction + efflux modulation); GABA-A modulation; TRPM8 trigeminal cooling/opening sensation.",
+            "safetyNotes": "Avoid around infants/young children/pregnancy; concentrated fumes can irritate; ventilate well.",
+            "warmingListeningCurve": {
+              "phase1_lowTempOnset": {"tempC": "50–70", "notes": "Icy/minty ‘dry ice’, sterile; sublimation dominates."},
+              "phase2_heartSweetSpot": {"tempC": "70–100", "notes": "Clean woody-camphoraceous; pronounced airway opening + alertness."},
+              "phase3_highTempEdge": {"tempC": ">120", "notes": "Acrid/chemical harshness; eye-watering if too hot; depletes fast."}
+            },
+            "heaterPracticalLayer": {
+              "startTempRamp": "Start ~60°C and ramp slowly; high heat exhausts crystals rapidly.",
+              "materialPrep": "Use whole crystals/shards; don’t powder unless blending; tiny amount is sufficient.",
+              "stopSigns": "Chemical biting, coughing, or eye-watering = too hot."
+            }
+          },
+          {
+            "id": 2,
+            "materialName": "Black Myrrh",
+            "scientificSourceName": "Commiphora myrrha (high-grade dark oleo-gum-resin)",
+            "category": "Oleo-gum-resin",
+            "gradeType": "‘Black’ (oil-rich, sticky, dark; distinct from drier grades)",
+            "clinicalEffectLabel": "Analgesic / anti-inflammatory / grounding",
+            "thermalSweetSpotC": "90–130",
+            "keyActiveMolecules": [
+              "Furanoeudesma-1,3-diene (furanosesquiterpene)",
+              "Curzerene",
+              "Lindestrene",
+              "Methoxyfuranoguaia-9-ene-8-one"
+            ],
+            "mechanismNotes": "Analgesia via opioid receptor interactions (blocked by naloxone in studies); anti-inflammatory pathways referenced in dataset.",
+            "safetyNotes": "Sticky lacquer residue; overheating produces ‘hot tires/burning plastic’ cues; use foil/mica; stop immediately on scorch cues.",
+            "heaterPracticalLayer": {
+              "startTempRamp": "Start ~90°C; ramp slowly toward 120–130°C.",
+              "materialPrep": "Freeze before crushing; MUST use foil cup or mica to protect heater plate.",
+              "stopSigns": "‘Hot tires’/burning plastic smell = gum matrix scorching."
+            }
+          },
+          {
+            "id": 3,
+            "materialName": "Black Boswellia sacra (Frankincense)",
+            "scientificSourceName": "Boswellia sacra (Oman)",
+            "category": "Oleo-gum-resin",
+            "gradeType": "‘Black’ / Black Hojari / Luban Zakar (dark, sticky; humid harvest/chemotype related)",
+            "clinicalEffectLabel": "Anxiolytic / antidepressant / bronchodilator",
+            "thermalSweetSpotC": "80–140",
+            "keyActiveMolecules": [
+              "α-Pinene",
+              "Limonene",
+              "Incensole acetate (varies by chemotype)",
+              "Octyl acetate"
+            ],
+            "mechanismNotes": "α-Pinene: anti-inflammatory/bronchodilatory + AChE inhibition; incensole acetate: TRPV3-linked anxiolytic/antidepressant effects cited as driver of psychoactive profile (noting papyrifera highest, but present in some sacra chemotypes).",
+            "safetyNotes": "Generally safe; asthmatics should still be cautious (high flux may irritate).",
+            "heaterPracticalLayer": {
+              "startTempRamp": "Operate within 80–140°C window for non-combustive listening; avoid pushing into smoke.",
+              "stopSigns": "Onset of harsh smoke/pyrolytic odor = too hot."
+            }
+          },
+          {
+            "id": 4,
+            "materialName": "Khinjuk Mastic / East Indian Mastic",
+            "scientificSourceName": "Pistacia khinjuk (Egypt/Iran/Turkey/Pakistan listed)",
+            "category": "Oleoresin",
+            "gradeType": "Raw ‘Khinjuk’ mastic (distinct from Chios mastic P. lentiscus)",
+            "clinicalEffectLabel": "Antimicrobial / respiratory tonic / gastric protectant",
+            "thermalSweetSpotC": "70–110",
+            "keyActiveMolecules": [
+              "α-Pinene",
+              "Phellandrene",
+              "γ-Terpinene",
+              "Masticadienonic acid (triterpene)"
+            ],
+            "safetyNotes": "Possible Anacardiaceae sensitization (cashew/pistachio/mango/poison ivy family).",
+            "warmingListeningCurve": {
+              "phase1_lowTempOnset": {"tempC": "60–80", "notes": "Turpentine-like green pine; solvent-like crisp top."},
+              "phase2_heartSweetSpot": {"tempC": "80–110", "notes": "Warm woody/carrot seed/balsamic; ‘drying’ mucus feel."},
+              "phase3_highTempEdge": {"tempC": ">130", "notes": "Harsh fuel / burning varnish odor."}
+            },
+            "heaterPracticalLayer": {
+              "startTempRamp": "Start ~60°C; it can become very runny.",
+              "materialPrep": "Freeze to break; use deep foil boat (flows/spreads).",
+              "stopSigns": "‘Hot varnish/paint thinner’ = overheated terpenes + resin acid breakdown."
+            }
+          },
+          {
+            "id": 5,
+            "materialName": "Benzoin Sumatra",
+            "scientificSourceName": "Styrax benzoin / Styrax paralleloneurum (Sumatra, Indonesia)",
+            "category": "Balsamic resin",
+            "gradeType": "‘Almonds’ (white pieces) in grey/brown matrix (Grade A/B)",
+            "clinicalEffectLabel": "Sedative / expectorant / anti-inflammatory",
+            "thermalSweetSpotC": "90–120",
+            "keyActiveMolecules": [
+              "Cinnamic acid",
+              "Cinnamyl cinnamate",
+              "Benzoic acid",
+              "Vanillin",
+              "Styrene"
+            ],
+            "safetyNotes": "CRITICAL: narrow window; overheating yields severe ‘throat catch’/coughing and acrid burnt sugar.",
+            "warmingListeningCurve": {
+              "phase1_lowTempOnset": {"tempC": "80–100", "notes": "Sweet vanilla/cinnamon + slight medicinal/bandage (styrene)."},
+              "phase2_heartSweetSpot": {"tempC": "100–120", "notes": "Rich balsamic crème brûlée; strong comfort/heaviness."},
+              "phase3_highTempEdge": {"tempC": ">135", "notes": "‘Throat catch’ + acrid burnt sugar = stop immediately."}
+            },
+            "heaterPracticalLayer": {
+              "startTempRamp": "Start ~90°C; creep upward cautiously.",
+              "materialPrep": "Prefer white ‘almonds’ (purer resin); avoid powdering unless very controlled.",
+              "stopSigns": "Any throat irritation/stinging = immediate stop."
+            }
+          },
+          {
+            "id": 6,
+            "materialName": "Honey Frankincense / Black Frankincense",
+            "scientificSourceName": "Boswellia neglecta (Kenya/Ethiopia/Somalia)",
+            "category": "Oleoresin (thurimel-type; minimal gum fraction described)",
+            "clinicalEffectLabel": "Anxiolytic / bronchodilator / vulnerary",
+            "thermalSweetSpotC": "70–110",
+            "keyActiveMolecules": [
+              "α-Pinene",
+              "α-Thujene",
+              "Terpinen-4-ol",
+              "Boswellic acids (primarily in residue)"
+            ],
+            "safetyNotes": "Generally very safe; watch visually for smoke because it doesn’t ‘burnt toast’ as early as gummy resins.",
+            "warmingListeningCurve": {
+              "phase1_lowTempOnset": {"tempC": "60–80", "notes": "Fir needle, crisp green, slight mint/camphor."},
+              "phase2_heartSweetSpot": {"tempC": "80–110", "notes": "Honey/pollen/soft amber; chest expansion; mental fog clears."},
+              "phase3_highTempEdge": {"tempC": ">130", "notes": "Eventually smells like burnt oil/overheated pine; watch for blue smoke."}
+            },
+            "heaterPracticalLayer": {
+              "startTempRamp": "Start ~70°C; melts into a liquid pool rapidly.",
+              "materialPrep": "Use deep foil cup; behaves like oil once heated.",
+              "stopSigns": "Blue smoke."
+            }
+          },
+          {
+            "id": 7,
+            "materialName": "Labdanum / Cistus / Rockrose (Spain)",
+            "scientificSourceName": "Cistus ladanifer (Spain)",
+            "category": "Oleoresin / absolute",
+            "gradeType": "Labdanum gum / absolute (semi-solid paste)",
+            "clinicalEffectLabel": "Sedative / fixative / grounding / antimicrobial",
+            "thermalSweetSpotC": "80–110",
+            "keyActiveMolecules": [
+              "Labdane-type diterpenes (e.g., labdanoic acid)",
+              "Viridiflorol",
+              "Ledol",
+              "Pinocarveol"
+            ],
+            "safetyNotes": "Generally safe, but overheats into acrid resin-acid character quickly.",
+            "warmingListeningCurve": {
+              "phase1_lowTempOnset": {"tempC": "60–80", "notes": "Sweet herbaceous/floral sticky-green; raspberry-like nuance."},
+              "phase2_heartSweetSpot": {"tempC": "80–110", "notes": "Deep musk/leather/ambergris; heavy relaxation + ‘enclosure’ feel."}
+            }
+          },
+          {
+            "id": 8,
+            "materialName": "Sandalwood (East Indian)",
+            "scientificSourceName": "Santalum album (India/Timor) heartwood",
+            "category": "Fragrant wood",
+            "gradeType": "Mysore / Old Mountain (high oil content heartwood)",
+            "clinicalEffectLabel": "Sedative / anxiolytic / cool-dry",
+            "thermalSweetSpotC": "120–160",
+            "keyActiveMolecules": [
+              "α-Santalol",
+              "β-Santalol"
+            ],
+            "safetyNotes": "High safety profile for inhalation of wood vapor (per dataset).",
+            "warmingListeningCurve": {
+              "phase1_lowTempOnset": {"tempC": "100–120", "notes": "Dry woody, faint cedar/sawdust/paper-like."},
+              "phase2_heartSweetSpot": {"tempC": "130–160", "notes": "Buttery creamy precious-wood sweetness; emotional centering."},
+              "phase3_highTempEdge": {"tempC": ">180", "notes": "Toasted wood/campfire + acrid smoke = end of oil distillation phase."}
+            },
+            "heaterPracticalLayer": {
+              "startTempRamp": "Start ~120°C; wood needs higher heat than resins.",
+              "materialPrep": "Thin chips/slivers/coarse powder; chips last longer, powder is intense burst.",
+              "stopSigns": "Smoke."
+            }
+          },
+          {
+            "id": 9,
+            "materialName": "Kyphi / Kapet (Mermade Magical formula)",
+            "scientificSourceName": "Ancient Egyptian formula reconstruction",
+            "category": "Formula (compound incense)",
+            "gradeType": "Wet/kneaded incense with honey/wine/raisins (per dataset)",
+            "clinicalEffectLabel": "Soporific / ritual induction / oneiric",
+            "thermalSweetSpotC": "Phased release 80→150",
+            "keyActiveMolecules": [
+              "α-Pinene",
+              "Limonene",
+              "Cinnamaldehyde",
+              "Santalol",
+              "Labdanes",
+              "Ethanol/esters (from wine/raisins)"
+            ],
+            "safetyNotes": "Sugar content burns easily; avoid high temps that produce bitter caramel/carbon.",
+            "warmingListeningCurve": {
+              "phase1_lowTempOnset": {"tempC": "60–90", "notes": "Wine/boozy fruit + citrus/mint/spices; alcohol/esters evaporate."},
+              "phase2_heartSweetSpot": {"tempC": "90–130", "notes": "Sweet baked goods + complex resin bouquet; trance/dream-like heaviness."},
+              "phase3_highTempEdge": {"tempC": ">140", "notes": "Burnt sugar/bitter caramel/char if pushed."}
+            },
+            "heaterPracticalLayer": {
+              "startTempRamp": "Start LOW (~70°C) and ramp slowly to preserve the ‘wine phase’ before resin phase.",
+              "materialPrep": "Flatten into small disc on foil/mica (avoid ball shape).",
+              "stopSigns": "Burnt toast / bitter caramel."
+            }
+          }
+        ];
+
+        const container = document.getElementById('grid-container');
+
+        materials.forEach(item => {
+            // Main Container
+            const wrapper = document.createElement('div');
+            wrapper.className = "glass-panel rounded-lg overflow-hidden flex flex-col lg:flex-row";
+
+            // Left Side: Header & Core Info (30%)
+            const leftCol = document.createElement('div');
+            leftCol.className = "bg-slate-800/50 p-6 lg:w-1/3 border-b lg:border-b-0 lg:border-r border-slate-700 flex flex-col justify-between";
+            leftCol.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="font-mono text-emerald-500 text-xs border border-emerald-500/30 px-2 py-1 rounded">ID: ${item.id.toString().padStart(3, '0')}</span>
+                        <span class="font-mono text-slate-500 text-xs">${item.category}</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2 leading-tight">${item.materialName}</h2>
+                    <p class="text-xs text-slate-400 font-mono mb-6">${item.scientificSourceName}</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="data-label mb-1">Grade Type</div>
+                            <div class="data-value text-sm text-slate-300 leading-snug">${item.gradeType || 'Standard'}</div>
+                        </div>
+                        <div>
+                            <div class="data-label mb-1">Clinical Effect</div>
+                            <div class="data-value text-amber-400 font-semibold">${item.clinicalEffectLabel}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-700">
+                    <div class="data-label mb-2">Active Molecules</div>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.keyActiveMolecules.map(m => `<span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-200 font-mono">${m}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Right Side: Technical Data (70%)
+            const rightCol = document.createElement('div');
+            rightCol.className = "p-6 lg:w-2/3 space-y-8";
+
+            // Thermal Data
+            let thermalHtml = '';
+            if (item.warmingListeningCurve) {
+                const phases = [
+                    { key: 'phase1_lowTempOnset', name: '01. ONSET', color: 'text-cyan-400', border: 'border-cyan-500/30' },
+                    { key: 'phase2_heartSweetSpot', name: '02. SWEET SPOT', color: 'text-amber-400', border: 'border-amber-500/30' },
+                    { key: 'phase3_highTempEdge', name: '03. LIMIT', color: 'text-rose-400', border: 'border-rose-500/30' }
+                ];
+                
+                const gridItems = phases.map(p => {
+                    const data = item.warmingListeningCurve[p.key];
+                    if(!data) return '';
+                    return `
+                        <div class="bg-slate-900/50 p-3 rounded border ${p.border}">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-mono text-xs font-bold ${p.color}">${p.name}</span>
+                                <span class="font-mono text-xs text-white bg-slate-800 px-2 py-0.5 rounded">${data.tempC}°C</span>
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">${data.notes}</p>
+                        </div>
+                    `;
+                }).join('');
+                
+                thermalHtml = `
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="h-1.5 w-1.5 rounded-full bg-amber-500"></div>
+                            <h3 class="data-label text-amber-500">Thermal Profile</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            ${gridItems}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Mechanism & Protocols
+            const heater = item.heaterPracticalLayer || {};
+            const bottomHtml = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="h-1.5 w-1.5 rounded-full bg-cyan-500"></div>
+                            <h3 class="data-label text-cyan-500">Mechanism & Prep</h3>
+                        </div>
+                        <div class="space-y-4 font-mono text-xs">
+                            ${item.mechanismNotes ? `
+                            <div class="pl-3 border-l-2 border-slate-700">
+                                <span class="block text-slate-500 mb-0.5">ACTION:</span>
+                                <span class="text-slate-300">${item.mechanismNotes}</span>
+                            </div>` : ''}
+                             ${heater.materialPrep ? `
+                            <div class="pl-3 border-l-2 border-slate-700">
+                                <span class="block text-slate-500 mb-0.5">PREP:</span>
+                                <span class="text-slate-300">${heater.materialPrep}</span>
+                            </div>` : ''}
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="h-1.5 w-1.5 rounded-full bg-rose-500"></div>
+                            <h3 class="data-label text-rose-500">Safety Protocols</h3>
+                        </div>
+                        <div class="bg-rose-950/20 border border-rose-900/50 p-4 rounded text-xs">
+                             <div class="mb-3">
+                                <span class="block font-bold text-rose-400 mb-1">WARNINGS:</span>
+                                <p class="text-rose-200/80 leading-relaxed">${item.safetyNotes || 'Standard protocols apply.'}</p>
+                             </div>
+                             ${heater.stopSigns ? `
+                             <div>
+                                <span class="block font-bold text-rose-400 mb-1">STOP SIGNS:</span>
+                                <p class="text-rose-200/80 leading-relaxed">${heater.stopSigns}</p>
+                             </div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            rightCol.innerHTML = thermalHtml + bottomHtml;
+            
+            wrapper.appendChild(leftCol);
+            wrapper.appendChild(rightCol);
+            container.appendChild(wrapper);
+        });
+    </script>
+</body>
+</html>
