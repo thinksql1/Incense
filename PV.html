@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darrell Wright | Recommended Vendors</title>
+
+    <!-- Fonts: High-Low Pairing (Playfair + Inter + Space Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Tailwind CSS (for layout utility only, custom styles handle the aesthetic) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* * PHASE 1: DESIGN TOKENS (The "Aether" System) */
+      :root {
+        /* Palette: Obsidian Base */
+        --bg-dark: #0f1b27;
+        --text-main: #f2f2f2;
+        --text-muted: #94a3b8;
+        
+        /* Accents: Sonic Spectrum */
+        --accent-cyan: #0abdc6;       /* Clarity */
+        --accent-violet: #9d4edd;     /* Spirit */
+        --accent-gold: #e0aa3e;       /* Warmth */
+        --accent-rose: #e63946;       /* Root/Vitality */
+
+        /* Glassmorphism Variables */
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+        --glass-blur: 16px;
+
+        /* Spacing & Type */
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+        --font-mono: 'Space Mono', monospace;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        background-image: 
+          radial-gradient(circle at 10% 20%, rgba(10, 189, 198, 0.08), transparent 30%),
+          radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.08), transparent 30%);
+        background-attachment: fixed;
+        font-family: var(--font-sans);
+        color: var(--text-main);
+        margin: 0;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Typography */
+      h1, h2, h3, h4 {
+        font-family: var(--font-serif);
+        font-weight: 400;
+        margin: 0;
+      }
+
+      h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 0.5rem; }
+      h2 { font-size: 2rem; color: var(--text-main); margin-bottom: 1rem; }
+      h3 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.5rem; }
+      
+      a { color: inherit; text-decoration: none; transition: color 0.2s; }
+      a:hover { color: var(--accent-cyan); }
+      
+      p, li {
+        color: var(--text-muted);
+        font-size: 1rem;
+      }
+
+      /* Mono Tags */
+      .tag {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent-cyan);
+        display: inline-block;
+        margin-bottom: 0.5rem;
+      }
+
+      .tag-bordered {
+        border: 1px solid var(--glass-border);
+        padding: 0.25rem 0.75rem;
+        border-radius: 99px;
+        background: rgba(10, 189, 198, 0.05);
+      }
+
+      /* Glass Panel Component */
+      .glass-panel {
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        height: 100%; /* For grid consistency */
+        display: flex;
+        flex-direction: column;
+      }
+
+      .glass-panel:hover {
+        border-color: rgba(255,255,255,0.15);
+        transform: translateY(-2px);
+      }
+
+      /* Noise Texture Overlay */
+      .glass-panel::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        opacity: 0.4;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass-panel > * { position: relative; z-index: 1; } 
+
+      /* Grid System */
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Increased min-width slightly for QR codes */
+        gap: 1.5rem;
+      }
+
+      /* Responsive padding */
+      .container-custom {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem;
+      }
+
+      /* Custom Button for Products */
+      .btn-product {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(224, 170, 62, 0.1);
+        border: 1px solid var(--accent-gold);
+        color: var(--accent-gold);
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .btn-product:hover {
+        background: var(--accent-gold);
+        color: var(--bg-dark);
+      }
+
+      .qr-container {
+        background: white;
+        padding: 8px;
+        border-radius: 8px;
+        width: fit-content;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container-custom">
+      
+      <!-- HERO SECTION -->
+      <header class="text-center mb-16 fade-in-up">
+        <span class="tag tag-bordered">Curated Resources</span>
+        <h1 class="mt-4">Preferred Vendors</h1>
+        <p class="font-serif italic text-xl text-gray-400 mb-6">Trusted artisans for the sacred journey</p>
+        <div class="h-px w-24 bg-gradient-to-r from-transparent via-[var(--accent-cyan)] to-transparent mx-auto opacity-50"></div>
+      </header>
+
+      <!-- VENDOR GRID -->
+      <section class="skill-grid">
+        
+        <!-- Scents of Earth -->
+        <article class="glass-panel p-8 border-t-4 border-t-[var(--accent-rose)]">
+          <div class="flex justify-between items-start mb-4">
+            <i data-feather="globe" class="text-[var(--accent-rose)]"></i>
+            <span class="tag">Resins</span>
+          </div>
+          <h3 class="text-[var(--accent-rose)]">Scents of Earth</h3>
+          <p class="mb-6 flex-grow">A premier source for high-quality resins and woods.</p>
+          
+          <a href="https://scents-of-earth.com" target="_blank" class="flex items-center gap-2 text-sm font-bold text-[var(--accent-rose)] hover:text-white mb-4">
+            Visit Website <i data-feather="external-link" class="w-4 h-4"></i>
+          </a>
+
+          <!-- Discount Code Block -->
+          <div class="bg-[var(--accent-rose)]/10 border border-[var(--accent-rose)]/30 rounded-lg p-4 text-center">
+             <p class="text-xs font-mono uppercase tracking-widest text-[var(--accent-rose)] mb-1">One-Time Discount</p>
+             <div class="text-xl font-bold text-white tracking-wider">L2026</div>
+             <p class="text-xs text-white/60 mt-1">15% OFF</p>
+          </div>
+        </article>
+
+        <!-- The Soul Place (Updated with QR Codes) -->
+        <article class="glass-panel p-8 border-t-4 border-t-[var(--accent-gold)] md:col-span-2">
+          <div class="flex justify-between items-start mb-4">
+            <i data-feather="sun" class="text-[var(--accent-gold)]"></i>
+            <span class="tag">Equipment</span>
+          </div>
+          <h3 class="text-[var(--accent-gold)] mb-2">The Soul Place</h3>
+          <p class="mb-6 text-sm">Focusing on high-quality electric incense warmers and related tools for the practitioner.</p>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            
+            <!-- Product 1: Classic Heater -->
+            <div class="bg-white/5 rounded-xl p-5 border border-white/10 flex items-center justify-between gap-4">
+              <div class="flex flex-col items-start gap-3">
+                <span class="text-white font-serif text-lg">Classic Heater</span>
+                <a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" target="_blank" class="btn-product">
+                  Buy Now <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+              <div class="qr-container shrink-0">
+                <!-- QR Code for Classic Heater -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=0f1b27&data=https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" alt="Classic Heater QR" width="80" height="80">
+              </div>
+            </div>
+
+            <!-- Product 2: Premium Heater -->
+            <div class="bg-white/5 rounded-xl p-5 border border-white/10 flex items-center justify-between gap-4">
+               <div class="flex flex-col items-start gap-3">
+                <span class="text-white font-serif text-lg">Premium Heater</span>
+                <a href="https://the-soul-place.square.site/product/premium-heater/OIA7G2KWJI2TFURFYFA7QCWP" target="_blank" class="btn-product">
+                  Buy Now <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+              <div class="qr-container shrink-0">
+                <!-- QR Code for Premium Heater -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=0f1b27&data=https://the-soul-place.square.site/product/premium-heater/OIA7G2KWJI2TFURFYFA7QCWP" alt="Premium Heater QR" width="80" height="80">
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Mermade Arts -->
+        <article class="glass-panel p-8 border-t-4 border-t-[var(--accent-violet)]">
+          <div class="flex justify-between items-start mb-4">
+            <i data-feather="feather" class="text-[var(--accent-violet)]"></i>
+            <span class="tag">Artisanal</span>
+          </div>
+          <h3 class="text-[var(--accent-violet)]">Mermade Arts</h3>
+          <p class="mb-6 flex-grow">Crafting unique incense blends and magical supplies.</p>
+          <div class="mt-auto">
+             <a href="https://mermadearts.com" target="_blank" class="inline-flex items-center gap-2 border border-[var(--glass-border)] hover:border-[var(--accent-violet)] px-4 py-2 rounded-full text-sm transition-colors">
+              mermadearts.com <i data-feather="arrow-up-right" class="w-3 h-3"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Japan Incense -->
+        <article class="glass-panel p-8 border-t-4 border-t-[var(--accent-cyan)]">
+          <div class="flex justify-between items-start mb-4">
+            <i data-feather="wind" class="text-[var(--accent-cyan)]"></i>
+            <span class="tag">Traditional</span>
+          </div>
+          <h3 class="text-[var(--accent-cyan)]">Japan Incense</h3>
+          <p class="mb-6 flex-grow">Importer of fine Japanese incense brands and accessories.</p>
+          <div class="mt-auto">
+            <a href="https://japanincense.com" target="_blank" class="inline-flex items-center gap-2 border border-[var(--glass-border)] hover:border-[var(--accent-cyan)] px-4 py-2 rounded-full text-sm transition-colors">
+              japanincense.com <i data-feather="arrow-up-right" class="w-3 h-3"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Apothecary’s Garden -->
+        <article class="glass-panel p-8 border-t-4 border-t-gray-400 md:col-span-2 lg:col-span-2">
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <i data-feather="droplet" class="text-gray-400"></i>
+                <h3 class="text-white mb-0">Apothecary’s Garden</h3>
+              </div>
+              <a href="https://apothecarysgarden.com" target="_blank" class="text-[var(--accent-cyan)] hover:underline text-sm mb-4 block">apothecarysgarden.com</a>
+            </div>
+            
+            <div class="flex-1 bg-white/5 rounded-lg p-4 italic font-serif text-[var(--text-muted)] border-l-2 border-[var(--accent-gold)]">
+              "Canadian source for premium and rare incense resins and products"
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="text-center pt-12 border-t border-white/5 opacity-60 mt-12">
+        <p class="font-serif italic text-lg mb-4">Darrell Wright</p>
+      </footer>
+
+    </div>
+
+    <script>
+      // Initialize Feather Icons
+      feather.replace();
+    </script>
+  </body>
+</html>
