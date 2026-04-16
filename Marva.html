@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resin Warming Starter Kit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f7f6f2; /* Soft stone/parchment color */
+            color: #3f3b38; /* Deep earthy brown */
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Lora', serif;
+        }
+
+        .category-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-[#e6e2d6] py-16 px-6 text-center shadow-sm relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%233f3b38\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <i data-lucide="flame" class="mx-auto h-12 w-12 text-[#8b7355] mb-4"></i>
+            <h1 class="text-4xl md:text-5xl font-semibold mb-4 text-[#4a4238]">Gentle Warming of Resins</h1>
+            <p class="text-lg md:text-xl text-[#635b53] max-w-2xl mx-auto">
+                Welcome to the beautiful practice of heating resins. Unlike burning on charcoal, gentle warming releases the pure, complex aromatics of the resin without the smoke of combustion. Below is your starter kit.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full space-y-16">
+
+        <!-- Section: The Setup -->
+        <section>
+            <div class="flex items-center gap-3 mb-8 border-b border-[#d4cfc3] pb-4">
+                <i data-lucide="thermometer-sun" class="h-8 w-8 text-[#6b705c]"></i>
+                <h2 class="text-3xl text-[#4a4238]">1. The Warming Setup</h2>
+            </div>
+            <p class="text-[#635b53] mb-6">The core of this practice relies on applying gentle, controlled heat to your aromatics. These tools ensure a clean, precise heating environment.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item 1 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#8b7355]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Classic Incense Heater</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">The Heart of the Practice</p>
+                        <p class="text-gray-700 mb-6 flex-grow">A specialized heater designed to warm your resins at the perfect temperature, unlocking their true scent profile without burning them to a crisp.</p>
+                        <a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" target="_blank" class="block w-full py-2.5 px-4 bg-[#8b7355] hover:bg-[#735d42] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Get the Heater</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#8b7355]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Incense Trays</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">For Easy Placement</p>
+                        <p class="text-gray-700 mb-6 flex-grow">These small trays hold your resins securely above the heat source, ensuring an even warming process and keeping your main heater completely clean.</p>
+                        <a href="https://www.amazon.com/dp/B0F8887KLV?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1" target="_blank" class="block w-full py-2.5 px-4 bg-[#8b7355] hover:bg-[#735d42] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Get the Trays</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#8b7355]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Foil Sheets</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">No-Mess Warming</p>
+                        <p class="text-gray-700 mb-6 flex-grow">Cut these sheets into small squares to perfectly line your little incense trays. When a resin has given all its scent, you can simply dispose of the foil square—no scraping or deep cleaning required.</p>
+                        <a href="https://www.amazon.com/dp/B00RTYCNCS?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1" target="_blank" class="block w-full py-2.5 px-4 bg-[#8b7355] hover:bg-[#735d42] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Get Foil Sheets</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#8b7355]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Grill Thermometer</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Precision Control</p>
+                        <p class="text-gray-700 mb-6 flex-grow">Different resins require different temperatures to melt perfectly. This thermometer allows you to dial in the exact heat needed for your specific resin.</p>
+                        <a href="https://www.amazon.com/dp/B001L6A7VE?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_4&th=1" target="_blank" class="block w-full py-2.5 px-4 bg-[#8b7355] hover:bg-[#735d42] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Get Thermometer</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Preparation Tools -->
+        <section>
+            <div class="flex items-center gap-3 mb-8 border-b border-[#d4cfc3] pb-4">
+                <i data-lucide="wind" class="h-8 w-8 text-[#5f6c7b]"></i>
+                <h2 class="text-3xl text-[#4a4238]">2. Preparation & Experience</h2>
+            </div>
+            <p class="text-[#635b53] mb-6">Preparing the resin and enjoying the released aromas is a ritual in itself. These tools enhance the entire process.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item 5 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#5f6c7b]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Aluminum Weighing Boat</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">For Room-Filling Aromas</p>
+                        <p class="text-gray-700 mb-6 flex-grow">These act as disposable aluminum dishes. Use them directly on the heater for larger amounts of incense when you want to fill the entire room with a rich, aromatic fragrance.</p>
+                        <a href="https://www.amazon.com/dp/B0061OSVFU?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1" target="_blank" class="block w-full py-2.5 px-4 bg-[#5f6c7b] hover:bg-[#4d5764] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Get Weighing Boats</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#5f6c7b]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Japanese Hand Fan</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Wafting the Aroma</p>
+                        <p class="text-gray-700 mb-6 flex-grow">Once the resin begins to warm, use this fan to gently waft the aromatic vapors through your space or toward yourself to experience the notes.</p>
+                        <a href="https://www.amazon.com/Japanese-Fan-Handmade-Decorative-Accessories/dp/B003VMUOMI/ref=sr_1_6?crid=27T6B4H6MGRRW&dib=eyJ2IjoiMSJ9.Xw7BIX07tLNPeNLJX5iGntmu9hpN0o7BAif9_DdTVCX0_D_cNOe9L2fzryfZxCv7-XpJQksu2C-EwDqmV_wFBkBO_VEVpIIM81TunWm_vX0mTkLeppKSWzmvnIMtC0fb3T4foJ1S20TcbEWnG5jF1YGGO04fasF71Ak_5Td5HhpTNC86JTZsgwzNQdrDAAsKUVswfq58s8n-v16xmz7wu3jCq7vMRaaPYlMrT7quL1yGCYy6YeuBcquXGd_qX_wH1E2stDC-bXBPDDf46XUVwm75JY7huawy3Ycj13cxc8Y.Ov5nUF8ALpv2EaZUD2JfqkZVCGL8rYxZsd0XmQPPPhs&dib_tag=se&keywords=japanese%2Bfan&qid=1776357762&sprefix=japanese%2Bfan%2Caps%2C182&sr=8-6&th=1" target="_blank" class="block w-full py-2.5 px-4 bg-[#5f6c7b] hover:bg-[#4d5764] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Get Hand Fan</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Resins -->
+        <section>
+            <div class="flex items-center gap-3 mb-8 border-b border-[#d4cfc3] pb-4">
+                <i data-lucide="droplets" class="h-8 w-8 text-[#cb997e]"></i>
+                <h2 class="text-3xl text-[#4a4238]">3. The Pure Resins</h2>
+            </div>
+            <p class="text-[#635b53] mb-6">These are your foundational aromatics. Gently warming these high-quality pure resins will reveal layers of scent you've never experienced before.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item 7 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#cb997e]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Labdanum</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Sweet, Ambery & Deep</p>
+                        <p class="text-gray-700 mb-6 flex-grow">A thick, sticky, tar-like resin. <strong>Do not grind this!</strong> Put it in the freezer for 24 hours before using, then break off a pea-sized piece and place it directly in your dish to warm.</p>
+                        <a href="https://scents-of-earth.com/labdanum-gum-resin-spain/?searchid=121467&search_query=labdanum" target="_blank" class="block w-full py-2.5 px-4 bg-[#cb997e] hover:bg-[#b0846c] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Purchase Labdanum</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#cb997e]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Boswellia Sacra</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Royal Hojary Frankincense</p>
+                        <p class="text-gray-700 mb-6 flex-grow">The highest grade of Frankincense. <strong>Freeze for 24 hours before grinding</strong> to make it less sticky, and store in glass jars to protect the scent. Gently warmed, it releases uplifting citrus and pine notes.</p>
+                        <a href="https://scents-of-earth.com/frankincense-resin-hojary-royal-superior-oman/?searchid=121468&search_query=sacra" target="_blank" class="block w-full py-2.5 px-4 bg-[#cb997e] hover:bg-[#b0846c] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Purchase B. Sacra</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                 <!-- Item 9 -->
+                 <div class="category-card bg-white rounded-xl overflow-hidden shadow-sm border border-[#e6e2d6] flex flex-col">
+                    <div class="h-3 bg-[#cb997e]"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2">Benzoin Sumatra</h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Warm Vanilla Notes</p>
+                        <p class="text-gray-700 mb-6 flex-grow">A deeply comforting resin with distinct notes of vanilla. Like Frankincense, <strong>freeze for 24 hours before grinding</strong> to reduce stickiness and store in a jar to protect its beautiful aromatic profile.</p>
+                        <a href="https://scents-of-earth.com/benzoin-sumatra-resin-indonesia/?searchid=121469&search_query=benzoin" target="_blank" class="block w-full py-2.5 px-4 bg-[#cb997e] hover:bg-[#b0846c] text-white text-center rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+                            <span>Purchase Benzoin</span>
+                            <i data-lucide="external-link" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#3f3b38] text-[#d4cfc3] py-10 mt-12 text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <i data-lucide="sparkles" class="mx-auto h-6 w-6 mb-4 text-[#cb997e]"></i>
+            <p class="serif italic text-xl mb-4">"The true essence is found not in the flame, but in the warmth."</p>
+            <p class="text-sm opacity-80 mt-6">Reach out whenever you are ready to begin. I am here to guide you!</p>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
