@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resin Gentle Warming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background-color: #F9F8F6; /* Traditional Washi Paper Color */
+            color: #2F3130; /* Sumi Ink Black */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e8e5df' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
+        /* Shoji inspired minimal card hover */
+        .shoji-card {
+            border: 1px solid #E5E3D8;
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .shoji-card:hover {
+            background-color: rgba(255, 255, 255, 1);
+            border-color: #B5AFA1;
+            transform: translateY(-2px);
+        }
+
+        .hanko-stamp {
+            color: #992B28; /* Traditional seal red */
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="pt-20 pb-16 px-6 relative">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+            <div class="hidden md:block">
+                <p class="vertical-text text-xl tracking-widest text-[#7C8477] font-light">香道</p> <!-- "Kōdō" Way of Fragrance -->
+            </div>
+            <div class="flex-grow text-center md:text-left">
+                <i data-lucide="wind" class="h-10 w-10 text-[#7C8477] mb-6 mx-auto md:mx-0" stroke-width="1.5"></i>
+                <h1 class="text-4xl md:text-5xl font-light mb-4 text-[#2F3130] tracking-wide">The Art of Gentle Warming</h1>
+                <p class="text-lg text-[#5A5C5A] max-w-2xl font-light leading-relaxed">
+                    Welcome to a mindful approach to aromatics. By gently warming, rather than burning, these precious resins and woods, you invite their pure, complex essences into your space without the veil of smoke.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 py-8 w-full space-y-20">
+
+        <!-- Section: The Setup & Tools -->
+        <section>
+            <div class="flex items-center gap-4 mb-10 border-b border-[#E5E3D8] pb-4">
+                <span class="hanko-stamp text-xl">一</span>
+                <h2 class="text-3xl font-light text-[#2F3130]">The Warming Setup</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Heater -->
+                <div class="shoji-card rounded p-6 flex flex-col">
+                    <h3 class="text-xl font-medium mb-1">Classic Incense Heater</h3>
+                    <p class="text-xs text-[#7C8477] mb-4 uppercase tracking-widest">The Core Vessel</p>
+                    <p class="text-[#5A5C5A] mb-8 text-sm flex-grow leading-relaxed">A specialized heater designed to warm your resins at the perfect temperature, unlocking their true scent profile without scorching them.</p>
+                    <a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" target="_blank" class="block w-full py-2 border border-[#2F3130] hover:bg-[#2F3130] hover:text-[#F9F8F6] text-center transition-colors text-sm tracking-wide">
+                        View Heater
+                    </a>
+                </div>
+
+                <!-- Trays -->
+                <div class="shoji-card rounded p-6 flex flex-col">
+                    <h3 class="text-xl font-medium mb-1">Incense Trays</h3>
+                    <p class="text-xs text-[#7C8477] mb-4 uppercase tracking-widest">Clean Placement</p>
+                    <p class="text-[#5A5C5A] mb-8 text-sm flex-grow leading-relaxed">Small trays that hold your resins securely above the heat source, ensuring an even warming process while keeping your main heater pristine.</p>
+                    <a href="https://www.amazon.com/dp/B0F8887KLV?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1" target="_blank" class="block w-full py-2 border border-[#2F3130] hover:bg-[#2F3130] hover:text-[#F9F8F6] text-center transition-colors text-sm tracking-wide">
+                        View Trays
+                    </a>
+                </div>
+
+                <!-- Foil -->
+                <div class="shoji-card rounded p-6 flex flex-col">
+                    <h3 class="text-xl font-medium mb-1">Foil Sheets</h3>
+                    <p class="text-xs text-[#7C8477] mb-4 uppercase tracking-widest">No-Mess Practice</p>
+                    <p class="text-[#5A5C5A] mb-8 text-sm flex-grow leading-relaxed">Cut these sheets into small squares to line your trays. When the resin is spent, simply dispose of the square. No scraping required.</p>
+                    <a href="https://www.amazon.com/dp/B00RTYCNCS?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1" target="_blank" class="block w-full py-2 border border-[#2F3130] hover:bg-[#2F3130] hover:text-[#F9F8F6] text-center transition-colors text-sm tracking-wide">
+                        View Foil
+                    </a>
+                </div>
+
+                <!-- Thermometer -->
+                <div class="shoji-card rounded p-6 flex flex-col">
+                    <h3 class="text-xl font-medium mb-1">Grill Thermometer</h3>
+                    <p class="text-xs text-[#7C8477] mb-4 uppercase tracking-widest">Precision Heat</p>
+                    <p class="text-[#5A5C5A] mb-8 text-sm flex-grow leading-relaxed">Different resins melt at different points. This allows you to dial in the exact heat needed, avoiding the harshness of an overheating element.</p>
+                    <a href="https://www.amazon.com/dp/B001L6A7VE?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_4&th=1" target="_blank" class="block w-full py-2 border border-[#2F3130] hover:bg-[#2F3130] hover:text-[#F9F8F6] text-center transition-colors text-sm tracking-wide">
+                        View Thermometer
+                    </a>
+                </div>
+
+                <!-- Weighing Boat -->
+                <div class="shoji-card rounded p-6 flex flex-col">
+                    <h3 class="text-xl font-medium mb-1">Aluminum Boats</h3>
+                    <p class="text-xs text-[#7C8477] mb-4 uppercase tracking-widest">Room-filling Scent</p>
+                    <p class="text-[#5A5C5A] mb-8 text-sm flex-grow leading-relaxed">Use these directly on the heater as disposable dishes for larger amounts of aromatics when you wish to fill the entire room with fragrance.</p>
+                    <a href="https://www.amazon.com/dp/B0061OSVFU?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1" target="_blank" class="block w-full py-2 border border-[#2F3130] hover:bg-[#2F3130] hover:text-[#F9F8F6] text-center transition-colors text-sm tracking-wide">
+                        View Boats
+                    </a>
+                </div>
+
+                <!-- Hand Fan -->
+                <div class="shoji-card rounded p-6 flex flex-col">
+                    <h3 class="text-xl font-medium mb-1">Japanese Hand Fan</h3>
+                    <p class="text-xs text-[#7C8477] mb-4 uppercase tracking-widest">Guiding the Aroma</p>
+                    <p class="text-[#5A5C5A] mb-8 text-sm flex-grow leading-relaxed">A traditional method. Use this to gently waft the invisible, aromatic vapors through your space or toward yourself for a mindful listening experience.</p>
+                    <a href="https://www.amazon.com/Japanese-Fan-Handmade-Decorative-Accessories/dp/B003VMUOMI/" target="_blank" class="block w-full py-2 border border-[#2F3130] hover:bg-[#2F3130] hover:text-[#F9F8F6] text-center transition-colors text-sm tracking-wide">
+                        View Fan
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Resins & Woods -->
+        <section>
+            <div class="flex items-center gap-4 mb-10 border-b border-[#E5E3D8] pb-4">
+                <span class="hanko-stamp text-xl">二</span>
+                <h2 class="text-3xl font-light text-[#2F3130]">Aromatics & Woods</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Labdanum -->
+                <div class="shoji-card rounded p-6 flex flex-col border-t-2 border-t-[#2F3130]">
+                    <h3 class="text-xl font-medium mb-1">Labdanum</h3>
+                    <p class="text-xs text-hanko-stamp text-[#992B28] mb-4 uppercase tracking-widest">Amber & Deep</p>
+                    <p class="text-[#5A5C5A] mb-6 text-sm flex-grow leading-relaxed">A thick, tar-like resin. <strong>Do not grind.</strong> Freeze for 24 hours, break off a pea-sized piece, and place directly on the dish to release rich, sweet, ambery notes.</p>
+                    <a href="https://scents-of-earth.com/labdanum-gum-resin-spain/" target="_blank" class="flex items-center justify-between text-[#2F3130] hover:text-[#992B28] transition-colors text-sm group">
+                        <span>Procure Resin</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- B. Sacra -->
+                <div class="shoji-card rounded p-6 flex flex-col border-t-2 border-t-[#2F3130]">
+                    <h3 class="text-xl font-medium mb-1">Boswellia Sacra</h3>
+                    <p class="text-xs text-hanko-stamp text-[#992B28] mb-4 uppercase tracking-widest">Royal Frankincense</p>
+                    <p class="text-[#5A5C5A] mb-6 text-sm flex-grow leading-relaxed">The highest grade of Frankincense. Freeze for 24 hours before grinding. Warmed gently, it sings with bright, uplifting citrus and pine.</p>
+                    <a href="https://scents-of-earth.com/frankincense-resin-hojary-royal-superior-oman/" target="_blank" class="flex items-center justify-between text-[#2F3130] hover:text-[#992B28] transition-colors text-sm group">
+                        <span>Procure Resin</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Benzoin -->
+                <div class="shoji-card rounded p-6 flex flex-col border-t-2 border-t-[#2F3130]">
+                    <h3 class="text-xl font-medium mb-1">Benzoin Sumatra</h3>
+                    <p class="text-xs text-hanko-stamp text-[#992B28] mb-4 uppercase tracking-widest">Warm Vanilla</p>
+                    <p class="text-[#5A5C5A] mb-6 text-sm flex-grow leading-relaxed">Deeply comforting with distinct notes of vanilla. Freeze before breaking down. It pairs beautifully with sharper aromatics, adding a sweet base.</p>
+                    <a href="https://scents-of-earth.com/benzoin-sumatra-resin-indonesia/" target="_blank" class="flex items-center justify-between text-[#2F3130] hover:text-[#992B28] transition-colors text-sm group">
+                        <span>Procure Resin</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Monastery Incense -->
+                <div class="shoji-card rounded p-6 flex flex-col border-t-2 border-t-[#2F3130]">
+                    <h3 class="text-xl font-medium mb-1">Greek Monastery</h3>
+                    <p class="text-xs text-hanko-stamp text-[#992B28] mb-4 uppercase tracking-widest">Sandalwood Blend</p>
+                    <p class="text-[#5A5C5A] mb-6 text-sm flex-grow leading-relaxed">Crafted in the traditional Athonite method. This fragrant dough is rich with essential oils. Gentle warming ensures the oils release slowly without scorching.</p>
+                    <a href="https://scents-of-earth.com/greek-monastery-incense-sandalwood/" target="_blank" class="flex items-center justify-between text-[#2F3130] hover:text-[#992B28] transition-colors text-sm group">
+                        <span>Procure Blend</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Myrrh -->
+                <div class="shoji-card rounded p-6 flex flex-col border-t-2 border-t-[#2F3130]">
+                    <h3 class="text-xl font-medium mb-1">Myrrh Chunks</h3>
+                    <p class="text-xs text-hanko-stamp text-[#992B28] mb-4 uppercase tracking-widest">Earthy & Grounding</p>
+                    <p class="text-[#5A5C5A] mb-6 text-sm flex-grow leading-relaxed">A profoundly grounding, slightly balsamic resin. An ancient partner to Frankincense, it brings depth to meditation. Freeze before breaking into smaller pieces.</p>
+                    <a href="https://scents-of-earth.com/myrrh-resin-chunks-somalia/" target="_blank" class="flex items-center justify-between text-[#2F3130] hover:text-[#992B28] transition-colors text-sm group">
+                        <span>Procure Resin</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Copal Oro -->
+                <div class="shoji-card rounded p-6 flex flex-col border-t-2 border-t-[#2F3130]">
+                    <h3 class="text-xl font-medium mb-1">Copal Oro</h3>
+                    <p class="text-xs text-hanko-stamp text-[#992B28] mb-4 uppercase tracking-widest">Golden & Uplifting</p>
+                    <p class="text-[#5A5C5A] mb-6 text-sm flex-grow leading-relaxed">Known as 'Golden Copal,' this vibrant resin from Mexico melts cleanly, releasing a crisp, citrus-forward aroma perfect for refreshing a room's energy.</p>
+                    <a href="https://scents-of-earth.com/copal-oro-resin-mexico/" target="_blank" class="flex items-center justify-between text-[#2F3130] hover:text-[#992B28] transition-colors text-sm group">
+                        <span>Procure Resin</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Sandalwood Chips -->
+                <div class="shoji-card rounded p-6 flex flex-col border-t-2 border-t-[#2F3130]">
+                    <h3 class="text-xl font-medium mb-1">Sandalwood Chips</h3>
+                    <p class="text-xs text-hanko-stamp text-[#992B28] mb-4 uppercase tracking-widest">Mysore Quality</p>
+                    <p class="text-[#5A5C5A] mb-6 text-sm flex-grow leading-relaxed">Pure wood chips. Rather than burning them to ash, gentle heating coaxes out the wood's smooth, creamy, and deeply calming essential oils.</p>
+                    <a href="https://scents-of-earth.com/sandalwood-chips-mysore-quality-indonesia/" target="_blank" class="flex items-center justify-between text-[#2F3130] hover:text-[#992B28] transition-colors text-sm group">
+                        <span>Procure Wood</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#E5E3D8] py-12 mt-12 text-center text-[#5A5C5A]">
+        <div class="max-w-xl mx-auto px-6">
+            <span class="text-[#992B28] text-2xl font-serif mb-4 block">心</span> <!-- "Kokoro" Heart/Mind/Spirit -->
+            <p class="serif italic text-lg mb-6 tracking-wide">"Listen to the incense."</p>
+            <p class="text-xs tracking-widest uppercase">Take your time. I am here when you are ready to begin.</p>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
