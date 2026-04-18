@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Gentle Aromatic Warming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAF8F5;
+            --text-main: #2C2A28;
+            --accent-gold: #B8860B;
+            --accent-green: #4A5D23;
+        }
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        .botanical-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8860b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .material-card {
+            transition: all 0.3s ease;
+        }
+        .material-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.1);
+        }
+
+        .inline-link {
+            color: #b45309; /* amber-700 */
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: #fde68a; /* amber-200 */
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            transition: all 0.2s ease;
+        }
+        .inline-link:hover {
+            text-decoration-color: #b45309; /* amber-700 */
+            color: #92400e; /* amber-800 */
+        }
+    </style>
+</head>
+<body class="botanical-pattern min-h-screen">
+
+    <!-- Hero Section -->
+    <header class="max-w-4xl mx-auto px-6 pt-24 pb-16 text-center fade-in">
+        <div class="flex justify-center mb-6 text-amber-700">
+            <i data-lucide="leaf" class="w-10 h-10 stroke-[1.5]"></i>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-semibold mb-4 text-stone-800 tracking-wide">The Art of Gentle Warming</h1>
+        <p class="text-xl md:text-2xl text-stone-600 serif-font italic max-w-2xl mx-auto">
+            A beginner's guide to unlocking the subtle beauty and layered notes of aromatic botanicals.
+        </p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 pb-24">
+        
+        <!-- Principles of Warming -->
+        <section class="bg-white rounded-2xl shadow-sm p-8 md:p-12 mb-12 border border-stone-100 fade-in delay-1">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl text-stone-800 mb-3">Temperature Principles</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">For gentle warming practices, we use temperatures well below combustion levels to extract the pure fragrance without the smoke.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-stone-50 rounded-xl p-6 border-t-4 border-amber-200 text-center">
+                    <div class="text-amber-700 font-bold text-xl mb-2 flex items-center justify-center gap-2">
+                        <i data-lucide="thermometer" class="w-5 h-5"></i> 135°C
+                    </div>
+                    <h3 class="serif-font text-2xl mb-2">Top Notes</h3>
+                    <p class="text-sm text-stone-600">Start here. This gentle heat releases the delicate, fleeting top notes of the fragrance.</p>
+                </div>
+                <div class="bg-stone-50 rounded-xl p-6 border-t-4 border-amber-400 text-center">
+                    <div class="text-amber-700 font-bold text-xl mb-2 flex items-center justify-center gap-2">
+                        <i data-lucide="thermometer" class="w-5 h-5"></i> 150-155°C
+                    </div>
+                    <h3 class="serif-font text-2xl mb-2">Middle Notes</h3>
+                    <p class="text-sm text-stone-600">When the top notes fade, turn up the heat to experience the heart and body of the aromatic.</p>
+                </div>
+                <div class="bg-stone-50 rounded-xl p-6 border-t-4 border-amber-600 text-center">
+                    <div class="text-amber-700 font-bold text-xl mb-2 flex items-center justify-center gap-2">
+                        <i data-lucide="thermometer" class="w-5 h-5"></i> 180°C
+                    </div>
+                    <h3 class="serif-font text-2xl mb-2">Base Notes</h3>
+                    <p class="text-sm text-stone-600">Finally, increase the temperature to release the deep, grounding base notes remaining in the material.</p>
+                </div>
+            </div>
+
+            <div class="bg-stone-100 rounded-xl p-6 flex gap-4 items-start">
+                <i data-lucide="flame" class="w-6 h-6 text-orange-600 shrink-0 mt-1"></i>
+                <div>
+                    <h4 class="font-bold text-stone-800 mb-1">A Note on Higher Temperatures (220°C - 260°C)</h4>
+                    <p class="text-stone-600 text-sm">Save your used incense! You can use it later at higher temperatures approaching combustion. This will produce some smoke (though not much). <strong>Always ensure proper ventilation</strong> when working at these higher temperatures.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools of the Trade -->
+        <section class="mb-16 fade-in delay-2">
+            <h2 class="text-3xl md:text-4xl text-center text-stone-800 mb-10">Tools of the Practice</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Heater Info -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 flex flex-col">
+                    <div class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 text-stone-700">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="serif-font text-2xl text-stone-800 mb-3">Electric Incense Heater</h3>
+                    <p class="text-stone-600 mb-4 text-sm">
+                        I highly recommend <a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" target="_blank" class="inline-link">this specific electric incense heater</a>. It features a temperature dial and a timer (up to 5 hours) and comes with tweezers, a spoon, and a dish.
+                    </p>
+                    <ul class="text-sm text-stone-600 space-y-3 list-disc pl-5 mt-auto">
+                        <li><strong>Relative Dial:</strong> The numbers on the dial do not directly reflect Celsius/Fahrenheit. Use a <a href="https://www.amazon.com/dp/B001L6A7VE" target="_blank" class="inline-link">grill thermometer</a> on the surface to learn the true temperature range of your specific device.</li>
+                        <li><strong>The Lid Effect:</strong> Placing the lid on the heater during use can significantly raise the internal temperature.</li>
+                    </ul>
+                </div>
+
+                <!-- Vessels & Air -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 flex flex-col">
+                    <div class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 text-stone-700">
+                        <i data-lucide="wind" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="serif-font text-2xl text-stone-800 mb-3">Vessels & Airflow</h3>
+                    <p class="text-stone-600 mb-4 text-sm">Properly holding your materials and directing the scent is key to a personal session.</p>
+                    <ul class="text-sm text-stone-600 space-y-3 list-disc pl-5 mb-5">
+                        <li><strong>Large amounts:</strong> <a href="https://www.amazon.com/dp/B0061OSVFU" target="_blank" class="inline-link">Aluminum weigh boats</a> are an excellent choice.</li>
+                        <li><strong>Personal use:</strong> Use <a href="https://www.amazon.com/dp/B0F8887KLV" target="_blank" class="inline-link">little aluminum cone holders</a> lined with small squares cut from <a href="https://www.amazon.com/dp/B00RTYCNCS" target="_blank" class="inline-link">food-grade aluminum foil sheets</a>. This requires very little material, creates less waste, and makes cleanup effortless.</li>
+                    </ul>
+                    <p class="text-sm text-stone-600 mt-auto pt-4 border-t border-stone-100">
+                        <strong>Hand Fan:</strong> Acquire a <a href="https://www.amazon.com/dp/B003VMUOMI" target="_blank" class="inline-link">Japanese hand fan</a> or a feather smudging fan to gently move the air and fragrance molecules toward you during your practice.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aromatic Materials Catalog -->
+        <section class="fade-in delay-3">
+            <h2 class="text-3xl md:text-4xl text-center text-stone-800 mb-4">The Botanicals</h2>
+            <p class="text-center text-stone-600 mb-10 max-w-2xl mx-auto">Preparation is key. Follow these specific instructions for handling, preparing, and warming each beautiful material.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Sandalwood -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="trees" class="text-amber-800 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Sandalwood</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        Purchase an inexpensive coffee grinder specifically for woods and herbs. Grind small portions of chips and use them right away—the natural oils dry fast once ground, so fresh grinding yields the best aroma.
+                    </p>
+                    <a href="https://scents-of-earth.com/sandalwood-chips-mysore-quality-indonesia/?searchid=121606&search_query=Sandalwood+" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 mt-auto w-fit">
+                        View Source Material <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+
+                <!-- Frankincense -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="gem" class="text-stone-400 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Frankincense</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        <em>Boswellia Sacra</em> is highly valued and perfect for beginners. Freeze the resin for 48 hours before grinding to make it less sticky. Use a separate grinder (or mortar & pestle) for resins. Clean tools with Everclear grain alcohol.
+                    </p>
+                    <a href="https://scents-of-earth.com/frankincense-resin-hojary-royal-superior-oman/?searchid=121607&search_query=Sacra" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 mt-auto w-fit">
+                        View Source Material <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+
+                <!-- Cedar Resin -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="tent-tree" class="text-emerald-800 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Cedar Resin</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        Like Frankincense, freeze the cedar resin for 48 hours before grinding to ensure a workable consistency. Always clean your grinding tools with Everclear grain alcohol afterwards.
+                    </p>
+                    <a href="https://scents-of-earth.com/cedar-resin-pinus-cembra-sibirica-germany/?searchid=121609&search_query=Cedar" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 mt-auto w-fit">
+                        View Source Material <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+
+                <!-- Hinoki Cypress -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="sprout" class="text-green-700 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Hinoki Cypress</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        Often available as stick incense. Instead of directly burning the stick, gently break it up into small pieces and place them in your aluminum dish for a smoke-free warming experience.
+                    </p>
+                    <a href="https://www.japanincense.com/nsearch.html?section=&query=Hinoki+cypress&searchsubmit=Search&vwcatalog=yhst-73346203527212" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 mt-auto w-fit">
+                        View Source Material <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+
+                <!-- Jasmine -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="flower-2" class="text-pink-700 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Jasmine</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        <em>Sambac Absolute:</em> A little goes a long way. Dip the tip of a toothpick into the bottle. Use clean fingernail clippers to snip off just the scented tip, and place that tiny piece into your warming dish so the rest of the stick doesn't get in the way.
+                    </p>
+                    <a href="https://www.planttherapy.com/products/jasmine-absolute" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 mt-auto w-fit">
+                        View Source Material <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+
+                <!-- Lavender -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="flower" class="text-purple-600 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Lavender</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        The fragrance molecules of lavender are delicate. Use gentle heat when working with Lavender powder. Alternatively, you can use Lavender essential oil applied via the toothpick method (like the Jasmine).
+                    </p>
+                    <div class="flex flex-col gap-2 mt-auto">
+                        <a href="https://scents-of-earth.com/lavender-powder-lavandula-x-intermedia-france/?searchid=121611&search_query=Lavender+" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 w-fit">
+                            View Lavender Powder <i data-lucide="external-link" class="w-3 h-3"></i>
+                        </a>
+                        <a href="https://scents-of-earth.com/lavender-essential-oil-kashmir/?searchid=121614&search_query=Lavender+" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 w-fit">
+                            View Essential Oil <i data-lucide="external-link" class="w-3 h-3"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Labdanum -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="droplet" class="text-stone-800 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Labdanum</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        Has a sticky, black tar-like texture. <strong>Do not grind.</strong> Freeze for 48 hours, break off a pea-sized piece, and place it in the dish. This incredibly rich material can be reused for multiple warming sessions.
+                    </p>
+                    <a href="https://scents-of-earth.com/labdanum-gum-resin-spain/?searchid=121612&search_query=Labdanum+" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 mt-auto w-fit">
+                        View Source Material <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+
+                <!-- Galbanum -->
+                <div class="material-card bg-white p-6 rounded-xl border border-stone-100 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="droplets" class="text-amber-900 w-6 h-6"></i>
+                        <h3 class="serif-font text-2xl text-stone-800 font-semibold">Galbanum</h3>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">
+                        Extremely sticky. <strong>Do not grind.</strong> Use a silicon makeup brush to dip into the galbanum and smear a small amount directly onto the aluminum dish. Use Everclear to remove sticky residue from your brush.
+                    </p>
+                    <a href="https://scents-of-earth.com/galbanum-resin-soft-turkey/?searchid=0&search_query=Galbanum+" target="_blank" class="text-amber-700 hover:text-amber-900 text-sm font-semibold flex items-center gap-1 mt-auto w-fit">
+                        View Source Material <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-stone-200 mt-12 py-8 text-center text-stone-500 text-sm">
+        <p class="serif-font italic text-lg">"Breathe deep, move slowly, and enjoy the delicate layers of nature."</p>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
