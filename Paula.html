@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Art of Gentle Aromatic Warming | Student Materials Guide</title>
+  <meta name="description" content="A beautiful beginner-friendly guide for gathering materials for gentle aromatic warming of incense resins, woods, and botanicals." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    :root {
+      --bg: #100f0c;
+      --bg-soft: #17140f;
+      --card: rgba(255, 252, 242, 0.065);
+      --card-strong: rgba(255, 252, 242, 0.105);
+      --border: rgba(255, 238, 201, 0.18);
+      --border-soft: rgba(255, 238, 201, 0.09);
+      --text: #f8f0dc;
+      --muted: #cabf9f;
+      --faint: #8f8267;
+      --gold: #d9a441;
+      --amber: #b86f2d;
+      --green: #778c55;
+      --rose: #b97b6b;
+      --blue: #8fb8b2;
+      --shadow: 0 24px 90px rgba(0, 0, 0, 0.42);
+      --blur: 18px;
+      --ease: cubic-bezier(.25, 1, .5, 1);
+      --fs-xs: clamp(.78rem, .16vw + .74rem, .88rem);
+      --fs-sm: clamp(.92rem, .25vw + .86rem, 1.04rem);
+      --fs-base: clamp(1rem, .34vw + .92rem, 1.18rem);
+      --fs-md: clamp(1.18rem, .7vw + 1rem, 1.55rem);
+      --fs-lg: clamp(1.55rem, 1.4vw + 1.2rem, 2.35rem);
+      --fs-xl: clamp(2.3rem, 4.2vw + 1.1rem, 5.8rem);
+      --space-xs: clamp(.5rem, .6vw, .8rem);
+      --space-sm: clamp(.9rem, 1vw, 1.35rem);
+      --space-md: clamp(1.4rem, 2vw, 2.4rem);
+      --space-lg: clamp(3rem, 5vw, 6rem);
+      --space-xl: clamp(5rem, 9vw, 10rem);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 18% 5%, rgba(217, 164, 65, .20), transparent 32rem),
+        radial-gradient(circle at 82% 12%, rgba(119, 140, 85, .16), transparent 28rem),
+        radial-gradient(circle at 50% 100%, rgba(184, 111, 45, .13), transparent 34rem),
+        linear-gradient(180deg, #100f0c 0%, #17130f 47%, #0e100c 100%);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      z-index: -1;
+    }
+
+    h1, h2, h3, h4 { font-family: "Cormorant Garamond", Georgia, serif; line-height: 1.04; margin: 0; letter-spacing: -.02em; }
+    h1 { font-size: var(--fs-xl); font-weight: 600; }
+    h2 { font-size: clamp(2rem, 3.2vw, 4rem); font-weight: 600; }
+    h3 { font-size: clamp(1.35rem, 1.3vw, 2rem); font-weight: 600; }
+    h4 { font-size: 1.2rem; font-weight: 600; }
+    p { margin: 0; max-width: 72ch; }
+    a { color: inherit; }
+    .mono { font-family: "Space Mono", monospace; text-transform: uppercase; letter-spacing: .08em; font-size: var(--fs-xs); color: var(--gold); }
+    .container { width: min(1140px, calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: var(--space-xl) 0; position: relative; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(16, 15, 12, .68);
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .85rem 0; }
+    .brand { display: flex; align-items: center; gap: .65rem; text-decoration: none; font-weight: 700; }
+    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 50%; background: var(--card); color: var(--gold); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: .35rem; justify-content: flex-end; }
+    .nav-links a { text-decoration: none; color: var(--muted); padding: .55rem .8rem; border-radius: 999px; transition: .35s var(--ease); font-size: .9rem; }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,.06); }
+
+    .hero { min-height: 88vh; display: grid; align-items: center; padding: var(--space-lg) 0; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--space-lg); align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: var(--space-md); }
+    .eyebrow::before { content: ""; width: 42px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+    .hero p { font-size: var(--fs-md); color: var(--muted); margin-top: var(--space-md); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: var(--space-md); }
+    .btn { display: inline-flex; align-items: center; gap: .55rem; border-radius: 999px; padding: .85rem 1.25rem; text-decoration: none; border: 1px solid var(--border); background: rgba(255,255,255,.06); transition: .35s var(--ease); }
+    .btn.primary { background: linear-gradient(135deg, var(--gold), #f5d78a); color: #20170c; border: 0; font-weight: 700; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 18px 50px rgba(0,0,0,.24); }
+
+    .ritual-card, .glass-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(var(--blur));
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ritual-card { padding: var(--space-md); min-height: 430px; display: grid; align-content: end; }
+    .ritual-card::before {
+      content: "";
+      position: absolute;
+      inset: -30% -20% auto auto;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,164,65,.28), transparent 68%);
+      filter: blur(8px);
+    }
+    .ritual-card::after {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 50%;
+      background: radial-gradient(circle, transparent 40%, rgba(255,255,255,.05) 41%, transparent 42%);
+      opacity: .5;
+    }
+    .ritual-card > * { position: relative; z-index: 2; }
+    .temperature-stack { display: grid; gap: .7rem; margin-top: var(--space-md); }
+    .temp-chip { display: flex; justify-content: space-between; gap: 1rem; padding: .9rem 1rem; border: 1px solid var(--border-soft); background: rgba(0,0,0,.18); border-radius: 18px; }
+    .temp-chip strong { color: var(--gold); }
+
+    .intro-panel { padding: var(--space-md); display: grid; gap: var(--space-sm); }
+    .warning { border-left: 3px solid var(--gold); background: rgba(217, 164, 65, .09); padding: 1rem; border-radius: 16px; color: #f2dfaf; }
+
+    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-md); }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    .glass-card { padding: var(--space-md); transition: .4s var(--ease); }
+    .glass-card:hover { transform: translateY(-4px); border-color: rgba(255, 238, 201, .32); }
+    .card-top { display: flex; align-items: center; gap: .8rem; margin-bottom: var(--space-sm); }
+    .icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 15px; background: rgba(217, 164, 65, .12); color: var(--gold); border: 1px solid var(--border-soft); flex: 0 0 auto; }
+    .muted { color: var(--muted); }
+    .faint { color: var(--faint); }
+
+    .tool-list, .prep-list { display: grid; gap: .9rem; margin-top: var(--space-md); }
+    .tool-item { display: grid; grid-template-columns: auto 1fr auto; gap: .9rem; align-items: start; padding: 1rem; border: 1px solid var(--border-soft); border-radius: 18px; background: rgba(0,0,0,.14); }
+    .tool-item a { color: #f3cb77; text-decoration: none; font-size: .92rem; }
+    .tool-item a:hover { text-decoration: underline; }
+
+    .material-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+    .material { padding: var(--space-md); border: 1px solid var(--border-soft); border-radius: 24px; background: rgba(0,0,0,.16); display: grid; gap: .85rem; }
+    .material-header { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+    .badge { font-family: "Space Mono", monospace; font-size: .72rem; color: #24180b; background: #e6bd64; border-radius: 999px; padding: .25rem .55rem; white-space: nowrap; }
+    .notes { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .note { border: 1px solid var(--border-soft); color: var(--muted); border-radius: 999px; padding: .25rem .55rem; font-size: .82rem; }
+
+    .science-table { width: 100%; border-collapse: collapse; margin-top: var(--space-md); overflow: hidden; border-radius: 18px; }
+    .science-table th, .science-table td { text-align: left; padding: .95rem; border-bottom: 1px solid var(--border-soft); vertical-align: top; }
+    .science-table th { color: var(--gold); font-family: "Space Mono", monospace; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; background: rgba(255,255,255,.05); }
+    .science-table td { color: var(--muted); }
+
+    .steps { counter-reset: step; display: grid; gap: 1rem; margin-top: var(--space-md); }
+    .step { counter-increment: step; display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 1rem; border-radius: 18px; background: rgba(255,255,255,.045); border: 1px solid var(--border-soft); }
+    .step::before { content: counter(step); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: rgba(217,164,65,.16); color: var(--gold); font-weight: 700; }
+
+    .quote { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.7rem, 2.4vw, 3rem); font-style: italic; color: #ffe8aa; text-align: center; max-width: 900px; margin: 0 auto; }
+    .footer { padding: var(--space-lg) 0; color: var(--faint); border-top: 1px solid var(--border-soft); }
+    .references { font-size: .9rem; }
+    .references li { margin-bottom: .45rem; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero-grid, .material-grid { grid-template-columns: 1fr; }
+      .bento { grid-template-columns: 1fr; }
+      .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: 1; }
+      .nav-inner { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      .tool-item { grid-template-columns: auto 1fr; }
+      .tool-item a { grid-column: 2; }
+    }
+
+    @media print {
+      body { background: #fff; color: #1c1711; }
+      .nav, .hero-actions, .references { display: none; }
+      .glass-card, .ritual-card, .material { box-shadow: none; background: #fff; border-color: #ddd; break-inside: avoid; }
+      .muted, .faint, .science-table td { color: #4d4538; }
+      .section { padding: 2rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Guide navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark"><i data-feather="wind"></i></span><span>The Art of Gentle Warming</span></a>
+      <div class="nav-links">
+        <a href="#temperatures">Temperatures</a>
+        <a href="#tools">Tools</a>
+        <a href="#botanicals">Botanicals</a>
+        <a href="#science">Aroma Science</a>
+        <a href="#checklist">Checklist</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow mono">Student Materials Guide</span>
+          <h1>The Art of Gentle Aromatic Warming</h1>
+          <p>A beginner-friendly guide to gathering the basic tools, resins, woods, and safety habits needed to warm aromatic botanicals slowly, without direct burning or smoke.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#checklist">Gather Materials <i data-feather="arrow-right"></i></a>
+            <a class="btn" href="#botanicals">Meet the Resins</a>
+          </div>
+        </div>
+        <aside class="ritual-card reveal" aria-label="Temperature summary">
+          <span class="mono">The basic arc</span>
+          <h3>Begin low. Listen slowly. Rise only when the fragrance is ready.</h3>
+          <div class="temperature-stack">
+            <div class="temp-chip"><span>Top notes</span><strong>135°C</strong></div>
+            <div class="temp-chip"><span>Heart notes</span><strong>150–155°C</strong></div>
+            <div class="temp-chip"><span>Base notes</span><strong>180°C</strong></div>
+            <div class="temp-chip"><span>Reuse, near combustion</span><strong>220–260°C</strong></div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section class="section" id="purpose">
+      <div class="container bento">
+        <article class="glass-card span-7 reveal intro-panel">
+          <span class="mono">Purpose</span>
+          <h2>A smoke-light way to experience layered fragrance.</h2>
+          <p class="muted">Gentle aromatic warming uses controlled heat to coax fragrance out of woods, resins, and botanicals. Instead of lighting incense directly, the student warms small amounts on a dish, foil-lined holder, or aluminum weigh boat and notices how the aroma changes as the temperature rises.</p>
+        </article>
+        <article class="glass-card span-5 reveal intro-panel">
+          <div class="card-top"><span class="icon"><i data-feather="shield"></i></span><h3>Safety posture</h3></div>
+          <p class="warning"><strong>Important:</strong> Aroma may feel supportive, clarifying, relaxing, or opening, but this guide is not medical advice. Use ventilation, avoid smoke-heavy use around pets, children, pregnancy, asthma, migraines, or fragrance sensitivity, and stop if irritation appears.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="temperatures">
+      <div class="container">
+        <span class="mono reveal">Temperature Principles</span>
+        <h2 class="reveal">A simple four-stage listening practice.</h2>
+        <div class="bento" style="margin-top: var(--space-md);">
+          <article class="glass-card span-3 reveal"><div class="card-top"><span class="icon"><i data-feather="sunrise"></i></span><h3>135°C</h3></div><p class="muted"><strong>Top notes.</strong> Start here. This is where delicate, fleeting, bright, citrusy, balsamic, or powdery notes often appear first.</p></article>
+          <article class="glass-card span-3 reveal"><div class="card-top"><span class="icon"><i data-feather="activity"></i></span><h3>150–155°C</h3></div><p class="muted"><strong>Middle notes.</strong> Move here after the top notes fade. This often reveals the fuller body, sweetness, woods, spice, and resin heart.</p></article>
+          <article class="glass-card span-3 reveal"><div class="card-top"><span class="icon"><i data-feather="moon"></i></span><h3>180°C</h3></div><p class="muted"><strong>Base notes.</strong> Use last for deeper, grounding notes: amber, leather, balsam, earth, smoke-adjacent warmth, and lingering resin character.</p></article>
+          <article class="glass-card span-3 reveal"><div class="card-top"><span class="icon"><i data-feather="repeat"></i></span><h3>220–260°C</h3></div><p class="muted"><strong>Reuse only.</strong> Save spent material for later high-temperature warming near combustion. Expect some smoke and use stronger ventilation.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="container bento">
+        <article class="glass-card span-6 reveal">
+          <span class="mono">Primary Tools</span>
+          <h2>Build a small, reliable warming kit.</h2>
+          <div class="tool-list">
+            <div class="tool-item"><span class="icon"><i data-feather="sliders"></i></span><div><strong>Electric incense heater</strong><br><span class="muted">Choose a temperature dial, timer up to 5 hours, tweezers, spoon, and dish.</span></div><a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK">Source</a></div>
+            <div class="tool-item"><span class="icon"><i data-feather="thermometer"></i></span><div><strong>Grill thermometer</strong><br><span class="muted">Use it to learn the actual surface temperature. Heater dials are relative, not laboratory exact.</span></div><a href="https://www.amazon.com/dp/B001L6A7VE">Source</a></div>
+            <div class="tool-item"><span class="icon"><i data-feather="cpu"></i></span><div><strong>Scientific warmer</strong><br><span class="muted">A precise option with faster heat-up and more accurate temperature control.</span></div><a href="https://a.co/d/0jkaTmQC">Source</a></div>
+          </div>
+        </article>
+        <article class="glass-card span-6 reveal">
+          <span class="mono">Surfaces & Airflow</span>
+          <h2>Control the dish, cleanup, and movement of scent.</h2>
+          <div class="tool-list">
+            <div class="tool-item"><span class="icon"><i data-feather="box"></i></span><div><strong>Aluminum weigh boats</strong><br><span class="muted">Good for larger amounts or group sessions.</span></div><a href="https://www.amazon.com/dp/B0061OSVFU">Source</a></div>
+            <div class="tool-item"><span class="icon"><i data-feather="circle"></i></span><div><strong>Small aluminum cone holders</strong><br><span class="muted">Good for personal use. Line with small squares of food-grade foil.</span></div><a href="https://www.amazon.com/dp/B0F8887KLV">Source</a></div>
+            <div class="tool-item"><span class="icon"><i data-feather="layers"></i></span><div><strong>Food-grade aluminum foil sheets</strong><br><span class="muted">Line holders for easier cleanup and easier material changes.</span></div><a href="https://www.amazon.com/dp/B00RTYCNCS">Source</a></div>
+            <div class="tool-item"><span class="icon"><i data-feather="wind"></i></span><div><strong>Japanese hand fan or feather smudging fan</strong><br><span class="muted">Move fragrance gently toward the listener without forcing it.</span></div><a href="https://www.amazon.com/dp/B003VMUOMI">Source</a></div>
+          </div>
+        </article>
+        <article class="glass-card span-12 reveal">
+          <div class="card-top"><span class="icon"><i data-feather="alert-circle"></i></span><h3>The lid effect</h3></div>
+          <p class="muted">Using the lid can significantly raise the internal temperature. Treat the lid like a heat amplifier: useful for releasing stubborn base notes, but easy to overdo. When learning, measure with a thermometer and compare open-dish warming versus lidded warming.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="botanicals">
+      <div class="container">
+        <span class="mono reveal">Botanicals</span>
+        <h2 class="reveal">Start with a small palette of woods and resins.</h2>
+        <div class="material-grid">
+          <article class="material reveal"><div class="material-header"><h3>Sandalwood</h3><span class="badge">Wood</span></div><p class="muted">Creamy, soft, milky, meditative, and quietly sweet. Use a dedicated inexpensive coffee grinder for woods and herbs. Grind small portions and use immediately because aromatic oils dissipate after grinding.</p><div class="notes"><span class="note">Often rich in santalols</span><span class="note">Calming wood profile</span><span class="note">Excellent beginner base</span></div><a href="https://scents-of-earth.com/sandalwood-chips-mysore-quality-indonesia/?searchid=121606&search_query=Sandalwood+">Source</a></article>
+          <article class="material reveal"><div class="material-header"><h3>Frankincense — Boswellia sacra</h3><span class="badge">Resin</span></div><p class="muted">Bright, lemony, piney, balsamic, and ceremonial. A beautiful beginner resin. Freeze 48 hours before grinding. Use a separate grinder or mortar and pestle for resins. Clean sticky tools with Everclear grain alcohol.</p><div class="notes"><span class="note">Boswellic acids</span><span class="note">α-pinene / limonene notes</span><span class="note">Clear, lifted opening</span></div><a href="https://scents-of-earth.com/frankincense-resin-hojary-royal-superior-oman/?searchid=121607&search_query=Sacra">Source</a></article>
+          <article class="material reveal"><div class="material-header"><h3>Benzoin</h3><span class="badge">Resin</span></div><p class="muted">Vanilla-like, powdery, balsamic, cozy, and sweet. Freeze 48 hours before grinding. Benzoin can become gummy; clean grinding tools with Everclear afterward.</p><div class="notes"><span class="note">Benzoic acid derivatives</span><span class="note">Fixative quality</span><span class="note">Softens sharp blends</span></div><a href="https://scents-of-earth.com/benzoin-sumatra-resin-indonesia/?searchid=122234&search_query=Benzoin">Source</a></article>
+          <article class="material reveal"><div class="material-header"><h3>Myrrh</h3><span class="badge">Resin</span></div><p class="muted">Bitter, warm, mineral, earthy, medicinal, and ancient-feeling. Freeze 48 hours before grinding. Use tiny amounts at first; it can dominate a blend.</p><div class="notes"><span class="note">Sesquiterpenes</span><span class="note">Grounding bitterness</span><span class="note">Pairs with frankincense</span></div><a href="https://scents-of-earth.com/myrrh-resin-chunks-somalia/?searchid=122235&search_query=Myrrh+">Source</a></article>
+          <article class="material reveal"><div class="material-header"><h3>Borneol Camphor</h3><span class="badge">Crystal</span></div><p class="muted">Cool, crystalline, camphoraceous, airy, and opening. Do not grind. Start with about 10 crystals in a dish and add more only if desired. Many people experience this as sinus- and lung-opening.</p><div class="notes"><span class="note">Borneol</span><span class="note">Strong cooling vapor</span><span class="note">Use sparingly</span></div><a href="https://scents-of-earth.com/borneol-camphor-japan-baieido/?searchid=122236&search_query=Borneol+">Source</a></article>
+          <article class="material reveal"><div class="material-header"><h3>Labdanum</h3><span class="badge">Gum resin</span></div><p class="muted">Sticky black, tar-like, amber, leather, honey, and warm animalic depth. Do not grind. Freeze 48 hours, break off a pea-sized piece, and warm it. Labdanum can often be reused for multiple sessions.</p><div class="notes"><span class="note">Amber / leathery base</span><span class="note">Powerful fixative</span><span class="note">Reusable</span></div><a href="https://scents-of-earth.com/labdanum-gum-resin-spain/?searchid=121612&search_query=Labdanum+">Source</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="science">
+      <div class="container bento">
+        <article class="glass-card span-12 reveal">
+          <span class="mono">Aroma Science</span>
+          <h2>Helpful molecules to recognize.</h2>
+          <p class="muted">The experience of scent is both chemical and personal. The notes below describe researched properties of compounds found in many aromatic plants. They are best understood as supportive possibilities, not guaranteed medical effects from casual warming.</p>
+          <table class="science-table">
+            <thead><tr><th>Molecule / Family</th><th>Commonly associated materials</th><th>What research suggests</th><th>Student listening cue</th></tr></thead>
+            <tbody>
+              <tr><td>Boswellic acids</td><td>Frankincense resins</td><td>Studied for anti-inflammatory pathways, especially in Boswellia preparations.</td><td>Notice resinous clarity, brightness, and a clean balsamic lift.</td></tr>
+              <tr><td>α-pinene / β-pinene</td><td>Frankincense, conifers, pine-like aromatics</td><td>Monoterpenes such as pinene are investigated for anti-inflammatory and respiratory-supportive activity, much of it preclinical.</td><td>Look for pine, forest air, sharpness, and alertness.</td></tr>
+              <tr><td>d-Limonene</td><td>Citrus-like notes in frankincense and many peels</td><td>Human and review literature connects citrus oils and limonene with mood, stress, and nervous-system research.</td><td>Look for lemon, sparkle, brightness, and upward movement.</td></tr>
+              <tr><td>Linalool</td><td>Lavender, basil, coriander, some floral materials</td><td>Often studied for calming, anxiolytic, and nervous-system effects; human evidence exists but varies by oil and context.</td><td>Listen for soft floral, gentle, sweet, slightly herbal calm.</td></tr>
+              <tr><td>Cedrol / cedar sesquiterpenes</td><td>Cedarwood, conifer woods, woody materials</td><td>Inhalation studies suggest effects on autonomic relaxation and sedation, especially for cedrol.</td><td>Notice depth, hush, dry wood, and settling of attention.</td></tr>
+              <tr><td>Benzoic acid derivatives</td><td>Benzoin</td><td>Benzoin is valued traditionally and chemically for balsamic aromatic compounds; direct inhalation health claims should be modest.</td><td>Notice vanilla, powder, warmth, sweetness, and blend-smoothing.</td></tr>
+              <tr><td>Sesquiterpenes & furanosesquiterpenes</td><td>Myrrh, labdanum, deeper resins</td><td>Myrrh constituents are studied for antimicrobial, anti-inflammatory, and pharmacological activities, mostly outside casual aroma use.</td><td>Notice earth, bitter medicine, ancient warmth, and grounding.</td></tr>
+              <tr><td>Borneol</td><td>Borneol camphor crystals</td><td>Known for intense camphoraceous vapor; use conservatively and avoid overexposure, especially with respiratory sensitivity.</td><td>Notice cool opening, clarity, and the sensation of spacious air.</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="container bento">
+        <article class="glass-card span-7 reveal">
+          <span class="mono">First Session</span>
+          <h2>A calm way to begin.</h2>
+          <div class="steps">
+            <div class="step"><div><strong>Prepare the surface.</strong><br><span class="muted">Line your holder or weigh boat with foil. Place a tiny amount of one material in the center.</span></div></div>
+            <div class="step"><div><strong>Start at 135°C.</strong><br><span class="muted">Give the material several minutes. Fan gently. Notice the first delicate notes before adding more heat.</span></div></div>
+            <div class="step"><div><strong>Rise slowly.</strong><br><span class="muted">Move to 150–155°C after the top notes fade, then 180°C for deeper base notes.</span></div></div>
+            <div class="step"><div><strong>Save the remains.</strong><br><span class="muted">Spent material can be saved for a later high-temperature reuse session with ventilation.</span></div></div>
+          </div>
+        </article>
+        <article class="glass-card span-5 reveal">
+          <span class="mono">Grinding & Cleanup</span>
+          <h2>Keep woods and resins separate.</h2>
+          <p class="muted">Use one grinder for woods and herbs, and a separate grinder or mortar and pestle for resins. Freeze sticky resins for 48 hours before grinding. Clean resin tools with Everclear grain alcohol and allow everything to dry fully before storage.</p>
+          <div class="warning" style="margin-top: var(--space-md);">Never use alcohol near heat or flame. Clean tools away from the warmer and let vapors dissipate before returning to practice.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="checklist">
+      <div class="container bento">
+        <article class="glass-card span-6 reveal">
+          <span class="mono">Starter Kit Checklist</span>
+          <h2>Minimum student setup.</h2>
+          <div class="prep-list">
+            <label><input type="checkbox"> Electric incense heater or scientific warmer</label>
+            <label><input type="checkbox"> Grill thermometer for surface temperature learning</label>
+            <label><input type="checkbox"> Aluminum weigh boats or foil-lined cone holders</label>
+            <label><input type="checkbox"> Food-grade aluminum foil sheets</label>
+            <label><input type="checkbox"> Tweezers, spoon, and heat-safe dish</label>
+            <label><input type="checkbox"> Hand fan or feather fan</label>
+            <label><input type="checkbox"> Dedicated grinder for woods and herbs</label>
+            <label><input type="checkbox"> Mortar/pestle or separate grinder for resins</label>
+            <label><input type="checkbox"> Everclear for resin cleanup</label>
+            <label><input type="checkbox"> Sandalwood, frankincense, benzoin, myrrh, borneol, labdanum</label>
+          </div>
+        </article>
+        <article class="glass-card span-6 reveal">
+          <span class="mono">Best First Materials</span>
+          <h2>Simple student sequence.</h2>
+          <p class="muted">For a first practice, begin with one material at a time before blending. Try sandalwood alone, frankincense alone, benzoin alone, and then a tiny pairing such as sandalwood + frankincense or frankincense + benzoin. Add labdanum only after the student understands how strong base notes behave.</p>
+          <div class="warning" style="margin-top: var(--space-md);"><strong>Small is beautiful:</strong> Begin with less than you think you need. Gentle warming rewards patience, not quantity.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="quote">“Breathe deep, move slowly, and enjoy the delicate layers of nature.”</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container references">
+      <p><strong>Science references used for student notes:</strong></p>
+      <ol>
+        <li>Peng C. et al. “From bench to bedside, boswellic acids in anti-inflammatory...” PubMed Central, 2025.</li>
+        <li>Almeida-da-Silva C.L.C. et al. “Effects of Frankincense Compounds on Infection, Inflammation...” PubMed Central, 2022.</li>
+        <li>Batiha G.E.S. et al. “Commiphora myrrh: a phytochemical and pharmacological...” PubMed Central, 2022.</li>
+        <li>He Q. et al. “Benzoin Resin: An Overview on Its Production Process...” PubMed Central, 2023.</li>
+        <li>Andrade L.N. et al. “A Review on Anti-Inflammatory Activity of Monoterpenes.” PubMed Central, 2013.</li>
+        <li>Salehi B. et al. “Therapeutic Potential of α- and β-Pinene...” PubMed Central, 2019.</li>
+        <li>Tan L. et al. “Essential oils for treating anxiety: a systematic review...” PubMed Central, 2023.</li>
+        <li>Umeno K. et al. “Effects of direct Cedrol inhalation...” PubMed Central, 2007.</li>
+      </ol>
+      <p class="faint">Prepared as an educational guide for gentle aromatic warming. Not medical advice.</p>
+    </div>
+  </footer>
+
+  <script>
+    feather.replace();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
