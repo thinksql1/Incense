@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scent and the Subconscious | Heartland Hypnosis Conference</title>
+
+<!-- Social Thumbnail (OG Image) -->
+<meta property="og:image" content="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC1.jpeg">
+<meta property="og:title" content="Scent and the Subconscious | John Launius at Heartland Hypnosis Conference">
+<meta property="og:description" content="A presentation on how scent operates as one of the most direct and powerful pathways into the subconscious, presented by John Launius.">
+<meta name="twitter:image" content="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC1.jpeg">
+
+<!-- Fonts: Playfair Display (Serif/Aristocrat) and Lato (Sans/Modernist) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Custom Config for Ash & Ember Palette -->
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    ash: '#EBEAE5',
+                    charcoal: '#1A1A1A',
+                    kyara: '#4A3B32',
+                    gold: '#C1AA67',
+                    sage: '#929C92',
+                    river: '#6E7F80',
+                    tobacco: '#6B4A2F'
+                },
+                fontFamily: {
+                    serif: ['"Playfair Display"', 'serif'],
+                    sans: ['"Lato"', 'sans-serif'],
+                },
+                spacing: {
+                    '128': '32rem',
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    body {
+        background-color: #1A1A1A;
+        color: #EBEAE5;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    .fog-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -2;
+        pointer-events: none; 
+    }
+
+    .fog-img {
+        position: absolute;
+        height: 100vh;
+        width: 300vw;
+        z-index: 1;
+        opacity: 0.4;
+        background: radial-gradient(ellipse at center, rgba(193, 170, 103, 0.1) 0%, rgba(0,0,0,0) 70%);
+        animation: fog 60s linear infinite;
+        pointer-events: none; 
+    }
+
+    .fog-img-2 {
+        z-index: 2;
+        opacity: 0.2;
+        background: radial-gradient(ellipse at center, rgba(235, 234, 229, 0.08) 0%, rgba(0,0,0,0) 60%);
+        animation: fog 40s linear infinite reverse;
+        bottom: 0;
+        position: absolute;
+        height: 100vh;
+        width: 300vw;
+        pointer-events: none;
+    }
+
+    @keyframes fog {
+        0% { transform: translate3d(-50px, 0, 0); }
+        50% { transform: translate3d(50px, -20px, 0); }
+        100% { transform: translate3d(-50px, 0, 0); }
+    }
+
+    #ember-container {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+    }
+    .ember {
+        position: absolute;
+        bottom: -20px;
+        background-color: #C1AA67;
+        border-radius: 50%;
+        filter: blur(1px);
+        opacity: 0;
+        box-shadow: 0 0 10px 2px rgba(193, 170, 103, 0.8);
+        animation: floatUp infinite linear, flicker infinite alternate ease-in-out;
+    }
+    @keyframes floatUp {
+        0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+        10% { opacity: 0.8; }
+        80% { opacity: 0.4; }
+        100% { transform: translateY(-100vh) translateX(50px) scale(0.2); opacity: 0; }
+    }
+    @keyframes flicker {
+        0% { opacity: 0.3; transform: scale(0.9); }
+        100% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    #cursor-glow {
+        position: fixed;
+        top: 0; left: 0;
+        width: 800px; height: 800px;
+        background: radial-gradient(circle, rgba(193, 170, 103, 0.04) 0%, transparent 60%);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+        opacity: 0;
+        mix-blend-mode: screen;
+    }
+
+    @keyframes breathe {
+        0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(193, 170, 103, 0); }
+        50% { transform: scale(1.02); text-shadow: 0 0 25px rgba(193, 170, 103, 0.2); }
+    }
+    .animate-breathe {
+        display: inline-block;
+        animation: breathe 8s ease-in-out infinite;
+    }
+
+    .scent-number { transition: all 0.5s ease; }
+    .group:hover .scent-number {
+        color: rgba(193, 170, 103, 0.4);
+        text-shadow: 0 0 30px rgba(193, 170, 103, 0.6);
+        transform: scale(1.05);
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: blur(5px);
+    }
+
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+
+    .drop-cap::first-letter {
+        float: left;
+        font-size: 3.5rem;
+        line-height: 0.8;
+        padding-right: 0.5rem;
+        padding-top: 0.1rem;
+        font-family: 'Playfair Display', serif;
+        color: #C1AA67; 
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1A1A1A; }
+    ::-webkit-scrollbar-thumb { background: #4A3B32; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C1AA67; }
+    
+    .vendor-list li { position: relative; padding-left: 1rem; }
+    .vendor-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #C1AA67;
+    }
+    
+    .video-wrapper-standard {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .video-wrapper-standard iframe {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+    }
+
+    .conference-card {
+        background: linear-gradient(135deg, rgba(193, 170, 103, 0.08), rgba(255,255,255,0.02));
+        border: 1px solid rgba(193, 170, 103, 0.25);
+    }
+</style>
+
+</head>
+<body class="font-sans antialiased selection:bg-gold selection:text-charcoal">
+
+<!-- Interactive Cursor Aura -->
+<div id="cursor-glow"></div>
+
+<!-- Ambient Smoke & Embers Background -->
+<div class="fog-container">
+    <div class="fog-img"></div>
+    <div class="fog-img-2"></div>
+</div>
+<div id="ember-container"></div>
+
+<!-- Navigation / Header -->
+<nav class="fixed top-0 w-full p-6 z-50 mix-blend-difference flex justify-between items-center opacity-0 animate-fade-in transition-opacity duration-1000" id="nav-header" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+    <div class="text-xs tracking-[0.2em] uppercase font-bold text-gold">Scent and the Subconscious</div>
+    <div class="text-xs tracking-[0.2em] uppercase font-bold text-ash">Apr 26</div>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
+    <div class="reveal active transition-delay-500 z-10">
+        <p class="text-gold uppercase tracking-[0.3em] text-xs mb-6 tracking-widest">Presented by John Launius, CHt, Kōmoto</p>
+        
+        <div class="animate-breathe">
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 text-ash font-normal">
+                Scent and the <br> Subconscious
+            </h1>
+        </div>
+        
+        <div class="h-16 w-[1px] bg-gradient-to-b from-transparent via-gold to-transparent mx-auto my-8 opacity-70"></div>
+        
+        <p class="font-sans font-light text-sm md:text-base tracking-widest uppercase text-ash/70 mb-10">
+            April 26, 2026 &nbsp;|&nbsp; Heartland Hypnosis Conference
+        </p>
+
+        <a href="https://heartlandhypnosisconference.com" target="_blank" class="inline-block border border-gold/50 text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500 hover:shadow-[0_0_20px_rgba(193,170,103,0.3)]">
+            Explore the Work
+        </a>
+    </div>
+    
+    <div class="absolute bottom-10 animate-bounce opacity-50 z-10">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+</header>
+
+<!-- INTRO NARRATIVE -->
+<section class="max-w-3xl mx-auto px-6 py-24 md:py-32 leading-relaxed text-lg md:text-xl text-ash/90 relative z-10">
+    <div class="reveal">
+        <p class="mb-8 drop-cap font-light">
+            This presentation explored how scent operates as one of the most direct and powerful pathways into the subconscious, grounded in both modern neuroscience and centuries of traditional practice. Since the discovery of olfactory receptors in 1991, research has confirmed what many traditions long understood: smell bypasses typical sensory filtering and moves rapidly into the emotional and memory centers of the brain. This creates immediate shifts in physiology, attention, and internal state, making olfaction uniquely suited for influencing consciousness and supporting hypnotic processes.
+        </p>
+        <p class="font-light mb-8">
+            By examining the olfactory pathway, limbic system engagement, memory recall, and neurochemical influence, a clear model emerges. Scent activates emotion and memory, narrows attention, and prepares the mind for suggestion. When paired with hypnosis, this creates a highly efficient system where internal states can be accessed, shaped, and reinforced with precision. Conditioning, repetition, and ritual further strengthen this effect, allowing scent to become a reliable trigger for desired states such as relaxation, focus, or emotional regulation.
+        </p>
+        <div class="conference-card p-6 md:p-8 rounded-sm">
+            <p class="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-3">Applied Practice</p>
+            <p class="text-ash/80 text-base md:text-lg font-light leading-relaxed">
+                In applied practice, this convergence becomes both practical and transformative. Through structured approaches like Fragrance Hypnosis and The Personal Incense Journey, scent is used not as ambiance but as a deliberate tool to guide the nervous system and subconscious mind. When combined with intentional language and individualized application, scent moves from passive experience to active intervention, enabling faster access to desired states and more durable outcomes.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- THE SCENT JOURNEY -->
+<main class="space-y-32 pb-32 z-10 relative">
+    
+    <!-- 1. Borneol Camphor -->
+    <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center group">
+        <div class="order-2 md:order-1 border-l-2 border-kyara pl-8 py-4 transition-colors duration-500 group-hover:border-gold">
+            <h2 class="font-serif text-4xl text-ash mb-2">Borneol Camphor</h2>
+            <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Dryobalanops aromatica</div>
+            <p class="text-ash/80 font-light leading-7 mb-6">
+                The opening breath. Cool, bright, and immediate. Borneol camphor clears the threshold of attention, like opening a window in the mind before the deeper work begins.
+            </p>
+            <blockquote class="font-serif italic text-xl text-gold/80 pl-4 border-l border-gold/30">
+                “The first gate: clarity before trance.”
+            </blockquote>
+        </div>
+        <div class="order-1 md:order-2 h-64 md:h-96 bg-gradient-to-br from-charcoal to-ash/10 rounded-sm relative overflow-hidden flex items-center justify-center border border-transparent transition-all duration-700 group-hover:border-gold/20">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550948390-6eb7fa77e20a?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay transition-transform duration-[10s] group-hover:scale-110"></div>
+            <div class="text-9xl text-ash/5 font-serif select-none scent-number">1</div>
+        </div>
+    </section>
+
+    <!-- 2. Sandalwood -->
+    <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center group">
+        <div class="order-1 md:order-1 h-64 md:h-96 bg-gradient-to-bl from-charcoal to-kyara/20 rounded-sm relative overflow-hidden flex items-center justify-center border border-transparent transition-all duration-700 group-hover:border-gold/20">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1615486221535-64903328c644?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay transition-transform duration-[10s] group-hover:scale-110"></div>
+            <div class="text-9xl text-ash/5 font-serif select-none scent-number">2</div>
+        </div>
+        <div class="order-2 md:order-2 border-r-2 border-kyara pr-8 py-4 text-right transition-colors duration-500 group-hover:border-gold">
+            <h2 class="font-serif text-4xl text-ash mb-2">Sandalwood</h2>
+            <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Santalum album</div>
+            <p class="text-ash/80 font-light leading-7 mb-6">
+                The calming floor beneath the experience. Creamy, sacred, and steady, sandalwood gives the nervous system somewhere to land.
+            </p>
+            <blockquote class="font-serif italic text-xl text-gold/80 pr-4 border-r border-gold/30">
+                “A soft foundation for inner listening.”
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- 3. Frankincense -->
+    <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center group">
+        <div class="order-2 md:order-1 border-l-2 border-kyara pl-8 py-4 transition-colors duration-500 group-hover:border-gold">
+            <h2 class="font-serif text-4xl text-ash mb-2">Frankincense</h2>
+            <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Boswellia sacra</div>
+            <p class="text-ash/80 font-light leading-7 mb-6">
+                The luminous lift. Frankincense brings air into the architecture of the session, expanding awareness while preserving the stillness already established.
+            </p>
+            <blockquote class="font-serif italic text-xl text-gold/80 pl-4 border-l border-gold/30">
+                “Elevation without leaving the body.”
+            </blockquote>
+        </div>
+        <div class="order-1 md:order-2 h-64 md:h-96 bg-gradient-to-bl from-charcoal to-sage/20 rounded-sm relative overflow-hidden flex items-center justify-center border border-transparent transition-all duration-700 group-hover:border-gold/20">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1628151516084-2131920df712?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay transition-transform duration-[10s] group-hover:scale-110"></div>
+            <div class="text-9xl text-ash/5 font-serif select-none scent-number">3</div>
+        </div>
+    </section>
+
+    <!-- 4. Labdanum -->
+    <section class="reveal max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center group">
+        <div class="order-1 md:order-1 h-64 md:h-96 bg-gradient-to-bl from-charcoal to-kyara/50 rounded-sm relative overflow-hidden flex items-center justify-center border border-transparent transition-all duration-700 group-hover:border-gold/20">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay transition-transform duration-[10s] group-hover:scale-110"></div>
+            <div class="text-9xl text-ash/5 font-serif select-none scent-number">4</div>
+        </div>
+        <div class="order-2 md:order-2 border-r-2 border-gold pr-8 py-4 text-right transition-colors duration-500 group-hover:border-gold">
+            <h2 class="font-serif text-4xl text-ash mb-2">Labdanum</h2>
+            <div class="text-gold text-xs uppercase tracking-widest mb-6 font-bold">Cistus Ladanifer</div>
+            <p class="text-ash/80 font-light leading-7 mb-6">
+                Deep, ambery, and profoundly grounding. Labdanum anchors the ethereal qualities of the journey into the physical body, connecting the conscious experience to the deeper, resonant spaces of the subconscious mind.
+            </p>
+            <blockquote class="font-serif italic text-xl text-gold/80 pr-4 border-r border-gold/30">
+                “An anchor for the deep subconscious.”
+            </blockquote>
+        </div>
+    </section>
+    
+</main>
+
+<!-- ARTISTIC DISPLAY -->
+<section class="reveal px-4 md:px-12 py-24 bg-black/20 relative z-10" id="gallery-section">
+    <div class="text-center mb-16">
+        <h3 class="font-serif text-3xl text-ash mb-2">Presentation Moments</h3>
+        <p class="text-xs uppercase tracking-widest text-gold">Scent and the Subconscious</p>
+    </div>
+    
+    <!-- Updated Flex Gallery designed for smaller images -->
+    <div class="flex flex-wrap justify-center items-center gap-8 max-w-6xl mx-auto" id="image-grid">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC1.jpeg" class="w-auto h-auto rounded-sm shadow-lg border border-gold/10 hover:border-gold/40 transition-transform duration-500 hover:scale-105" style="max-width: 100%; max-height: 400px; object-fit: scale-down;" alt="Conference Presentation Photo 1">
+        
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC2.jpeg" class="w-auto h-auto rounded-sm shadow-lg border border-gold/10 hover:border-gold/40 transition-transform duration-500 hover:scale-105" style="max-width: 100%; max-height: 400px; object-fit: scale-down;" alt="Conference Presentation Photo 2">
+        
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC3.jpeg" class="w-auto h-auto rounded-sm shadow-lg border border-gold/10 hover:border-gold/40 transition-transform duration-500 hover:scale-105" style="max-width: 100%; max-height: 400px; object-fit: scale-down;" alt="Conference Presentation Photo 3">
+        
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC4.jpeg" class="w-auto h-auto rounded-sm shadow-lg border border-gold/10 hover:border-gold/40 transition-transform duration-500 hover:scale-105" style="max-width: 100%; max-height: 400px; object-fit: scale-down;" alt="Conference Presentation Photo 4">
+        
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC5.jpeg" class="w-auto h-auto rounded-sm shadow-lg border border-gold/10 hover:border-gold/40 transition-transform duration-500 hover:scale-105" style="max-width: 100%; max-height: 400px; object-fit: scale-down;" alt="Conference Presentation Photo 5">
+        
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/HHC2026/HHC6.jpeg" class="w-auto h-auto rounded-sm shadow-lg border border-gold/10 hover:border-gold/40 transition-transform duration-500 hover:scale-105" style="max-width: 100%; max-height: 400px; object-fit: scale-down;" alt="Conference Presentation Photo 6">
+    </div>
+</section>
+
+<!-- HYPNOSIS SECTION -->
+<section class="reveal py-24 px-6 bg-charcoal relative overflow-hidden border-t border-kyara/30 z-10">
+     <div class="max-w-3xl mx-auto text-left relative z-10">
+        <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4 tracking-wide">HYPNOSIS</h3>
+        <div class="w-16 h-[1px] bg-gold mb-6"></div>
+        <p class="text-ash/80 font-light leading-7 mb-6">
+            Through Shihan Wellness, you can engage with John Launius for <span class="text-gold">Fragrance Hypnosis™</span> in person, as well as Conversational Hypnosis offered both in person and virtually, anywhere in the world.
+        </p>
+        <p class="text-ash/80 font-light leading-7 mb-8">
+            Hypnosis is the process of reaching a deeply relaxed and focused state, allowing access to the part of the mind that governs habits, patterns, and automatic responses. From this elevated state of awareness, change becomes natural, revealing greater clarity, balance, and your optimal self.
+        </p>
+        <a href="http://www.shihan-wellness.com/hypnosis" target="_blank" class="inline-block border border-gold text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500 mb-12 hover:shadow-[0_0_15px_rgba(193,170,103,0.2)]">
+            Learn More
+        </a>
+        
+        <p class="text-ash/60 text-sm font-light italic mb-6">
+            To experience the essence of this work, watch The Incense Journey video here:
+        </p>
+
+        <div class="w-full video-wrapper-standard bg-black rounded-sm shadow-2xl border border-ash/10 relative overflow-hidden group">
+            <iframe 
+                src="https://www.youtube.com/embed/MbgEwtxhEB4?controls=1&rel=0" 
+                title="The Incense Journey" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+     </div>
+</section>
+
+<!-- CONTINUING THE JOURNEY -->
+<section class="reveal py-24 px-6 bg-charcoal text-center border-t border-kyara/30 z-10 relative">
+    <div class="max-w-2xl mx-auto border border-gold/30 p-12 relative overflow-hidden group hover:border-gold/60 transition-colors duration-700">
+        <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-gold group-hover:scale-125 transition-transform duration-500"></div>
+        <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold group-hover:scale-125 transition-transform duration-500"></div><h3 class="font-serif text-3xl md:text-4xl text-ash mb-4">Continue the Journey</h3>
+    <p class="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-6">Ongoing Sessions • Shihan Wellness</p>
+    <p class="text-ash/80 font-light leading-relaxed mb-8">
+        The experience doesn’t end at the conference. The Incense Journey continues through ongoing sessions, private work, and deeper immersion through Shihan Wellness. These spaces allow the work to unfold over time — not as a single event, but as a living practice of presence, perception, and transformation.
+    </p>
+    <a href="http://www.shihan-wellness.com" target="_blank" class="inline-block border border-gold/50 text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500">
+        Explore Shihan Wellness
+    </a>
+</div>
+
+</section>
+
+<!-- VENDORS SECTION -->
+<section class="reveal py-24 px-6 bg-charcoal text-center border-t border-kyara/30 relative overflow-hidden z-10">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-ash/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+    <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4">Recommended Vendors & Artisans</h3>
+    <p class="text-ash/60 mb-12 max-w-xl mx-auto text-sm font-light">
+        Sourcing high-quality incense is part of the practice. Below are trusted vendors who uphold the traditions of purity and sourcing integrity.
+    </p>
+    
+    <div class="max-w-4xl mx-auto text-left grid md:grid-cols-2 gap-8">
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Yen-ology</h4>
+                <a href="http://www.yen-ology.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Proud sponsor of The Incense Journey™</li>
+                <li>Receive 10% off when you mention Kōmoto, John Launius, and Shihan Wellness</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Scents of Earth</h4>
+                <a href="http://www.scents-of-earth.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+                <li>One-time only code for orders: <strong>L2026</strong> for 15% off</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Mermade Arts</h4>
+                <a href="http://www.mermadearts.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Japan Incense</h4>
+                <a href="http://www.Japanincense.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <h4 class="font-serif text-xl text-ash mb-2 group-hover:text-gold transition-colors">The Soul Place</h4>
+            <p class="text-ash/60 italic text-sm mb-4">Electric incense warmers and related items</p>
+            <div class="flex flex-col gap-3">
+                 <a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors flex items-center inline-group">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold mr-2 group-hover:scale-125 transition-transform"></span> Classic Heater
+                 </a>
+                 <a href="https://the-soul-place.square.site/product/premium-heater/OIA7G2KWJI2TFURFYFA7QCWP" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors flex items-center inline-group">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold mr-2 group-hover:scale-125 transition-transform"></span> Premium Heater
+                 </a>
+            </div>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Apothecary’s Garden</h4>
+                <a href="http://www.Apothecarysgarden.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Canadian source for premium and rare incense resins and products</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-16 text-center text-ash/40 relative z-10">
+    <div class="mb-8">
+        <svg class="w-6 h-6 mx-auto text-gold/30 mb-4 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+        <p class="text-xs uppercase tracking-widest">&copy; 2026 The Incense Journey. All rights reserved.</p>
+        <p class="mt-2 text-[10px] tracking-widest">Silence is a Feature.</p>
+    </div>
+
+    <div class="border-t border-ash/5 pt-8 mx-auto max-w-xs">
+        <p class="text-[10px] uppercase tracking-[0.2em] leading-relaxed text-ash/30">
+            Website created by <span class="text-gold/50">Darrell Wright</span><br>
+            Senior Student in The Way of Incense.
+        </p>
+    </div>
+</footer>
+
+<!-- INTERACTIVITY SCRIPT -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        let isMouseMoving = false;
+        let mouseTimeout;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.transform = `translate(${e.clientX - 400}px, ${e.clientY - 400}px)`;
+            
+            if (!isMouseMoving) {
+                cursorGlow.style.opacity = '1';
+                isMouseMoving = true;
+            }
+
+            clearTimeout(mouseTimeout);
+            mouseTimeout = setTimeout(() => {
+                cursorGlow.style.opacity = '0.3';
+                isMouseMoving = false;
+            }, 1500);
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
+        });
+
+        const emberContainer = document.getElementById('ember-container');
+        
+        function createEmber() {
+            if (document.hidden) return;
+
+            const ember = document.createElement('div');
+            ember.classList.add('ember');
+            
+            const size = Math.random() * 3 + 1;
+            const leftPos = Math.random() * 100;
+            const animDuration = Math.random() * 8 + 6;
+            const flickerDur = Math.random() * 1 + 0.5;
+            
+            ember.style.width = `${size}px`;
+            ember.style.height = `${size}px`;
+            ember.style.left = `${leftPos}vw`;
+            ember.style.animationDuration = `${animDuration}s, ${flickerDur}s`;
+            
+            emberContainer.appendChild(ember);
+            
+            setTimeout(() => {
+                if(ember.parentNode === emberContainer) {
+                    ember.remove();
+                }
+            }, animDuration * 1000);
+        }
+
+        setInterval(createEmber, 400);
+
+        const nav = document.getElementById('nav-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.remove('opacity-0');
+                nav.classList.add('opacity-100');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
