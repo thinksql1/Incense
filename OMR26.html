@@ -1,0 +1,758 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Incense Journey | Old Man River Nature Retreat</title>
+    
+    <!-- Social Thumbnail (OG Image) -->
+    <meta property="og:image" content="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/001.jpeg">
+    <meta property="og:title" content="The Incense Journey | Old Man River Nature Retreat">
+    <meta property="og:description" content="A recap of The Incense Journey™ sessions held at the 2026 Old Man River Nature Retreat.">
+    <meta name="twitter:image" content="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/001.jpeg">
+
+    <!-- Fonts: Playfair Display (Serif/Aristocrat) and Lato (Sans/Modernist) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Config for Ash & Ember Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ash: '#EBEAE5',
+                        charcoal: '#1A1A1A',
+                        kyara: '#4A3B32',
+                        gold: '#C1AA67',
+                        sage: '#929C92',
+                        river: '#6E7F80',
+                        tobacco: '#6B4A2F'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #1A1A1A;
+            color: #EBEAE5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .fog-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+            pointer-events: none; 
+        }
+
+        .fog-img {
+            position: absolute;
+            height: 100vh;
+            width: 300vw;
+            z-index: 1;
+            opacity: 0.4;
+            background: radial-gradient(ellipse at center, rgba(193, 170, 103, 0.1) 0%, rgba(0,0,0,0) 70%);
+            animation: fog 60s linear infinite;
+            pointer-events: none; 
+        }
+
+        .fog-img-2 {
+            z-index: 2;
+            opacity: 0.2;
+            background: radial-gradient(ellipse at center, rgba(235, 234, 229, 0.08) 0%, rgba(0,0,0,0) 60%);
+            animation: fog 40s linear infinite reverse;
+            bottom: 0;
+            position: absolute;
+            height: 100vh;
+            width: 300vw;
+            pointer-events: none;
+        }
+
+        @keyframes fog {
+            0% { transform: translate3d(-50px, 0, 0); }
+            50% { transform: translate3d(50px, -20px, 0); }
+            100% { transform: translate3d(-50px, 0, 0); }
+        }
+
+        #ember-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .ember {
+            position: absolute;
+            bottom: -20px;
+            background-color: #C1AA67;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0;
+            box-shadow: 0 0 10px 2px rgba(193, 170, 103, 0.8);
+            animation: floatUp infinite linear, flicker infinite alternate ease-in-out;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+            10% { opacity: 0.8; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-100vh) translateX(50px) scale(0.2); opacity: 0; }
+        }
+        @keyframes flicker {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            100% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        #cursor-glow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(193, 170, 103, 0.04) 0%, transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(193, 170, 103, 0); }
+            50% { transform: scale(1.02); text-shadow: 0 0 25px rgba(193, 170, 103, 0.2); }
+        }
+        .animate-breathe {
+            display: inline-block;
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(5px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .masonry-grid { column-count: 2; column-gap: 1.5rem; }
+        @media (min-width: 768px) { .masonry-grid { column-count: 3; } }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(193, 170, 103, 0.05);
+        }
+        .masonry-item:hover {
+            transform: scale(1.02);
+            border-color: rgba(193, 170, 103, 0.3);
+            z-index: 10;
+        }
+
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding-right: 0.5rem;
+            padding-top: 0.1rem;
+            font-family: 'Playfair Display', serif;
+            color: #C1AA67; 
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #4A3B32; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C1AA67; }
+        
+        .vendor-list li { position: relative; padding-left: 1rem; }
+        .vendor-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #C1AA67;
+        }
+        
+        .video-wrapper-standard {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-wrapper-standard iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        .conference-card {
+            background: linear-gradient(135deg, rgba(193, 170, 103, 0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(193, 170, 103, 0.25);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-gold selection:text-charcoal">
+
+<!-- Interactive Cursor Aura -->
+<div id="cursor-glow"></div>
+
+<!-- Ambient Smoke & Embers Background -->
+<div class="fog-container">
+    <div class="fog-img"></div>
+    <div class="fog-img-2"></div>
+</div>
+<div id="ember-container"></div>
+
+<!-- Navigation / Header -->
+<nav class="fixed top-0 w-full p-6 z-50 mix-blend-difference flex justify-between items-center opacity-0 animate-fade-in transition-opacity duration-1000" id="nav-header" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+    <div class="text-xs tracking-[0.2em] uppercase font-bold text-gold">The Incense Journey</div>
+    <div class="text-xs tracking-[0.2em] uppercase font-bold text-ash">Retreat Recap</div>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
+    <div class="reveal active transition-delay-500 z-10">
+        <p class="text-gold uppercase tracking-[0.3em] text-xs mb-6 tracking-widest">Scent, Stillness, and the Subconscious</p>
+        
+        <div class="animate-breathe">
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 text-ash font-normal">
+                Old Man River <br> Retreat
+            </h1>
+        </div>
+        
+        <div class="h-16 w-[1px] bg-gradient-to-b from-transparent via-gold to-transparent mx-auto my-8 opacity-70"></div>
+        
+        <p class="font-sans font-light text-sm md:text-base tracking-widest uppercase text-ash/70 mb-10">
+            A Recap of The Incense Journey™ Sessions
+        </p>
+
+        <a href="#gallery-section" class="inline-block border border-gold/50 text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500 hover:shadow-[0_0_20px_rgba(193,170,103,0.3)]">
+            View Retreat Gallery
+        </a>
+    </div>
+    
+    <div class="absolute bottom-10 animate-bounce opacity-50 z-10">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+</header>
+
+<!-- INTRO NARRATIVE -->
+<section class="max-w-3xl mx-auto px-6 py-24 md:py-32 leading-relaxed text-lg md:text-xl text-ash/90 relative z-10">
+    <div class="reveal">
+        <p class="mb-8 drop-cap font-light">
+            At the Old Man River Nature Retreat, The Incense Journey became a living bridge between ancient aromatic practice and the deep, grounding rhythm of nature. Removed from the rush of daily life, fragrance was not treated as decoration. It became a doorway: a sensory induction, a silent suggestion, and a way for the body to remember stillness in harmony with the environment.
+        </p>
+        <p class="font-light mb-8">
+            Guided by <span class="text-gold border-b border-gold/30 pb-0.5 transition-colors hover:text-ash hover:border-ash duration-300">John Launius</span>, participants experienced two distinct, multi-layered sessions. Below is the aromatic record of those journeys—a progression of woods, resins, and ancient blends designed to clear the mind, deepen awareness, and integrate the experience into body and memory.
+        </p>
+    </div>
+</section>
+
+<!-- THE SCENT JOURNEY (TWO SESSIONS) -->
+<main class="space-y-32 pb-32 z-10 relative">
+    
+    <!-- Saturday Session 1 -->
+    <section class="reveal max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl text-ash mb-2">Saturday Session 1</h2>
+            <div class="w-12 h-[1px] bg-gold mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
+            <!-- Item 1 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">01</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Borneol Camphor</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    A crystalline breath of mountain clarity, opening the senses like cool air moving through an ancient cedar temple.
+                </p>
+            </div>
+            <!-- Item 2 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">02</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Sandalwood</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    Soft golden wood unfolding in quiet layers, grounding the mind in stillness and devotional warmth.
+                </p>
+            </div>
+            <!-- Item 3 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">03</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Frankincense</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    A luminous resin rising like prayer smoke, carrying the awareness upward into spacious contemplation.
+                </p>
+            </div>
+            <!-- Item 4 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">04</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Zuikun Jirushi</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    A refined aloeswood expression where elegance, silence, and hidden sweetness reveal themselves slowly through attentive listening.
+                </p>
+            </div>
+            <!-- Item 5 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">05</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Oppoponax Sweet Myrrh</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    Dark honeyed resin with a bittersweet depth, evoking ancient sanctuaries and forgotten rites.
+                </p>
+            </div>
+            <!-- Item 6 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">06</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Palo Santo</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    Bright sacred wood with citrus warmth and gentle smoke, cleansing the atmosphere while inviting presence.
+                </p>
+            </div>
+            <!-- Item 7 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">07</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Labdanum</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    Rich amber shadows and animalic warmth, wrapping the senses in velvet-like depth and mystery.
+                </p>
+            </div>
+            <!-- Item 8 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">08</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Kyana-kō</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    An alchemical nerikō blend of woods, resins, and spices, unfolding like a shifting dream across the incense tray.
+                </p>
+            </div>
+            <!-- Item 9 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">09</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Dark Amber</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    Deep resinous warmth with smoky sweetness, like embers glowing beneath twilight silence.
+                </p>
+            </div>
+            <!-- Item 10 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">10</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Kyphi</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    The sacred perfume of temple night, weaving wine-dark resins, herbs, and sweetness into a meditative trance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Saturday Session 2 -->
+    <section class="reveal max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl text-ash mb-2">Saturday Session 2</h2>
+            <div class="w-12 h-[1px] bg-gold mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
+            <!-- Item 1 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">01</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Borneol Camphor</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    A cooling crystalline gateway that sharpens awareness and clears the inner landscape.
+                </p>
+            </div>
+            <!-- Item 2 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">02</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Sai-un Nerikō</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    “Colored Clouds” drifting through the senses in delicate waves of spice, wood, and softened sweetness.
+                </p>
+            </div>
+            <!-- Item 3 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">03</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors leading-tight">Nicotiana Rustica <br>& Sandalwood</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    Earthy ceremonial tobacco resting within the calm embrace of sacred sandalwood.
+                </p>
+            </div>
+            <!-- Item 4 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">04</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Bodai-Shōkō</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    A contemplative blend inspired by the Bodhi path, balancing serenity, warmth, and subtle spiritual gravity.
+                </p>
+            </div>
+            <!-- Item 5 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">05</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors leading-tight">Frankincense & <br>Spikenard</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    Sacred resin and ancient root entwined together in a fragrance of devotion, humility, and anointing.
+                </p>
+            </div>
+            <!-- Item 6 -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">06</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Labdanum</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    A dense amber resin radiating primal warmth, depth, and quiet sensuality.
+                </p>
+            </div>
+            <!-- Item 7 (Centered) -->
+            <div class="group border-b border-kyara/30 pb-6 transition-colors duration-500 hover:border-gold/50 md:col-span-2 md:w-1/2 md:mx-auto">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl font-serif text-ash/20 group-hover:text-gold/60 transition-colors w-12 shrink-0">07</span>
+                    <span class="font-serif text-xl text-ash/90 group-hover:text-gold transition-colors">Kyphi</span>
+                </div>
+                <p class="text-sm font-light text-ash/60 leading-relaxed pl-12 group-hover:text-ash/80 transition-colors">
+                    A timeless temple accord inviting the mind into reverie through layers of resin, herb, and sacred sweetness.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+</main>
+
+<!-- ARTISTIC DISPLAY / GALLERY -->
+<section class="reveal px-4 md:px-12 py-24 bg-black/20 relative z-10" id="gallery-section">
+    <div class="text-center mb-16">
+        <h3 class="font-serif text-3xl text-ash mb-2">Moments from the Retreat</h3>
+        <p class="text-xs uppercase tracking-widest text-gold">Old Man River Nature Retreat</p>
+    </div>
+    
+    <div class="masonry-grid max-w-6xl mx-auto" id="image-grid">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/001.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/002.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/003.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/004.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/006.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/008.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/010.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/012.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/015.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/017.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+        <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/019.jpeg" class="masonry-item w-full h-auto rounded-sm cursor-default shadow-lg" alt="Retreat Moment">
+    </div>
+</section>
+
+<!-- UPCOMING ENGAGEMENTS (NEW) -->
+<section class="reveal py-24 px-6 bg-charcoal relative overflow-hidden border-t border-kyara/30 z-10">
+    <div class="max-w-5xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4 tracking-wide">UPCOMING ENGAGEMENTS</h3>
+            <div class="w-16 h-[1px] bg-gold mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Event 1: May 14 Talk -->
+            <div class="conference-card p-8 rounded-sm group relative overflow-hidden transition-all duration-500 hover:border-gold/50 flex flex-col h-full">
+                <!-- Using object-contain and a subtle background to ensure the full poster is visible -->
+                <div class="mb-6 overflow-hidden rounded-sm border border-ash/10 bg-black/40 flex justify-center">
+                    <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/021.png" alt="Altered States & Aromatic Minds Presentation" class="w-full h-48 object-contain p-2 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <p class="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-3">May 14 • Speaker Series</p>
+                <h4 class="font-serif text-2xl text-ash mb-4 leading-snug">Altered States & Aromatic Minds: Psychedelics vs. Psychotropics in Consciousness, Culture and the Brain</h4>
+                <p class="text-ash/70 font-light text-sm mb-8 flex-grow">
+                    Join John Launius for an in-depth presentation exploring the fascinating intersections of scent, neurochemistry, and altered states of perception.
+                </p>
+                <a href="https://psychedelicstl.org/events/may-speaker-series-psychedelics-vs-psychotropics/" target="_blank" class="inline-block border border-gold/50 text-gold px-6 py-3 text-xs uppercase tracking-[0.2em] text-center hover:bg-gold hover:text-charcoal transition-all duration-500">
+                    View Event Details
+                </a>
+            </div>
+
+            <!-- Event 2: May 17 Incense Journey -->
+            <div class="conference-card p-8 rounded-sm group relative overflow-hidden transition-all duration-500 hover:border-gold/50 flex flex-col h-full">
+                <div class="mb-6 overflow-hidden rounded-sm border border-ash/10">
+                    <img src="https://filedn.com/l3dxEBhJeAeb3qud0LuwFI4/OMR26/022.jpg" alt="The Incense Journey Immersive Session" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <p class="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-3">May 17 • Immersive Session</p>
+                <h4 class="font-serif text-2xl text-ash mb-4 leading-snug">The Incense Journey™ – Listening to the Mind Through Fragrance and Scent</h4>
+                <p class="text-ash/70 font-light text-sm mb-8 flex-grow">
+                    A continuation of the aromatic practice. Experience fragrance as pacing, anchor, atmosphere, and threshold in this upcoming guided session.
+                </p>
+                <a href="https://www.facebook.com/share/1HiBPoh8EM/" target="_blank" class="inline-block border border-gold/50 text-gold px-6 py-3 text-xs uppercase tracking-[0.2em] text-center hover:bg-gold hover:text-charcoal transition-all duration-500">
+                    View Facebook Event
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HYPNOSIS SECTION -->
+<section class="reveal py-24 px-6 bg-charcoal relative overflow-hidden border-t border-kyara/30 z-10">
+     <div class="max-w-3xl mx-auto text-left relative z-10">
+        <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4 tracking-wide">HYPNOSIS & THE WORK</h3>
+        <div class="w-16 h-[1px] bg-gold mb-6"></div>
+        <p class="text-ash/80 font-light leading-7 mb-6">
+            Through Shihan Wellness, you can engage with John Launius for <span class="text-gold">Fragrance Hypnosis™</span> in person, as well as Conversational Hypnosis offered both in person and virtually, anywhere in the world.
+        </p>
+        <p class="text-ash/80 font-light leading-7 mb-8">
+            Hypnosis is the process of reaching a deeply relaxed and focused state, allowing access to the part of the mind that governs habits, patterns, and automatic responses. From this elevated state of awareness, change becomes natural, revealing greater clarity, balance, and your optimal self.
+        </p>
+        <a href="http://www.shihan-wellness.com/hypnosis" target="_blank" class="inline-block border border-gold text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500 mb-12 hover:shadow-[0_0_15px_rgba(193,170,103,0.2)]">
+            Learn More
+        </a>
+        
+        <p class="text-ash/60 text-sm font-light italic mb-6">
+            To understand the essence of this work, watch The Incense Journey overview here:
+        </p>
+
+        <div class="w-full video-wrapper-standard bg-black rounded-sm shadow-2xl border border-ash/10 relative overflow-hidden group">
+            <iframe 
+                src="https://www.youtube.com/embed/MbgEwtxhEB4?controls=1&rel=0" 
+                title="The Incense Journey" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+     </div>
+</section>
+
+<!-- NEXT EVENT / ANNOUNCEMENT -->
+<section class="reveal py-24 px-6 bg-charcoal text-center border-t border-kyara/30 z-10 relative">
+    <div class="max-w-2xl mx-auto border border-gold/30 p-12 relative overflow-hidden group hover:border-gold/60 transition-colors duration-700">
+        <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-gold group-hover:scale-125 transition-transform duration-500"></div>
+        <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold group-hover:scale-125 transition-transform duration-500"></div>
+        
+        <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4">Continue the Journey</h3>
+        <p class="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-6">Ongoing Sessions • Shihan Wellness</p>
+        <p class="text-ash/80 font-light leading-relaxed mb-8">
+            The experience doesn’t end at the retreat. The Incense Journey continues through ongoing sessions, private work, and deeper immersion through Shihan Wellness. These spaces allow the work to unfold over time — not as a single event, but as a living practice of presence, perception, and transformation.
+        </p>
+        <a href="http://www.shihan-wellness.com" target="_blank" class="inline-block border border-gold/50 text-gold px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition-all duration-500">
+            Explore Shihan Wellness
+        </a>
+    </div>
+</section>
+
+<!-- VENDORS SECTION -->
+<section class="reveal py-24 px-6 bg-charcoal text-center border-t border-kyara/30 relative overflow-hidden z-10">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-ash/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+    <h3 class="font-serif text-3xl md:text-4xl text-ash mb-4">Recommended Vendors & Artisans</h3>
+    <p class="text-ash/60 mb-12 max-w-xl mx-auto text-sm font-light">
+        Sourcing high-quality incense is part of the practice. Below are trusted vendors who uphold the traditions of purity and sourcing integrity.
+    </p>
+    
+    <div class="max-w-4xl mx-auto text-left grid md:grid-cols-2 gap-8">
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Yen-ology</h4>
+                <a href="http://www.yen-ology.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Proud sponsor of The Incense Journey™</li>
+                <li>Receive 10% off when you mention Kōmoto, John Launius, and Shihan Wellness</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Scents of Earth</h4>
+                <a href="http://www.scents-of-earth.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+                <li>One-time only code for orders: <strong>L2026</strong> for 15% off</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Mermade Arts</h4>
+                <a href="http://www.mermadearts.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Japan Incense</h4>
+                <a href="http://www.Japanincense.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Mention Kōmoto, John Launius, and Shihan Wellness</li>
+            </ul>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <h4 class="font-serif text-xl text-ash mb-2 group-hover:text-gold transition-colors">The Soul Place</h4>
+            <p class="text-ash/60 italic text-sm mb-4">Electric incense warmers and related items</p>
+            <div class="flex flex-col gap-3">
+                 <a href="https://the-soul-place.square.site/product/classic-heater/R37ZA5XQP5NYP32DXCQ3FERK" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors flex items-center inline-group">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold mr-2 group-hover:scale-125 transition-transform"></span> Classic Heater
+                 </a>
+                 <a href="https://the-soul-place.square.site/product/premium-heater/OIA7G2KWJI2TFURFYFA7QCWP" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors flex items-center inline-group">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold mr-2 group-hover:scale-125 transition-transform"></span> Premium Heater
+                 </a>
+            </div>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-sm backdrop-blur-sm border border-ash/10 hover:border-gold/30 transition-colors duration-500 group">
+            <div class="flex justify-between items-baseline mb-4 flex-wrap gap-2">
+                <h4 class="font-serif text-xl text-ash group-hover:text-gold transition-colors">Apothecary’s Garden</h4>
+                <a href="http://www.Apothecarysgarden.com" target="_blank" class="text-gold text-xs uppercase tracking-widest hover:text-white transition-colors border-b border-gold/30 pb-0.5">Visit Website</a>
+            </div>
+            <ul class="vendor-list space-y-2 text-ash/80 font-light text-sm">
+                <li>Canadian source for premium and rare incense resins and products</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-16 text-center text-ash/40 relative z-10 border-t border-kyara/30">
+    <div class="mb-8">
+        <svg class="w-6 h-6 mx-auto text-gold/30 mb-4 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+        <p class="text-xs uppercase tracking-widest">&copy; 2026 The Incense Journey. All rights reserved.</p>
+        <p class="mt-2 text-[10px] tracking-widest">Silence is a Feature.</p>
+    </div>
+
+    <div class="border-t border-ash/5 pt-8 mx-auto max-w-xs">
+        <p class="text-[10px] uppercase tracking-[0.2em] leading-relaxed text-ash/30">
+            Website created by <span class="text-gold/50">Darrell Wright</span><br>
+            Senior Student in The Way of Incense.
+        </p>
+    </div>
+</footer>
+
+<!-- INTERACTIVITY SCRIPT -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        let isMouseMoving = false;
+        let mouseTimeout;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.transform = `translate(${e.clientX - 400}px, ${e.clientY - 400}px)`;
+            
+            if (!isMouseMoving) {
+                cursorGlow.style.opacity = '1';
+                isMouseMoving = true;
+            }
+
+            clearTimeout(mouseTimeout);
+            mouseTimeout = setTimeout(() => {
+                cursorGlow.style.opacity = '0.3';
+                isMouseMoving = false;
+            }, 1500);
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
+        });
+
+        const emberContainer = document.getElementById('ember-container');
+        
+        function createEmber() {
+            if (document.hidden) return;
+
+            const ember = document.createElement('div');
+            ember.classList.add('ember');
+            
+            const size = Math.random() * 3 + 1;
+            const leftPos = Math.random() * 100;
+            const animDuration = Math.random() * 8 + 6;
+            const flickerDur = Math.random() * 1 + 0.5;
+            
+            ember.style.width = `${size}px`;
+            ember.style.height = `${size}px`;
+            ember.style.left = `${leftPos}vw`;
+            ember.style.animationDuration = `${animDuration}s, ${flickerDur}s`;
+            
+            emberContainer.appendChild(ember);
+            
+            setTimeout(() => {
+                if(ember.parentNode === emberContainer) {
+                    ember.remove();
+                }
+            }, animDuration * 1000);
+        }
+
+        setInterval(createEmber, 400);
+
+        const nav = document.getElementById('nav-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.remove('opacity-0');
+                nav.classList.add('opacity-100');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
